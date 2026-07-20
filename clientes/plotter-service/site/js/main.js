@@ -35,13 +35,20 @@ document.querySelector('.navbar__logo').addEventListener('click', (e) => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Mobile menu toggle (optional enhancement)
-const navbar = document.querySelector('.navbar');
-const links = document.querySelectorAll('.navbar__link, .navbar__cta');
+// Mobile menu toggle
+const navbarToggle = document.querySelector('.navbar__toggle');
+const navbarMenu = document.querySelector('.navbar__menu');
+const navbarLinks = document.querySelectorAll('.navbar__link, .navbar__cta');
 
-links.forEach(link => {
+navbarToggle.addEventListener('click', () => {
+  navbarToggle.classList.toggle('active');
+  navbarMenu.classList.toggle('active');
+});
+
+navbarLinks.forEach(link => {
   link.addEventListener('click', () => {
-    // Add any mobile-specific behavior here
+    navbarToggle.classList.remove('active');
+    navbarMenu.classList.remove('active');
   });
 });
 
