@@ -1,3 +1,34 @@
+// Hero interactive drops
+const hero = document.querySelector('.hero__bg');
+const drops = document.querySelectorAll('.drop');
+
+if (hero && drops.length > 0) {
+  document.addEventListener('mousemove', (e) => {
+    const heroRect = hero.getBoundingClientRect();
+
+    // Only apply effect if mouse is over hero
+    if (e.clientY > heroRect.top && e.clientY < heroRect.bottom) {
+      const x = (e.clientX - heroRect.left) / heroRect.width;
+      const y = (e.clientY - heroRect.top) / heroRect.height;
+
+      drops.forEach((drop, index) => {
+        const speed = (index + 1) * 15;
+        const offsetX = (x - 0.5) * speed;
+        const offsetY = (y - 0.5) * speed;
+
+        drop.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      });
+    }
+  });
+
+  // Reset on mouse leave
+  document.addEventListener('mouseleave', () => {
+    drops.forEach(drop => {
+      drop.style.transform = 'translate(0, 0)';
+    });
+  });
+}
+
 // Smooth scroll for navbar logo
 document.querySelector('.navbar__logo').addEventListener('click', (e) => {
   e.preventDefault();
