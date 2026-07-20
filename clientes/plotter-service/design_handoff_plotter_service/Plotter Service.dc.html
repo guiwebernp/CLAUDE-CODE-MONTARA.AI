@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body { font-family: 'Manrope', sans-serif; background: #FBFAF7; }
+  a { color: #E6007E; text-decoration: none; }
+  a:hover { color: #b3005f; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+<script src="./assets/image-slot.js"></script>
+</helmet>
+<div style="background: #FBFAF7; color: #0F1B33; overflow-x: hidden;">
+
+  <nav style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: rgba(251,250,247,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(15,27,51,0.08);">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px; color: #123A7A;">
+      <img src="assets/plotter-symbol.png" alt="" style="height: 42px; width: 42px; display: block; animation: spin 8s linear infinite; transform-origin: 50% 50%;">
+      <img src="assets/plotter-wordmark.png" alt="Plotter Service" style="height: 32px; width: auto; display: block;">
+    </a>
+    <div style="display: flex; align-items: center; gap: 30px;">
+      <a href="#empresa" style="color: #0F1B33; font-weight: 600; font-size: 15px;">Empresa</a>
+      <a href="#servicos" style="color: #0F1B33; font-weight: 600; font-size: 15px;">Serviços</a>
+      <a href="#trabalhos" style="color: #0F1B33; font-weight: 600; font-size: 15px;">Trabalhos</a>
+      <a href="#local" style="color: #0F1B33; font-weight: 600; font-size: 15px;">Localização</a>
+      <a href="#contato" style="display: inline-flex; align-items: center; gap: 8px; background: #123A7A; color: #fff; padding: 11px 22px; border-radius: 999px; font-weight: 700; font-size: 15px;">Fale conosco</a>
+    </div>
+  </nav>
+
+  <header id="top" style="position: relative; padding: 84px 40px 60px; overflow: hidden;">
+    <div style="position: absolute; inset: 0; z-index: 0; pointer-events: none;">
+      <div style="position: absolute; inset: 0; pointer-events: auto;">
+        <image-slot id="hero-bg" shape="rect" fit="cover" placeholder="Solte aqui uma foto (ex.: impressora de grande formato em ação)"></image-slot>
+      </div>
+      <div style="position: absolute; inset: 0; background: linear-gradient(105deg, #FBFAF7 0%, #FBFAF7 32%, rgba(251,250,247,0.82) 52%, rgba(251,250,247,0.45) 100%);"></div>
+      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(251,250,247,0) 60%, #FBFAF7 100%);"></div>
+    </div>
+    <div style="position: relative; z-index: 1; max-width: 1200px; margin: 0 auto;">
+      <div style="display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid rgba(15,27,51,0.1); padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 30px; color: #123A7A;">
+        <span style="display: inline-flex; gap: 3px;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #29ABE2;"></span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #E6007E;"></span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #FFD100;"></span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #0F1B33;"></span>
+        </span>
+        IMPRESSÃO DIGITAL & OFFSET · SÃO JOSÉ/SC
+      </div>
+      <h1 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(44px, 8vw, 104px); line-height: 0.95; letter-spacing: -0.035em; max-width: 15ch; text-wrap: balance; color: #0F1B33;">
+        Toda a cor do seu projeto, <span style="color: #E6007E;">impressa</span> com <span style="color: #29ABE2;">precisão</span>.
+      </h1>
+      <p style="font-size: clamp(17px, 2vw, 21px); line-height: 1.55; max-width: 52ch; margin: 28px 0 38px; color: #4a5468; font-weight: 500;">
+        Da planta arquitetônica à peça publicitária, damos forma às suas ideias com a mais moderna tecnologia de impressão do mercado — ágil, colorida e sem perder qualidade.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+        <a href="#servicos" style="display: inline-flex; align-items: center; gap: 10px; background: #E6007E; color: #fff; padding: 16px 30px; border-radius: 999px; font-weight: 700; font-size: 16px;">Ver serviços →</a>
+        <a href="#contato" style="display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid rgba(15,27,51,0.14); color: #123A7A; padding: 16px 30px; border-radius: 999px; font-weight: 700; font-size: 16px;">Pedir orçamento</a>
+      </div>
+    </div>
+    <div style="position: relative; z-index: 1; max-width: 1200px; margin: 56px auto 0; display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; height: 380px;">
+      <div style="border-radius: 24px; overflow: hidden; position: relative; background: repeating-linear-gradient(135deg, #eef0f4 0 18px, #e6e9f0 18px 36px); display: flex; align-items: flex-end; padding: 24px;">
+        <div style="position: absolute; top: 24px; left: 24px; display: flex; gap: 8px;">
+          <span style="width: 40px; height: 40px; border-radius: 10px; background: #29ABE2;"></span>
+          <span style="width: 40px; height: 40px; border-radius: 10px; background: #E6007E;"></span>
+          <span style="width: 40px; height: 40px; border-radius: 10px; background: #FFD100;"></span>
+        </div>
+        <span style="font-family: monospace; font-size: 13px; color: #8a90a0; background: rgba(255,255,255,0.8); padding: 6px 12px; border-radius: 8px;">[ foto — impressão de grande formato / banner ]</span>
+      </div>
+      <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 20px;">
+        <div style="border-radius: 24px; background: #123A7A; color: #fff; padding: 26px; display: flex; flex-direction: column; justify-content: space-between;">
+          <span style="font-family: 'Space Grotesk', sans-serif; font-size: 44px; font-weight: 700; line-height: 1;">+25</span>
+          <span style="font-size: 14px; font-weight: 600; color: #b7c3dd;">anos dando forma a projetos em Santa Catarina</span>
+        </div>
+        <div style="border-radius: 24px; background: #FFD100; padding: 26px; display: flex; flex-direction: column; justify-content: space-between;">
+          <span style="font-family: 'Space Grotesk', sans-serif; font-size: 44px; font-weight: 700; line-height: 1; color: #0F1B33;">CMYK</span>
+          <span style="font-size: 14px; font-weight: 700; color: #0F1B33;">cor fiel, do arquivo ao papel</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div style="overflow: hidden; background: #123A7A; padding: 18px 0; margin-top: 36px;">
+    <div style="display: flex; width: max-content; animation: marquee 24s linear infinite; white-space: nowrap;">
+      <span style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 500; color: #fff; display: flex; gap: 34px; padding-right: 34px;">
+        <span>PLOTAGENS CAD</span><span style="color:#29ABE2;">●</span><span>BANNERS</span><span style="color:#E6007E;">●</span><span>OFFSET</span><span style="color:#FFD100;">●</span><span>ADESIVOS</span><span style="color:#29ABE2;">●</span><span>LAMINAÇÃO</span><span style="color:#E6007E;">●</span><span>DIGITALIZAÇÃO</span><span style="color:#FFD100;">●</span>
+        <span>PLOTAGENS CAD</span><span style="color:#29ABE2;">●</span><span>BANNERS</span><span style="color:#E6007E;">●</span><span>OFFSET</span><span style="color:#FFD100;">●</span><span>ADESIVOS</span><span style="color:#29ABE2;">●</span><span>LAMINAÇÃO</span><span style="color:#E6007E;">●</span><span>DIGITALIZAÇÃO</span><span style="color:#FFD100;">●</span>
+      </span>
+    </div>
+  </div>
+
+  <section id="empresa" style="padding: 100px 40px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;">
+      <div style="border-radius: 28px; overflow: hidden; height: 460px; background: repeating-linear-gradient(45deg, #eef0f4 0 20px, #e6e9f0 20px 40px); position: relative; display: flex; align-items: center; justify-content: center;">
+        <span style="font-family: monospace; font-size: 13px; color: #8a90a0; background: rgba(255,255,255,0.8); padding: 8px 14px; border-radius: 8px;">[ foto — interior da gráfica / equipamentos ]</span>
+      </div>
+      <div>
+        <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.12em; color: #E6007E;">A EMPRESA</span>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(32px, 4.5vw, 52px); line-height: 1.02; letter-spacing: -0.03em; margin: 16px 0 24px; color: #123A7A;">Onde a inspiração toma forma</h2>
+        <p style="font-size: 18px; line-height: 1.6; color: #4a5468; font-weight: 500; margin-bottom: 20px;">Toda a cor e grandiosidade de um projeto precisam ser mantidas no momento em que ele deixa de ser inspiração e técnica para tomar forma.</p>
+        <p style="font-size: 18px; line-height: 1.6; color: #4a5468; font-weight: 500; margin-bottom: 32px;">Seja um projeto arquitetônico, uma peça publicitária, uma planta estrutural ou o que sua inspiração mandar, a Plotter Service possui serviços especializados para manter toda a qualidade do seu trabalho — valorizando ainda mais a sua ideia.</p>
+        <div style="display: flex; gap: 40px;">
+          <div><div style="font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 700; color: #123A7A;">6+</div><div style="font-size: 14px; color: #8a90a0; font-weight: 600;">serviços especializados</div></div>
+          <div><div style="font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 700; color: #123A7A;">Digital + Offset</div><div style="font-size: 14px; color: #8a90a0; font-weight: 600;">tecnologia completa</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos" style="padding: 40px 40px 100px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="max-width: 640px; margin-bottom: 50px;">
+        <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.12em; color: #29ABE2;">SERVIÇOS</span>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(32px, 4.5vw, 52px); line-height: 1.02; letter-spacing: -0.03em; margin: 16px 0 18px; color: #123A7A;">Do papel ao material que sua ideia pedir</h2>
+        <p style="font-size: 18px; line-height: 1.6; color: #4a5468; font-weight: 500;">Serviços ágeis e de qualidade em impressos e acabamentos especiais, com a mais moderna tecnologia do mercado.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+          <div style="background: #fff; border: 1px solid rgba(15,27,51,0.08); border-radius: 22px; padding: 30px; display: flex; flex-direction: column; gap: 16px; min-height: 250px; transition: transform .2s, border-color .2s;" style-hover="border-color: {{ s.color }}; transform: translateY(-4px);">
+            <div style="width: 52px; height: 52px; border-radius: 14px; background: {{ s.color }}; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; font-size: 20px;">{{ s.num }}</div>
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.15; letter-spacing: -0.01em; color: #123A7A;">{{ s.title }}</h3>
+            <p style="font-size: 15px; line-height: 1.55; color: #6a7183; font-weight: 500;">{{ s.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabalhos" style="padding: 90px 40px; background: #0F1B33; color: #fff;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 44px;">
+        <div style="max-width: 560px;">
+          <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.12em; color: #FFD100;">TRABALHOS</span>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(32px, 4.5vw, 52px); line-height: 1.02; letter-spacing: -0.03em; margin-top: 16px;">O que sai da nossa gráfica</h2>
+        </div>
+        <a href="#contato" style="color: #FFD100; font-weight: 700; font-size: 16px;">Quer algo assim? Fale com a gente →</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 16px;">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
+          <div style="border-radius: 18px; overflow: hidden; position: relative; grid-column: span {{ g.span }}; grid-row: span {{ g.row }}; background: repeating-linear-gradient(135deg, #232f47 0 16px, #1c2740 16px 32px); display: flex; align-items: flex-end; padding: 18px;">
+            <span style="position: absolute; top: 16px; left: 16px; width: 30px; height: 30px; border-radius: 8px; background: {{ g.color }};"></span>
+            <span style="font-family: monospace; font-size: 12px; color: #9aa4bd; background: rgba(15,27,51,0.7); padding: 5px 10px; border-radius: 6px;">{{ g.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="local" style="padding: 100px 40px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="max-width: 640px; margin-bottom: 44px;">
+        <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.12em; color: #29ABE2;">LOCALIZAÇÃO</span>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(32px, 4.5vw, 52px); line-height: 1.02; letter-spacing: -0.03em; margin-top: 16px; color: #123A7A;">Venha nos visitar em São José</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="border-radius: 24px; overflow: hidden; height: 380px; background: repeating-linear-gradient(45deg, #eef0f4 0 20px, #e6e9f0 20px 40px); position: relative; display: flex; align-items: center; justify-content: center;">
+          <span style="font-family: monospace; font-size: 13px; color: #8a90a0; background: rgba(255,255,255,0.8); padding: 8px 14px; border-radius: 8px;">[ mapa incorporado — Google Maps ]</span>
+        </div>
+        <div style="background: #123A7A; color: #fff; border-radius: 24px; padding: 44px; display: flex; flex-direction: column; justify-content: center;">
+          <span style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 24px;">Unidade São José</span>
+          <div style="display: flex; flex-direction: column; gap: 20px; font-size: 16px; line-height: 1.5; color: #dbe3f2; font-weight: 500;">
+            <div><div style="color: #FFD100; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; margin-bottom: 4px;">ENDEREÇO</div>Subsolo do Supermercado Giassi<br>Rua Irineu Bornhausen, 425 — Campinas<br>São José / SC</div>
+            <div><div style="color: #FFD100; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; margin-bottom: 4px;">TELEFONE</div>(48) 3241-7564</div>
+            <div><div style="color: #FFD100; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; margin-bottom: 4px;">WHATSAPP</div>(48) 98844-9144</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" style="padding: 30px 40px 100px;">
+    <div style="max-width: 1200px; margin: 0 auto; background: linear-gradient(135deg, #123A7A 0%, #0F1B33 100%); border-radius: 32px; padding: 72px 56px; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -40px; right: -20px; display: flex; gap: 12px; opacity: 0.9;">
+        <span style="width: 90px; height: 90px; border-radius: 22px; background: #29ABE2;"></span>
+        <span style="width: 90px; height: 90px; border-radius: 22px; background: #E6007E;"></span>
+        <span style="width: 90px; height: 90px; border-radius: 22px; background: #FFD100;"></span>
+      </div>
+      <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.12em; color: #FFD100;">CONTATO</span>
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(34px, 5vw, 60px); line-height: 1; letter-spacing: -0.03em; margin: 16px 0 20px; color: #fff; max-width: 16ch;">Bora dar forma à sua ideia?</h2>
+      <p style="font-size: 19px; line-height: 1.55; color: #c4cfe6; font-weight: 500; max-width: 48ch; margin-bottom: 36px;">Mande seu arquivo pelo WhatsApp e receba um orçamento rápido. Atendimento ágil, cor fiel e acabamento de qualidade.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+        <a href="https://wa.me/5548988449144" style="display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 17px 32px; border-radius: 999px; font-weight: 700; font-size: 17px;">WhatsApp (48) 98844-9144</a>
+        <a href="https://www.instagram.com/plotterservice.br/" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); color: #fff; padding: 17px 32px; border-radius: 999px; font-weight: 700; font-size: 17px;">Instagram</a>
+        <a href="https://www.facebook.com/Plotter-Service-Impress%C3%B5es-Digitais-LTDA-275641512548372/" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); color: #fff; padding: 17px 32px; border-radius: 999px; font-weight: 700; font-size: 17px;">Facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding: 44px 40px; border-top: 1px solid rgba(15,27,51,0.08);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; color: #123A7A;">
+        <img src="assets/plotter-symbol.png" alt="" style="height: 40px; width: 40px; display: block;">
+        <img src="assets/plotter-wordmark.png" alt="Plotter Service" style="height: 30px; width: auto; display: block;">
+      </div>
+      <span style="font-size: 14px; color: #8a90a0; font-weight: 500;">© 2026 Plotter Service · Impressão Digital & Offset · São José/SC</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      services: [
+        { num: "01", color: "#29ABE2", title: "Plotagens CAD e Mono Color", desc: "Plotagem técnica de projetos em preto e branco e mono color, com traço fiel e agilidade." },
+        { num: "02", color: "#E6007E", title: "Cópias e Digitalização", desc: "Cópias e digitalização de projetos, monocromáticos e coloridos, em alta resolução." },
+        { num: "03", color: "#FFD100", title: "Cópias e Impressões PB e Color", desc: "Impressões e cópias em preto e branco ou coloridas para todo tipo de documento." },
+        { num: "04", color: "#0F1B33", title: "Impressões Digitais Interno e Externo", desc: "Lona, tecido, perfurado, vinil adesivo, glossy e papel — banners, painéis, placas, faixas e vitrines." },
+        { num: "05", color: "#29ABE2", title: "Impressão Offset", desc: "Folders, folhetos, catálogos, embalagens, revistas, jornais e muito mais." },
+        { num: "06", color: "#E6007E", title: "Laminação de Plantas e Banners", desc: "Acabamento de laminação que protege e valoriza plantas e banners." },
+      ],
+      gallery: [
+        { span: 2, row: 1, color: "#29ABE2", label: "banners & lonas" },
+        { span: 1, row: 1, color: "#E6007E", label: "adesivos" },
+        { span: 1, row: 2, color: "#FFD100", label: "vitrines" },
+        { span: 1, row: 1, color: "#0F1B33", label: "plotagem CAD" },
+        { span: 1, row: 1, color: "#E6007E", label: "offset" },
+        { span: 1, row: 1, color: "#29ABE2", label: "catálogos" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
