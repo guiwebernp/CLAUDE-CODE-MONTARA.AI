@@ -1,115 +1,122 @@
-# MazyOS — Sistema operacional do negócio
+# Guilherme Weber — Montara.AI (MazyOS)
 
-Sua empresa roda em cima desse arquivo. Aqui ficam as regras de operação
-do MazyOS — como o Claude lê o contexto, aprende com correções, mantém
-tudo atualizado e cria skills novas conforme a operação evolui.
+> Operação Montara.AI. Aqui ficam clientes, propostas, entregas, portfólio
+> e tudo que girar em torno de captar e entregar sites com IA.
 
-Esse arquivo é editável. Quando o `/instalar` rodar, ele complementa o
-final dessa página com as regras específicas do seu negócio.
+## O que é esse workspace
 
----
+Montara.AI — automação com inteligência artificial, focando em criação
+de sites profissionais para empresas que não têm recursos internos.
 
-## Contexto do negócio
+**Estrutura de pastas:**
 
-No início de toda conversa, ler os seguintes arquivos (quando existirem
-e estiverem preenchidos):
-
-1. `_memoria/empresa.md` — quem é o usuário, o que faz, como funciona o negócio
-2. `_memoria/preferencias.md` — tom de voz, estilo de escrita, o que evitar
-3. `_memoria/estrategia.md` — foco atual, prioridades, prazos
-
-Usar essas informações como base pra qualquer resposta ou decisão. Ao
-sugerir prioridades, formatos ou abordagens, considerar o foco atual
-descrito em `estrategia.md`.
-
-Pra qualquer tarefa visual (carrossel, post, landing page), consultar
-`identidade/design-guide.md` como referência de estilo.
-
-Não é necessário listar o que foi lido nem confirmar a leitura. Apenas
-usar o contexto naturalmente.
+- `_memoria/` — quem sou, como falo, prioridades atuais
+- `identidade/` — marca visual Montara.AI (cores, logo, tipografia)
+- `clientes/` — uma pasta por cliente (RDO, Info+, etc)
+  - `clientes/RDO/` — briefing, documentação, site
+  - `clientes/info-plus/` — briefing, documentação, site
+- `propostas/` — propostas em rascunho ou enviadas
+- `modelos/` — templates de sites profissionais (reutilizáveis)
+- `marketing/` — meu próprio conteúdo (portfólio, LinkedIn, Instagram)
+- `saidas/` — emails, documentos pontuais
+- `dados/` — arquivos de clientes (imagens, specs, etc)
+- `tarefas.md` — pipeline, prazos, próximos projetos
 
 ---
 
-## Fluxo de trabalho
+## Quem sou
 
-Antes de executar qualquer tarefa, verificar se existe skill relevante
-em `.claude/skills/`. Se encontrar, seguir as instruções da skill. Se
-não encontrar, executar a tarefa normalmente.
+Sou Guilherme Weber, freelancer especializado em implementação de automação
+com IA. Trabalho com empresas que têm site desatualizado ou não têm equipe
+interna pra cuidar disso, entregando sites profissionais + integração de IA.
 
-Ao concluir uma tarefa que não tinha skill mas parece repetível (o
-usuário provavelmente vai pedir de novo no futuro), perguntar:
+## Meu serviço
 
-> "Isso pode virar uma skill pra próxima vez. Quer que eu crie?"
+- **Sites profissionais com IA** — estrutura, design responsivo, integração
+- **Automação de processos** — usando agentes de IA
+- **Consuloria técnica** — como implementar IA no negócio
 
-Não perguntar pra tarefas pontuais ou perguntas simples. Só quando o
-padrão de repetição for claro.
+**Perfil de cliente:** Micro/pequena empresa com 5-50 pessoas  
+**Ticket médio:** ~R$ 3-8k por site  
+**Capacidade:** 2 projetos simultâneos (máximo)
 
----
+## Clientes ativos
 
-## Aprender com correções
+1. **RDO Comunicação Visual** (Florianópolis) — site institucional + formulário
+2. **Info+** (loja de informática) — site e-commerce + catálogo
+3. **Plotter Service** (São José/SC) — site institucional com hero animada + portfólio de trabalhos
 
-Quando o usuário corrigir algo, melhorar uma resposta ou dar uma
-instrução que parece permanente (frases como "na verdade é assim", "não
-faça mais isso", "prefiro assim", "sempre que...", "evita...", "da
-próxima vez..."), perguntar:
+## Como trabalho
 
-> "Quer que eu salve isso pra não precisar repetir?"
+1. **Prospeção:** WhatsApp + referências ("já trabalho com empresa X no seu ramo")
+2. **Proposta:** exemplos de sites similares + escopo claro
+3. **Desenvolvimento:** templates reutilizáveis + customização por cliente
+4. **Entrega:** site ao vivo na Vercel + documentação + suporte inicial
+5. **Cobrança:** 50% no fechamento, 50% na entrega
 
-Se sim, identificar onde faz mais sentido salvar:
+**Ferramentas:** HTML/CSS/JS, Vercel, GitHub, Claude Code, Nodemailer  
+**Tempo médio:** ~2-3 semanas por site (com automação)
 
-- **Sobre o negócio** (clientes, serviços, mercado) → `_memoria/empresa.md`
-- **Sobre preferências e estilo** (tom de voz, formato, o que evitar) → `_memoria/preferencias.md`
-- **Sobre prioridades e foco** (projetos, metas, prazos) → `_memoria/estrategia.md`
-- **Regra de comportamento nessa pasta** → próprio `CLAUDE.md`
+## Tom de voz
 
-Salvar com uma linha nova clara, sem reformatar o arquivo inteiro.
-Confirmar mostrando a linha adicionada.
+Direto, amigável, contextual. Menciono referências pra gerar confiança
+("já trabalho com RDO em Jurerê"). Descontraído mas respeitoso. Prático:
+foco em próximos passos concretos.
 
-Não perguntar se a correção for óbvia de contexto imediato (ex: "na
-verdade o arquivo se chama X"). Só perguntar quando a informação tiver
-valor duradouro.
+Evitar: jargão sem necessidade, formalidade excessiva
 
----
+## Prioridade atual
 
-## Manter contexto atualizado
+Estruturar **modelos reutilizáveis de sites** para não sair do zero a cada
+projeto. Criar portfólio visual forte para captar mais clientes.
 
-Ao terminar uma tarefa que mudou algo relevante (cliente novo, skill
-nova, mudança de foco, processo novo, ferramenta instalada, estrutura
-alterada), perguntar:
+**Gargalo:** Fazer sites manualmente é lento. Preciso de templates.
 
-> "Isso mudou algo no teu contexto. Quer que eu atualize a memória?"
+## Regras do sistema
 
-Se sim, identificar o que atualizar:
+- Cliente novo → criar pasta `clientes/<Nome>/` com `briefing.md`
+- Proposta enviada → `clientes/<Nome>/proposta.html`
+- Template novo → guardar em `modelos/` com documentação
+- Cobrança → registrar em `saidas/cobranca.md`
+- Cliente fechado → adicionar em seção "Clientes ativos" acima
 
-- **Cliente, serviço, ferramenta, equipe** → `_memoria/empresa.md`
-- **Mudança de prioridade ou foco** → `_memoria/estrategia.md`
-- **Tom ou estilo** → `_memoria/preferencias.md`
-- **Pasta, regra de organização, skill criada** → `CLAUDE.md`
-- **Visual (cores, fontes, logo)** → `identidade/design-guide.md`
+## Próximos passos
 
-Mostrar o que vai mudar antes de salvar. Não reformatar o arquivo
-inteiro, só adicionar ou editar a linha relevante.
-
-**Quando NÃO perguntar:**
-- Tarefas pontuais sem impacto no contexto (escrever um email avulso, criar um post)
-- Perguntas simples ou conversas sem ação
-- Mudanças já salvas pelo bloco "Aprender com correções"
-
-**Dica:** rode `/atualizar` pra uma varredura completa quando houver dúvida.
+1. `/mapear-rotinas` — transformar "estruturar modelos" em skill própria
+2. Criar 3-5 templates profissionais (por nicho)
+3. Consolidar identidade visual (cores, tipografia)
+4. Expandir portfólio pra 5+ clientes
 
 ---
 
-## Criação de skills
+## MazyOS — Como o sistema funciona
 
-Quando o usuário pedir skill nova:
+### Contexto lido automaticamente
 
-1. Verificar se existe template relevante em `templates/skills/`. Se
-   existir, usar como base e adaptar pro contexto
-2. Perguntar se é específica desse projeto ou útil em qualquer:
-   - Específica → `.claude/skills/nome-da-skill/SKILL.md` (local)
-   - Universal → `~/.claude/skills/nome-da-skill/SKILL.md` (global)
-3. Ler `_memoria/empresa.md` e `_memoria/preferencias.md` pra calibrar
-   o conteúdo da skill ao contexto do negócio
-4. Se a skill precisar de arquivos de apoio (templates, exemplos),
-   criar dentro da pasta da skill
-5. Seguir o fluxo da skill-creator nativa do Claude Code
+No início de cada conversa, essas arquivos são carregados:
+
+1. `_memoria/empresa.md` — quem é você, o que faz, clientes
+2. `_memoria/preferencias.md` — tom de voz, estilo, o que evitar
+3. `_memoria/estrategia.md` — foco atual, prioridades, gargalos
+4. `identidade/design-guide.md` — marca visual (cores, tipografia, logo)
+
+### Fluxo padrão
+
+- **Antes de executar tarefa:** verificar se existe skill relevante em `.claude/skills/`
+- **Se encontrar skill:** seguir as instruções da skill
+- **Se não encontrar:** executar normalmente
+- **Ao concluir:** perguntar se mudou contexto (novo cliente, nova prioridade, nova skill)
+
+### Criação de skills
+
+Quando uma tarefa é repetível, transformar em skill:
+
+```
+/mapear-rotinas → identificar padrão
+→ criar skill em `.claude/skills/nome/SKILL.md`
+→ pronto pra usar com `/nome`
+```
+
+---
+
+*Última atualização: 20 de julho de 2026 — Setup MazyOS completo via `/instalar`*
