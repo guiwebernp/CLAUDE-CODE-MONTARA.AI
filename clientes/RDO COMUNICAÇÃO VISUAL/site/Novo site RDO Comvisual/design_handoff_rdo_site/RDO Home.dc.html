@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@600;700;800;900&family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #05070d; font-family: 'Manrope', sans-serif; }
+  a { color: #3b8dff; text-decoration: none; }
+  a:hover { color: #7fb3ff; }
+  .acc { color: #2b8fff; }
+  .chrome { background: linear-gradient(180deg,#f6f9fd 0%,#d6e0ec 38%,#aebdcf 68%,#8b9db2 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 2px rgba(0,0,0,.32)); }
+  .grid-dots { background-image: radial-gradient(rgba(120,160,255,0.12) 1px, transparent 1px); background-size: 22px 22px; }
+  .ph { position: relative; overflow: hidden; background:
+      repeating-linear-gradient(135deg, rgba(120,160,255,0.07) 0 10px, rgba(120,160,255,0.02) 10px 20px), #0b1120; }
+  .ph::after { content: attr(data-label); position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: .06em; color: rgba(160,190,255,0.45); text-transform: uppercase; text-align:center; padding: 14px; }
+  @keyframes streak { 0%{transform:translateY(-40%) rotate(20deg);opacity:.15} 50%{opacity:.55} 100%{transform:translateY(40%) rotate(20deg);opacity:.15} }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+  @keyframes lidTop { 0%,90%,100%{transform:translateY(-101%)} 93.5%,94.5%{transform:translateY(0)} }
+  @keyframes lidBot { 0%,90%,100%{transform:translateY(101%)} 93.5%,94.5%{transform:translateY(0)} }
+  @keyframes eyeGlow { 0%,100%{opacity:.35; transform:translateX(-50%) scale(1)} 50%{opacity:.75; transform:translateX(-50%) scale(1.08)} }
+  @keyframes breathe { 0%,100%{transform:scale(1.015)} 50%{transform:scale(1.055)} }
+  @keyframes irisShine { 0%,100%{opacity:.3} 50%{opacity:.85} }
+</style>
+</helmet>
+
+<div style="max-width:1280px; margin:0 auto; background:#05070d; overflow:hidden;">
+
+  <!-- ============ NAV ============ -->
+  <nav data-screen-label="Nav" style="position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:18px 40px; background:rgba(5,7,13,.82); backdrop-filter:blur(14px); border-bottom:1px solid rgba(120,160,255,.1);">
+    <a href="#" style="display:block; flex-shrink:0;"><img src="assets/rdo-logo.png" alt="RDO Comunicação Visual" style="height:52px; width:auto; display:block;"></a>
+    <div style="display:flex; gap:30px; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap;">
+      <a href="#" style="color:#3b8dff;">Home</a>
+      <a href="#empresa" style="color:rgba(255,255,255,.72);">Sobre</a>
+      <a href="#servicos" style="color:rgba(255,255,255,.72);">Serviços</a>
+      <a href="#portfolio" style="color:rgba(255,255,255,.72);">Portfólio</a>
+      <a href="#premios" style="color:rgba(255,255,255,.72);">Prêmios</a>
+      <a href="#contato" style="color:rgba(255,255,255,.72);">Contato</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:14px; flex-shrink:0;">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#3b8dff; font-weight:500;">SIGA-NOS</span>
+      <a href="#" aria-label="Instagram" style="width:32px; height:32px; border:1px solid rgba(120,160,255,.28); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#cdd9ee;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.facebook.com/rdocomvisual/" aria-label="Facebook" style="width:32px; height:32px; border:1px solid rgba(120,160,255,.28); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#cdd9ee;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header data-screen-label="Hero" style="position:relative; overflow:hidden; padding:56px 0 0; text-align:center;
+      background:
+        radial-gradient(60% 40% at 50% 32%, rgba(31,123,255,.20) 0%, transparent 60%),
+        #05070d;">
+    <!-- corner dot grids -->
+    <div class="grid-dots" style="position:absolute; top:40px; left:0; width:180px; height:260px; -webkit-mask-image:linear-gradient(120deg,#000,transparent); mask-image:linear-gradient(120deg,#000,transparent); opacity:.7; pointer-events:none;"></div>
+    <div class="grid-dots" style="position:absolute; top:40px; right:0; width:180px; height:260px; -webkit-mask-image:linear-gradient(240deg,#000,transparent); mask-image:linear-gradient(240deg,#000,transparent); opacity:.7; pointer-events:none;"></div>
+    <!-- diagonal streaks -->
+    <div style="position:absolute; top:0; left:14%; width:2px; height:520px; background:linear-gradient(180deg,transparent,#3b8dff,transparent); animation:streak 8s ease-in-out infinite; pointer-events:none;"></div>
+    <div style="position:absolute; top:0; right:16%; width:1px; height:460px; background:linear-gradient(180deg,transparent,#2b8fff,transparent); animation:streak 10s ease-in-out infinite; pointer-events:none;"></div>
+
+    <div style="position:relative; padding:0 40px;">
+      <!-- giant chrome wordmark -->
+      <div style="font-family:'Saira',sans-serif; font-weight:800; font-size:200px; line-height:.86; letter-spacing:.02em;" class="chrome">RDO</div>
+      <!-- phone -->
+      <div style="font-family:'Saira',sans-serif; font-weight:700; font-size:64px; line-height:1; letter-spacing:.01em; margin-top:4px;">
+        <span class="acc" style="font-weight:800;">(48)</span> <span class="chrome">3284-8000</span>
+      </div>
+      <!-- locality -->
+      <div style="font-family:'Saira',sans-serif; font-weight:600; font-size:22px; letter-spacing:.42em; color:rgba(255,255,255,.72); margin-top:10px; padding-left:.42em;">JURERÊ &nbsp;–&nbsp; FLORIPA &nbsp;–&nbsp; BRASIL</div>
+    </div>
+
+    <!-- blue divider -->
+    <div style="position:relative; height:2px; margin:40px 0 0; background:linear-gradient(90deg,transparent,#2b8fff 30%,#9fccff 50%,#2b8fff 70%,transparent); box-shadow:0 0 22px rgba(43,143,255,.7);"></div>
+
+    <!-- full-bleed eyes (animated blink + depth) -->
+    <div style="position:relative; width:100%; overflow:hidden;">
+      <!-- pulsing blue underglow for depth -->
+      <div style="position:absolute; left:50%; bottom:-8%; width:70%; height:70%; border-radius:50%; background:radial-gradient(50% 50% at 50% 50%, rgba(43,143,255,.55), transparent 70%); filter:blur(30px); animation:eyeGlow 6s ease-in-out infinite; pointer-events:none; z-index:0;"></div>
+
+      <div id="eyeStage" style="position:relative; z-index:1; overflow:hidden; will-change:transform;">
+        <div style="position:relative; width:100%; height:380px;">
+          <video id="eyeVidA" src="assets/eyes-blink.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 60%; opacity:1;"></video>
+          <video id="eyeVidB" src="assets/eyes-blink.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 60%; opacity:0;"></video>
+        </div>
+        <!-- side vignette for depth -->
+        <div style="position:absolute; inset:0; z-index:4; pointer-events:none; box-shadow:inset 60px 0 70px -20px #05070d, inset -60px 0 70px -20px #05070d;"></div>
+      </div>
+
+      <div style="position:absolute; left:0; right:0; bottom:0; height:60%; z-index:5; background:linear-gradient(180deg,transparent,#05070d); pointer-events:none;"></div>
+      <div style="position:absolute; left:0; right:0; top:0; height:22%; z-index:5; background:linear-gradient(180deg,#05070d,transparent); pointer-events:none;"></div>
+    </div>
+
+    <!-- tagline -->
+    <div style="position:relative; margin-top:-6px; padding:0 40px;">
+      <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:30px; letter-spacing:.14em; text-transform:uppercase; color:#fff;">Sua marca vista com <span class="acc" style="text-shadow:0 0 26px rgba(43,143,255,.7);">outros olhos!</span></div>
+    </div>
+
+    <!-- service icon row -->
+    <div style="position:relative; display:grid; grid-template-columns:repeat(5,1fr); gap:0; max-width:1120px; margin:44px auto 0; padding:0 32px;">
+      <sc-for list="{{ heroServices }}" as="h" hint-placeholder-count="5">
+        <div style="display:flex; gap:11px; align-items:flex-start; padding:4px 16px; min-width:0; border-left:1px solid rgba(120,160,255,.14);">
+          <div style="flex-shrink:0; color:#3b8dff; margin-top:2px;">{{ h.icon }}</div>
+          <div style="text-align:left;">
+            <div style="font-family:'Poppins',sans-serif; font-weight:800; font-size:14px; letter-spacing:.03em; text-transform:uppercase; line-height:1.15; color:#fff;">{{ h.t1 }}<br><span class="acc">{{ h.t2 }}</span></div>
+            <div style="font-size:11.5px; line-height:1.45; color:rgba(255,255,255,.5); margin-top:6px;">{{ h.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- chevron -->
+    <div style="position:relative; padding:34px 0 40px;">
+      <a href="#servicos" style="display:inline-block; color:#3b8dff; animation:bob 2s ease-in-out infinite;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+    </div>
+  </header>
+
+  <!-- ============ A EMPRESA ============ -->
+  <section id="empresa" data-screen-label="A Empresa" class="grid-dots" style="padding:96px 40px; background:radial-gradient(80% 60% at 82% 0%, rgba(31,123,255,.14), transparent 60%), #05070d;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; max-width:1120px; margin:0 auto;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#2b8fff; letter-spacing:.18em; margin-bottom:16px;">// A EMPRESA</div>
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:800; font-size:40px; line-height:1.08; letter-spacing:-.01em; color:#fff; margin:0 0 24px; text-transform:uppercase;">Experiência, estrutura e gente que faz acontecer</h2>
+        <p style="font-size:16px; line-height:1.7; color:rgba(255,255,255,.65); margin:0 0 20px;">A RDO Comunicação Visual atua no segmento com uma equipe altamente técnica e capacitada, além de máquinas de última geração — aliadas a uma credibilidade conquistada junto a clientes e fornecedores.</p>
+        <p style="font-size:16px; line-height:1.7; color:rgba(255,255,255,.65); margin:0 0 32px;">Mantemos em nossa estrutura criação, arte-finalistas, serralheiros, eletricistas, impressores, serígrafos, aplicadores e instaladores — tudo para entregar o melhor atendimento do começo ao fim do seu projeto.</p>
+        <div style="display:flex; gap:36px;">
+          <div><div style="font-family:'Saira',sans-serif; font-weight:800; font-size:40px; letter-spacing:-.01em;" class="acc">+20</div><div style="font-size:13px; color:rgba(255,255,255,.55); font-weight:600;">anos de mercado</div></div>
+          <div><div style="font-family:'Saira',sans-serif; font-weight:800; font-size:40px; letter-spacing:-.01em;" class="acc">100%</div><div style="font-size:13px; color:rgba(255,255,255,.55); font-weight:600;">equipe própria</div></div>
+          <div><div style="font-family:'Saira',sans-serif; font-weight:800; font-size:40px; letter-spacing:-.01em;" class="acc">+500</div><div style="font-size:13px; color:rgba(255,255,255,.55); font-weight:600;">projetos entregues</div></div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:170px 170px; gap:14px;">
+        <div class="ph" data-label="Foto — equipe / oficina RDO" style="border-radius:12px; grid-row:span 2; border:1px solid rgba(120,160,255,.12);"></div>
+        <div class="ph" data-label="Foto — máquina de impressão" style="border-radius:12px; border:1px solid rgba(120,160,255,.12);"></div>
+        <div class="ph" data-label="Foto — instalação em campo" style="border-radius:12px; border:1px solid rgba(120,160,255,.12);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVIÇOS ============ -->
+  <section id="servicos" data-screen-label="Serviços" style="padding:96px 40px; background:#080b14; border-top:1px solid rgba(120,160,255,.08);">
+    <div style="text-align:center; margin-bottom:52px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#2b8fff; letter-spacing:.18em; margin-bottom:14px;">// O QUE FAZEMOS</div>
+      <h2 style="font-family:'Poppins',sans-serif; font-weight:800; font-size:44px; letter-spacing:-.01em; color:#fff; margin:0; text-transform:uppercase;">Comunicação visual<br>de ponta a ponta</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:1120px; margin:0 auto;">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="8">
+        <div style="position:relative; background:linear-gradient(180deg,#0d1320,#0a0f1a); border:1px solid rgba(120,160,255,.12); border-radius:14px; padding:26px 22px; transition:transform .15s, box-shadow .15s, border-color .15s;" style-hover="box-shadow:0 18px 44px rgba(31,123,255,.22); transform:translateY(-4px); border-color:rgba(43,143,255,.45);">
+          <div style="width:44px; height:44px; border-radius:10px; background:linear-gradient(145deg,#2b8fff,#0f4fbf); display:flex; align-items:center; justify-content:center; font-family:'Saira',sans-serif; font-weight:800; color:#fff; font-size:16px; margin-bottom:18px; box-shadow:0 6px 18px rgba(31,123,255,.4);">{{ s.n }}</div>
+          <div style="font-weight:800; font-size:17px; color:#fff; margin-bottom:8px;">{{ s.title }}</div>
+          <div style="font-size:14px; line-height:1.55; color:rgba(255,255,255,.55);">{{ s.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ PORTFÓLIO ============ -->
+  <section id="portfolio" data-screen-label="Portfólio" style="padding:96px 40px; background:#080b14; border-top:1px solid rgba(120,160,255,.08);">
+    <div style="text-align:center; margin-bottom:36px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#2b8fff; letter-spacing:.18em; margin-bottom:14px;">// NOSSOS TRABALHOS</div>
+      <h2 style="font-family:'Poppins',sans-serif; font-weight:800; font-size:44px; letter-spacing:-.01em; color:#fff; margin:0; text-transform:uppercase;">Portfólio</h2>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:34px;">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="8">
+        <button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.name }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:1120px; margin:0 auto;">
+      <sc-for list="{{ visibleItems }}" as="it" hint-placeholder-count="9">
+        <div style="position:relative; border-radius:12px; overflow:hidden; background:#0b1120; aspect-ratio:4/3; border:1px solid rgba(120,160,255,.12);">
+          <div class="ph" data-label="{{ it.label }}" style="position:absolute; inset:0;"></div>
+          <div style="position:absolute; left:0; right:0; bottom:0; padding:16px; background:linear-gradient(0deg,rgba(5,7,13,.92),transparent);">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#2b8fff; letter-spacing:.08em; text-transform:uppercase; margin-bottom:3px;">{{ it.cat }}</div>
+            <div style="font-weight:700; font-size:15px; color:#fff;">{{ it.title }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="text-align:center; margin-top:22px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(160,190,255,.45);">Placeholders — envie suas fotos reais para preencher a galeria.</div>
+  </section>
+
+  <!-- ============ RECONHECIMENTO / PRÊMIOS ============ -->
+  <section id="premios" data-screen-label="Reconhecimento" style="padding:80px 40px; background:radial-gradient(70% 60% at 50% 12%, rgba(31,123,255,.12), transparent 62%), #05070d;">
+    <div style="position:relative; max-width:1180px; margin:0 auto; border-radius:14px; overflow:hidden; box-shadow:0 30px 74px rgba(0,0,0,.55), inset 0 0 0 1px rgba(240,201,74,.22);">
+      <img src="assets/premio-banner.png" alt="Eleita a melhor em qualidade e atendimento — Global Pesquisas" style="width:100%; height:auto; display:block;">
+      <a href="#servicos" aria-label="Conheça nossos serviços" style="position:absolute; left:4%; top:80%; width:28%; height:12%;"></a>
+    </div>
+  </section>
+
+  <!-- ============ DEPOIMENTOS ============ -->
+  <section id="depoimentos" data-screen-label="Depoimentos" class="grid-dots" style="padding:96px 40px; background:radial-gradient(80% 60% at 18% 0%, rgba(31,123,255,.14), transparent 60%), #05070d;">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#2b8fff; letter-spacing:.18em; margin-bottom:14px;">// QUEM CONFIA NA RDO</div>
+      <h2 style="font-family:'Poppins',sans-serif; font-weight:800; font-size:44px; letter-spacing:-.01em; color:#fff; margin:0; text-transform:uppercase;">Depoimentos</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:1120px; margin:0 auto;">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="background:linear-gradient(180deg,#0d1320,#0a0f1a); border:1px solid rgba(120,160,255,.14); border-radius:16px; padding:28px;">
+          <div class="acc" style="font-size:15px; letter-spacing:2px; margin-bottom:16px;">★★★★★</div>
+          <p style="font-size:15px; line-height:1.65; color:rgba(255,255,255,.8); margin:0 0 22px;">{{ t.quote }}</p>
+          <div style="font-weight:800; font-size:15px; color:#fff;">{{ t.author }}</div>
+          <div style="font-size:13px; color:#2b8fff;">{{ t.company }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO / ORÇAMENTO ============ -->
+  <section id="contato" data-screen-label="Contato" style="padding:96px 40px; background:
+      radial-gradient(90% 90% at 50% 0%, rgba(31,123,255,.2) 0%, transparent 55%), #080b14; border-top:1px solid rgba(120,160,255,.08);">
+    <div style="display:grid; grid-template-columns:1fr 1.1fr; gap:56px; max-width:1080px; margin:0 auto;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#2b8fff; letter-spacing:.18em; margin-bottom:16px;">// FALE COM A GENTE</div>
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:800; font-size:42px; line-height:1.04; letter-spacing:-.01em; color:#fff; margin:0 0 24px; text-transform:uppercase;">Peça seu<br>orçamento</h2>
+        <p style="font-size:16px; line-height:1.65; color:rgba(255,255,255,.65); margin:0 0 32px;">Conte o que você precisa. Nossa equipe entra em contato para atender você com agilidade e a seriedade que o seu projeto merece.</p>
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#2b8fff; letter-spacing:.1em; margin-bottom:4px;">TELEFONE</div><div style="color:#fff; font-weight:700; font-size:20px;">(48) 3284-8000</div></div>
+          <div><div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#2b8fff; letter-spacing:.1em; margin-bottom:4px;">ENDEREÇO</div><div style="color:rgba(255,255,255,.82); font-size:15px; line-height:1.5;">Rod. Maurício Sirotsky Sobrinho, 4567<br>Jurerê — Florianópolis / SC · CEP 88053-701</div></div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(180deg,#0f1524,#0b0f1a); border:1px solid rgba(120,160,255,.16); border-radius:18px; padding:36px;">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center; padding:48px 12px;">
+            <div style="width:60px; height:60px; border-radius:50%; background:rgba(43,143,255,.15); border:1px solid rgba(43,143,255,.4); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:28px; color:#3b8dff;">✓</div>
+            <div style="font-weight:800; font-size:22px; color:#fff; margin-bottom:8px;">Recebemos seu pedido!</div>
+            <div style="font-size:15px; color:rgba(255,255,255,.6);">Nossa equipe entrará em contato em breve. Obrigado!</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+              <div><label style="display:block; font-size:12px; font-weight:700; color:rgba(255,255,255,.6); margin-bottom:6px;">Nome</label><input value="{{ f_name }}" onInput="{{ onName }}" placeholder="Seu nome" style="width:100%; padding:12px 14px; border:1px solid rgba(120,160,255,.2); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:#0a0f1a; color:#fff;"></div>
+              <div><label style="display:block; font-size:12px; font-weight:700; color:rgba(255,255,255,.6); margin-bottom:6px;">Empresa</label><input value="{{ f_company }}" onInput="{{ onCompany }}" placeholder="Sua empresa" style="width:100%; padding:12px 14px; border:1px solid rgba(120,160,255,.2); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:#0a0f1a; color:#fff;"></div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+              <div><label style="display:block; font-size:12px; font-weight:700; color:rgba(255,255,255,.6); margin-bottom:6px;">E-mail</label><input value="{{ f_email }}" onInput="{{ onEmail }}" placeholder="voce@email.com" style="width:100%; padding:12px 14px; border:1px solid rgba(120,160,255,.2); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:#0a0f1a; color:#fff;"></div>
+              <div><label style="display:block; font-size:12px; font-weight:700; color:rgba(255,255,255,.6); margin-bottom:6px;">Telefone</label><input value="{{ f_phone }}" onInput="{{ onPhone }}" placeholder="(48) 90000-0000" style="width:100%; padding:12px 14px; border:1px solid rgba(120,160,255,.2); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:#0a0f1a; color:#fff;"></div>
+            </div>
+            <div style="margin-bottom:14px;"><label style="display:block; font-size:12px; font-weight:700; color:rgba(255,255,255,.6); margin-bottom:6px;">Serviço de interesse</label>
+              <select value="{{ f_service }}" onChange="{{ onService }}" style="width:100%; padding:12px 14px; border:1px solid rgba(120,160,255,.2); border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:#0a0f1a; color:#fff;">
+                <option>Impressão digital</option><option>Envelopamento de frota</option><option>Placas e sinalização</option><option>Outdoors / Frontlight</option><option>Luminosos</option><option>Painéis</option><option>Adesivos</option><option>Feiras e eventos</option>
+              </select>
+            </div>
+            <div style="margin-bottom:20px;"><label style="display:block; font-size:12px; font-weight:700; color:rgba(255,255,255,.6); margin-bottom:6px;">Detalhes do projeto</label><textarea value="{{ f_msg }}" onInput="{{ onMsg }}" placeholder="Conte o que você precisa..." rows="3" style="width:100%; padding:12px 14px; border:1px solid rgba(120,160,255,.2); border-radius:8px; font-size:14px; font-family:inherit; outline:none; resize:vertical; background:#0a0f1a; color:#fff;"></textarea></div>
+            <button onClick="{{ submit }}" style="width:100%; background:linear-gradient(180deg,#3b8dff,#1560d8); color:#fff; font-weight:800; font-size:16px; padding:16px; border:none; border-radius:8px; cursor:pointer; box-shadow:0 10px 30px rgba(43,143,255,.35);">Enviar pedido de orçamento</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#04060a; padding:48px 40px; border-top:1px solid rgba(120,160,255,.1);">
+    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:30px; max-width:1120px; margin:0 auto; flex-wrap:wrap;">
+      <div>
+        <img src="assets/rdo-logo.png" alt="RDO Comunicação Visual" style="height:56px; width:auto; display:block; margin-bottom:14px;">
+        <div style="font-size:13px; color:rgba(255,255,255,.5); line-height:1.6; max-width:300px;">Sua marca vista com outros olhos. Florianópolis / SC desde 2006.</div>
+      </div>
+      <div style="font-size:13px; color:rgba(255,255,255,.6); line-height:1.9;">
+        <div style="font-weight:800; color:#fff; margin-bottom:8px;">Contato</div>
+        (48) 3284-8000<br>Rod. Maurício Sirotsky Sobrinho, 4567<br>Jurerê — Florianópolis / SC
+      </div>
+      <div style="font-size:13px; color:rgba(255,255,255,.6); line-height:1.9;">
+        <div style="font-weight:800; color:#fff; margin-bottom:8px;">Navegação</div>
+        <a href="#empresa" style="display:block; color:inherit;">A Empresa</a>
+        <a href="#servicos" style="display:block; color:inherit;">Serviços</a>
+        <a href="#portfolio" style="display:block; color:inherit;">Portfólio</a>
+        <a href="#contato" style="display:block; color:inherit;">Contato</a>
+      </div>
+    </div>
+    <div style="max-width:1120px; margin:32px auto 0; padding-top:20px; border-top:1px solid rgba(120,160,255,.08); font-size:12px; color:rgba(255,255,255,.35);">© 2006–2026 RDO Comunicação Visual. Todos os direitos reservados.</div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    filter: 'Todos',
+    sent: false,
+    f_name: '', f_company: '', f_email: '', f_phone: '', f_service: 'Impressão digital', f_msg: ''
+  };
+
+  icon(name) {
+    const s = { width: 30, height: 30, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
+    const paths = {
+      printer: ['M6 9V2h12v7', 'M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2', 'M6 14h12v8H6z'],
+      car: ['M5 17H3v-4l2-5h11l3 4h1a1 1 0 0 1 1 1v4h-2', 'M9 17h6'],
+      sign: ['M12 3v3', 'M12 22v-6', 'M4 9h13l3 3-3 3H4z'],
+      board: ['M3 4h18v11H3z', 'M8 15v5', 'M16 15v5', 'M6 20h12'],
+      tent: ['M3.5 21 14 3', 'M20.5 21 10 3', 'M15.5 21 12 15l-3.5 6', 'M2 21h20']
+    };
+    const extra = { car: [['circle', { cx: 7, cy: 18, r: 2 }], ['circle', { cx: 17, cy: 18, r: 2 }]] };
+    const kids = (paths[name] || []).map((d, i) => React.createElement('path', { key: 'p' + i, d }));
+    (extra[name] || []).forEach((e, i) => kids.push(React.createElement(e[0], { key: 'e' + i, ...e[1] })));
+    return React.createElement('svg', s, kids);
+  }
+
+  heroServices() {
+    return [
+      { t1: 'Impressão', t2: 'Digital', desc: 'Alta resolução em qualquer formato.', icon: this.icon('printer') },
+      { t1: 'Envelopamento', t2: 'De Frota', desc: 'Sua frota transformada em mídia.', icon: this.icon('car') },
+      { t1: 'Placas &', t2: 'Sinalização', desc: 'Comunique ambientes e fachadas.', icon: this.icon('sign') },
+      { t1: 'Outdoors &', t2: 'Painéis', desc: 'Grande formato de alto impacto.', icon: this.icon('board') },
+      { t1: 'Feiras &', t2: 'Eventos', desc: 'Estandes e montagem completa.', icon: this.icon('tent') }
+    ];
+  }
+
+  services() {
+    return [
+      { n: '01', title: 'Impressão digital', desc: 'Alta resolução em pequeno e grande formato, cores fiéis e acabamento impecável.' },
+      { n: '02', title: 'Envelopamento de frota', desc: 'Personalização completa de veículos e frotas, transformando cada carro em mídia.' },
+      { n: '03', title: 'Placas & sinalização', desc: 'Sinalização interna e externa, comunicação de ambientes e fachadas.' },
+      { n: '04', title: 'Outdoors / Frontlight', desc: 'Mídia de grande impacto para campanhas em vias e pontos estratégicos.' },
+      { n: '05', title: 'Luminosos', desc: 'Letreiros e painéis luminosos que destacam sua marca dia e noite.' },
+      { n: '06', title: 'Painéis & lonas', desc: 'Estruturas e lonas para fachadas, empenas e grandes superfícies.' },
+      { n: '07', title: 'Adesivos', desc: 'Adesivagem de vitrines, tapumes, pisos, paredes e ambientes.' },
+      { n: '08', title: 'Feiras & eventos', desc: 'Estandes, backdrops, totens e toda a montagem visual do seu evento.' }
+    ];
+  }
+
+  items() {
+    return [
+      { title: 'Frota Empreende Brazil', cat: 'Personalização de Frota', label: 'Foto — veículo envelopado', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/08/FACE-3-2.jpg' },
+      { title: 'Painel Le Monde Citroën', cat: 'Painéis', label: 'Foto — painel de fachada', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/08/LE-MONDE-5.png' },
+      { title: 'Adesivo tapume shopping', cat: 'Adesivo Digital', label: 'Foto — adesivo aplicado', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/08/Adesivo-Digital-03.jpg' },
+      { title: 'Lona Brasil Atacadista', cat: 'Lona', label: 'Foto — lona instalada', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/08/Brasil-Atacadista-02.png' },
+      { title: 'Frontlight Intelbras', cat: 'Frontlight', label: 'Foto — frontlight iluminado', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2016/10/INTELBRAS-INSTALADO-LONA-OUTDOOR.jpg' },
+      { title: 'Luminoso Le Monde', cat: 'Luminosos', label: 'Foto — letreiro luminoso', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/08/LE-MONDE-4.png' },
+      { title: 'Backdrop LIESF', cat: 'Feiras & Eventos', label: 'Foto — backdrop de evento', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2016/10/BACK-DROP-FEIJOADA-DA-LIESF.jpg' },
+      { title: 'Frota Citroën', cat: 'Personalização de Frota', label: 'Foto — frota personalizada', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/08/LE-MONDE-9.png' },
+      { title: 'Painel Winter Fest', cat: 'Painéis', label: 'Foto — painel de evento', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/07/RDO-Painel.png' },
+      { title: 'Adesivo Road Show', cat: 'Adesivo Digital', label: 'Foto — adesivo de campanha', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/06/Adesivo-Road-Show-2017.png' },
+      { title: 'Lona Citroën', cat: 'Lona', label: 'Foto — lona publicitária', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2017/08/LE-MONDE-1.png' },
+      { title: 'Totem LIESF', cat: 'Feiras & Eventos', label: 'Foto — totem de feira', img: 'https://www.rdocomvisual.com.br/wp-content/uploads/2016/10/TOTEM-LIESF.jpg' }
+    ];
+  }
+
+  testimonials() {
+    return [
+      { quote: 'Seriedade e materiais de excelente qualidade — é isto que faz nossa empresa trabalhar há tantos anos com a RDO. Parabéns pelo trabalho brilhante.', author: 'Komeco', company: 'Cliente RDO' },
+      { quote: 'Parabéns a toda a equipe da RDO pelo empenho no nosso evento. Qualidade e eficiência da concepção às retiradas. Ganharam um fiel cliente.', author: 'Sandra A. Niehues', company: 'Mythos Comunicação' },
+      { quote: 'Veio tudo perfeitinho, separação perfeita e adorei o capricho! Parabéns pelo ótimo atendimento e pela excelência no trabalho de vocês.', author: 'Caroline L. S.', company: 'Grupo Calcenter' }
+    ];
+  }
+
+  componentDidMount() {
+    // parallax disabled — keep the eyes band fixed so the tagline stays at a constant distance
+    const stage0 = document.getElementById('eyeStage');
+    if (stage0) stage0.style.translate = '0 0';
+
+    // seamless ping-pong loop (forward then reverse) for a natural blink cycle
+    const A = document.getElementById('eyeVidA');
+    const B = document.getElementById('eyeVidB');
+    if (A && B) {
+      const IN = 0.9;        // skip the harsh neon opening frames
+      const CROSS = 1.1;     // crossfade duration (s) to hide the cut
+      [A, B].forEach(v => { v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); v.playsInline = true; v.loop = false; v.style.transition = 'opacity ' + CROSS + 's linear'; });
+      let active = A, hidden = B, swapping = false;
+      const outAt = () => Math.max(IN + 0.2, (active.duration || 10) - CROSS);
+      const start = (v) => { try { v.currentTime = IN; } catch (e) {} v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+      A.style.opacity = '1'; B.style.opacity = '0';
+      start(A);
+      let raf = 0;
+      const tick = () => {
+        if (!swapping && active.currentTime >= outAt()) {
+          swapping = true;
+          start(hidden);
+          hidden.style.opacity = '1';
+          active.style.opacity = '0';
+          const oldActive = active;
+          active = hidden; hidden = oldActive;
+          setTimeout(() => { try { hidden.pause(); } catch (e) {} swapping = false; }, CROSS * 1000 + 60);
+        }
+        raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+      // watchdog: keep the visible layer playing even if autoplay was blocked
+      this._eyeWatch = setInterval(() => { if (active.paused) { active.muted = true; const p = active.play(); if (p && p.catch) p.catch(() => {}); } }, 1000);
+      this._eyeCleanup = () => { cancelAnimationFrame(raf); if (this._eyeWatch) clearInterval(this._eyeWatch); };
+    }
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._eyeCleanup) this._eyeCleanup();
+  }
+
+  setFilter(f) { this.setState({ filter: f }); }
+
+  renderVals() {
+    const categories = ['Todos', 'Adesivo Digital', 'Frontlight', 'Lona', 'Luminosos', 'Painéis', 'Personalização de Frota', 'Feiras & Eventos'];
+    const active = this.state.filter;
+    const cats = categories.map(name => {
+      const on = name === active;
+      const style = `font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; padding:9px 18px; border-radius:100px; cursor:pointer; border:1px solid ${on ? '#2b8fff' : 'rgba(120,160,255,.2)'}; background:${on ? 'linear-gradient(180deg,#3b8dff,#1560d8)' : 'rgba(120,160,255,.04)'}; color:${on ? '#fff' : 'rgba(255,255,255,.7)'};`;
+      return { name, style, onClick: () => this.setFilter(name) };
+    });
+    const all = this.items();
+    const visibleItems = active === 'Todos' ? all : all.filter(i => i.cat === active);
+
+    const bind = (k) => (e) => this.setState({ [k]: e.target.value });
+
+    return {
+      heroServices: this.heroServices(),
+      services: this.services(),
+      testimonials: this.testimonials(),
+      cats,
+      visibleItems,
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      f_name: this.state.f_name, f_company: this.state.f_company, f_email: this.state.f_email,
+      f_phone: this.state.f_phone, f_service: this.state.f_service, f_msg: this.state.f_msg,
+      onName: bind('f_name'), onCompany: bind('f_company'), onEmail: bind('f_email'),
+      onPhone: bind('f_phone'), onService: bind('f_service'), onMsg: bind('f_msg'),
+      submit: () => this.setState({ sent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -11,14 +11,14 @@
 
 **Perfil de cliente:** Empresas com site desatualizado ou que não possuem funcionário interno para cuidar disso.
 
-**Atende clientes:** Sim — RDO Comunicação Visual (Florianópolis), Info+ (loja de informática) e Plotter Service (impressão digital & offset, São José/SC).
+**Atende clientes:** Sim — RDO Comunicação Visual (Florianópolis), Plotter Service (impressão digital & offset, São José/SC) e Clínica Reab (fisioterapia, Florianópolis).
 
 **Equipe:** Freelancer solo — Guilherme Weber.
 
 **Ferramentas:** Claude Code, HTML/CSS/JS, Vercel, GitHub, IA.
 
-**Principais entregas:** Sites profissionais com IA integrada.
+**Principais entregas:** Sites profissionais com design responsivo.
 
 ## Contexto adicional
 
-**Momento atual:** Captar novos clientes através da venda de sites. Já fechou 2 propostas comerciais.
+**Momento atual:** Entregar sites profissionais e captar novos clientes. Foco em automatizar a criação com templates reutilizáveis.

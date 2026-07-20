@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDO — Visão</title>
+    <link href="https://fonts.googleapis.com/css2?family=Saira:wght@600;700;800;900&family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #05070d;
+        }
+
+        .slides-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: #05070d;
+            color: #fff;
+        }
+
+        .logo {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 60px;
+            height: 60px;
+            background: #2b8fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            font-size: 28px;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .content {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 0 70px;
+            width: 100%;
+        }
+
+        /* ===== SLIDE 1: CAPA COM OLHO ===== */
+        .slide-1 {
+            background: linear-gradient(135deg, #05070d 0%, #0a0f1a 100%);
+        }
+
+        .slide-1 .eye-visual {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-1 .eye-circle {
+            width: 240px;
+            height: 240px;
+            border: 4px solid #2b8fff;
+            border-radius: 50%;
+            position: absolute;
+            animation: eyePulse 2.5s ease-in-out infinite;
+        }
+
+        .slide-1 .eye-pupil {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 35% 35%, #3b8dff, #2b8fff);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 40px rgba(43, 141, 255, 0.6);
+        }
+
+        .slide-1 .eye-pupil::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            top: 15px;
+            left: 15px;
+        }
+
+        .slide-1 h1 {
+            font-size: 72px;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .slide-1 p {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes eyePulse {
+            0%, 100% {
+                transform: scale(1);
+                border-color: #2b8fff;
+                box-shadow: 0 0 30px rgba(43, 141, 255, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                border-color: #3b8dff;
+                box-shadow: 0 0 60px rgba(43, 141, 255, 0.6);
+            }
+        }
+
+        /* ===== SLIDES 2-4: VISÃO COMO NÚMERO ===== */
+        .slide-visao {
+            background: linear-gradient(135deg, #080b14 0%, #05070d 100%);
+            flex-direction: column;
+        }
+
+        .slide-visao .eye-small {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-visao .eye-circle-small {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #2b8fff;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .slide-visao .eye-pupil-small {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 35% 35%, #3b8dff, #2b8fff);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 25px rgba(43, 141, 255, 0.5);
+        }
+
+        .slide-visao .numero-grande {
+            font-size: 180px;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            color: #2b8fff;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 50px rgba(43, 141, 255, 0.4);
+        }
+
+        .slide-visao .label {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: 'Saira', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.035em;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .slide-visao .descricao {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        /* Alternância visual */
+        .slide-2 {
+            background: linear-gradient(135deg, #080b14 0%, #0a0f1a 100%);
+        }
+
+        .slide-3 {
+            background: linear-gradient(135deg, #0a0f1a 0%, #080b14 100%);
+        }
+
+        .slide-4 {
+            background: linear-gradient(135deg, #05070d 0%, #080b14 100%);
+        }
+
+        /* ===== SLIDE 5: PRÊMIO COM TEMA OLHO ===== */
+        .slide-5 {
+            background: linear-gradient(135deg, #080b14 0%, #05070d 100%);
+        }
+
+        .slide-5 .achievement {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .slide-5 .eye-achievement {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-5 .eye-circle-achievement {
+            width: 150px;
+            height: 150px;
+            border: 3px solid rgba(43, 141, 255, 0.4);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .slide-5 .eye-pupil-achievement {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 35% 35%, #3b8dff, #2b8fff);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(43, 141, 255, 0.5);
+        }
+
+        .slide-5 .eye-pupil-achievement::before {
+            content: '🏆';
+            position: absolute;
+            font-size: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .slide-5 .titulo {
+            font-size: 44px;
+            font-weight: 800;
+            font-family: 'Saira', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.035em;
+            color: #fff;
+        }
+
+        .slide-5 .subtitulo {
+            font-size: 18px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.65);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* ===== SLIDE 6: CTA COM SLOGAN ===== */
+        .slide-6 {
+            background: linear-gradient(135deg, #2b8fff 0%, #1560d8 100%);
+        }
+
+        .slide-6 .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .slide-6 .eye-cta {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-6 .eye-circle-cta {
+            width: 180px;
+            height: 180px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .slide-6 .eye-pupil-cta {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-6 .slogan {
+            font-size: 52px;
+            font-weight: 800;
+            font-family: 'Saira', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.035em;
+            line-height: 1.15;
+            color: #fff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide-6 .cta-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .slide-6 .phone {
+            font-size: 28px;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide slide-1">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">01 / 06</div>
+            <div class="content">
+                <div class="eye-visual">
+                    <div class="eye-circle"></div>
+                    <div class="eye-pupil"></div>
+                </div>
+                <h1>VISÃO<br>QUE<br>TRANSFORMA</h1>
+                <p>20 anos enxergando oportunidades visuais</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: +20 ANOS -->
+        <div class="slide slide-2 slide-visao">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">02 / 06</div>
+            <div class="content">
+                <div class="eye-small">
+                    <div class="eye-circle-small"></div>
+                    <div class="eye-pupil-small"></div>
+                </div>
+                <div class="numero-grande">+20</div>
+                <div class="label">ANOS VENDO ALÉM</div>
+                <div class="descricao">Duas décadas de expertise transformando ideias em marcas visuais inesquecíveis</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: 100% EQUIPE -->
+        <div class="slide slide-3 slide-visao">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">03 / 06</div>
+            <div class="content">
+                <div class="eye-small">
+                    <div class="eye-circle-small"></div>
+                    <div class="eye-pupil-small"></div>
+                </div>
+                <div class="numero-grande">100%</div>
+                <div class="label">OLHAR LOCAL</div>
+                <div class="descricao">Equipe própria em Jurerê que respira comunicação visual. Nenhuma distância entre você e a solução</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: 500+ PROJETOS -->
+        <div class="slide slide-4 slide-visao">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">04 / 06</div>
+            <div class="content">
+                <div class="eye-small">
+                    <div class="eye-circle-small"></div>
+                    <div class="eye-pupil-small"></div>
+                </div>
+                <div class="numero-grande">500+</div>
+                <div class="label">VISÕES REALIZADAS</div>
+                <div class="descricao">Cada projeto é uma marca que passou pelo nosso olhar e voltou pronta pra conquistar o mundo</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: PRÊMIO -->
+        <div class="slide slide-5">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">05 / 06</div>
+            <div class="content">
+                <div class="achievement">
+                    <div class="eye-achievement">
+                        <div class="eye-circle-achievement"></div>
+                        <div class="eye-pupil-achievement"></div>
+                    </div>
+                    <div class="titulo">RECONHECIDA</div>
+                    <div class="subtitulo">Eleita a melhor em qualidade e atendimento<br>Global Pesquisas 2024</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: CTA FINAL -->
+        <div class="slide slide-6">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">06 / 06</div>
+            <div class="content">
+                <div class="eye-cta">
+                    <div class="eye-circle-cta"></div>
+                    <div class="eye-pupil-cta"></div>
+                </div>
+                <div class="slogan">Sua marca<br>vista com<br>OUTROS OLHOS</div>
+                <div class="cta-text">Fale com a gente:</div>
+                <div class="phone">(48) 3284-8000</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

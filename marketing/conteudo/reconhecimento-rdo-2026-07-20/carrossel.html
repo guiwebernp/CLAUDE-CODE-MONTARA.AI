@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDO — 20 Anos de Marca</title>
+    <link href="https://fonts.googleapis.com/css2?family=Saira:wght@600;700;800;900&family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #05070d;
+        }
+
+        .slides-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            width: 1080px;
+            height: 1350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: #05070d;
+            color: #fff;
+        }
+
+        /* Elementos recorrentes */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(43, 141, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .logo {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 60px;
+            height: 60px;
+            background: #2b8fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            font-size: 28px;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .content {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 0 70px;
+            width: 100%;
+        }
+
+        /* ===== SLIDE 1: CAPA ===== */
+        .slide-1 {
+            background: linear-gradient(135deg, #05070d 0%, #0a0f1a 100%);
+        }
+
+        .slide-1 .eyebrow {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.32em;
+            color: #2b8fff;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .slide-1 .ruler {
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #2b8fff, transparent);
+            margin: 20px auto 40px;
+        }
+
+        .slide-1 h1 {
+            font-size: 88px;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 30px;
+        }
+
+        .slide-1 p {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        /* ===== SLIDE 2-5: NÚMERO ===== */
+        .slide-numero {
+            background: linear-gradient(135deg, #080b14 0%, #05070d 100%);
+            flex-direction: column;
+        }
+
+        .slide-numero .numero {
+            font-size: 240px;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            color: #2b8fff;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 60px rgba(43, 141, 255, 0.4);
+        }
+
+        .slide-numero .label {
+            font-size: 32px;
+            font-weight: 800;
+            font-family: 'Saira', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.035em;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .slide-numero .descricao {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* Alternância de fundo */
+        .slide-2 {
+            background: linear-gradient(135deg, #080b14 0%, #05070d 100%);
+        }
+
+        .slide-3 {
+            background: linear-gradient(135deg, #0a0f1a 0%, #080b14 100%);
+        }
+
+        .slide-4 {
+            background: linear-gradient(135deg, #05070d 0%, #0a0f1a 100%);
+        }
+
+        /* ===== SLIDE 5: PRÊMIO ===== */
+        .slide-5 {
+            background: linear-gradient(135deg, #080b14 0%, #05070d 100%);
+        }
+
+        .slide-5 .premio-badge {
+            width: 200px;
+            height: 200px;
+            border: 4px solid rgba(43, 141, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            transform: rotate(-10deg);
+            background: radial-gradient(circle, rgba(43, 141, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .slide-5 .premio-badge-inner {
+            text-align: center;
+        }
+
+        .slide-5 .medal-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .slide-5 .badge-text {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #2b8fff;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .slide-5 .premio-titulo {
+            font-size: 44px;
+            font-weight: 800;
+            font-family: 'Saira', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.035em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .slide-5 .premio-descricao {
+            font-size: 18px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.65);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* ===== SLIDE 6: CTA FINAL ===== */
+        .slide-6 {
+            background: linear-gradient(135deg, #2b8fff 0%, #1560d8 100%);
+        }
+
+        .slide-6 .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slide-6 .logo-final {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            font-size: 56px;
+            color: #fff;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-6 .slogan {
+            font-size: 48px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.035em;
+            line-height: 1.2;
+            margin-bottom: 50px;
+            color: #fff;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide-6 .cta-contact {
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 15px;
+        }
+
+        .slide-6 .phone {
+            font-size: 28px;
+            font-weight: 900;
+            font-family: 'Saira', sans-serif;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .slide-6 .location {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* Animação sutil */
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(43, 141, 255, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(43, 141, 255, 0.6)); }
+        }
+
+        .slide-numero .numero {
+            animation: glow 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide slide-1">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">01 / 06</div>
+            <div class="content">
+                <div class="eyebrow">// COMUNICAÇÃO VISUAL</div>
+                <div class="ruler"></div>
+                <h1>20 ANOS<br>CONSTRUINDO<br>MARCAS</h1>
+                <p>Desde 2006 em Jurerê, Florianópolis</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: +20 ANOS -->
+        <div class="slide slide-2 slide-numero">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">02 / 06</div>
+            <div class="content">
+                <div class="numero">+20</div>
+                <div class="label">ANOS DE MERCADO</div>
+                <div class="descricao">Transformando marcas em Florianópolis desde 2006. Experiência que constrói confiança.</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: 100% EQUIPE PRÓPRIA -->
+        <div class="slide slide-3 slide-numero">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">03 / 06</div>
+            <div class="content">
+                <div class="numero">100%</div>
+                <div class="label">EQUIPE PRÓPRIA</div>
+                <div class="descricao">Gente que respira comunicação visual. Nenhum freelancer, nenhuma offshore. Só expertise local.</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: 500+ PROJETOS -->
+        <div class="slide slide-4 slide-numero">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">04 / 06</div>
+            <div class="content">
+                <div class="numero">500+</div>
+                <div class="label">PROJETOS ENTREGUES</div>
+                <div class="descricao">Aprovados. Recordados. Que geraram resultado pra quem confiou na gente.</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: PRÊMIO -->
+        <div class="slide slide-5">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">05 / 06</div>
+            <div class="content">
+                <div class="premio-badge">
+                    <div class="premio-badge-inner">
+                        <div class="medal-icon">🏆</div>
+                        <div class="badge-text">2024</div>
+                    </div>
+                </div>
+                <div class="premio-titulo">ELEITA A MELHOR</div>
+                <div class="premio-descricao">em Qualidade e Atendimento<br>Global Pesquisas</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: CTA FINAL -->
+        <div class="slide slide-6">
+            <div class="logo">RDO</div>
+            <div class="slide-counter">06 / 06</div>
+            <div class="content">
+                <div class="logo-final">RDO</div>
+                <div class="slogan">Sua marca<br>vista com<br>outros olhos!</div>
+                <div class="cta-contact">Entre em contato:</div>
+                <div class="phone">(48) 3284-8000</div>
+                <div class="location">Jurerê — Florianópolis / SC</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

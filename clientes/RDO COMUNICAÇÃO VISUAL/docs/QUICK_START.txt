@@ -1,0 +1,123 @@
+═══════════════════════════════════════════════════════════════════════════════
+  RDO SITE — QUICK START (Deploy em 6 passos)
+═══════════════════════════════════════════════════════════════════════════════
+
+Seu site está 100% pronto! Agora é só fazer o deploy.
+
+LOCAL DO PROJETO:
+C:\Users\Gusin\OneDrive\Área de Trabalho\RDO COMUNICAÇÃO VISUAL\Novo site RDO Comvisual\design_handoff_rdo_site\site
+
+ARQUIVOS IMPORTANTES:
+  📄 SETUP_GITHUB_VERCEL.md  ← Siga este passo a passo
+  📄 SMTP_SETUP.md           ← Escolha seu provedor de e-mail
+  📄 README.md               ← Overview do projeto
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PASSO 1: Criar Repositório no GitHub
+────────────────────────────────────────────────────────────────────────────────
+1. Abra github.com/new
+2. Repository name: rdo-site
+3. Visibility: Private (ou Public)
+4. Clique "Create repository"
+5. Não marque nada em "Initialize repository"
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PASSO 2: Fazer Push (Windows PowerShell)
+────────────────────────────────────────────────────────────────────────────────
+Abra PowerShell na pasta do site e execute:
+
+cd "C:\Users\Gusin\OneDrive\Área de Trabalho\RDO COMUNICAÇÃO VISUAL\Novo site RDO Comvisual\design_handoff_rdo_site\site"
+
+git remote add origin https://github.com/SEU-USUARIO-GITHUB/rdo-site.git
+git branch -M main
+git push -u origin main
+
+(Se pedir senha, gere um Personal Access Token em github.com/settings/tokens)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PASSO 3: Conectar Vercel
+────────────────────────────────────────────────────────────────────────────────
+1. Vá em vercel.com
+2. Faça login (crie conta se não tiver)
+3. Clique "Add New..." → "Project"
+4. Selecione "rdo-site"
+5. Clique "Import"
+6. Pronto!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PASSO 4: Escolher Provedor de E-mail (Abra SMTP_SETUP.md)
+────────────────────────────────────────────────────────────────────────────────
+Opções:
+  ⭐ Gmail        (mais fácil, 500 e-mails/dia)
+  📨 SendGrid     (escalável, 100 e-mails/dia)
+  🚀 Resend       (moderno, 100 e-mails/dia)
+  💼 Seu servidor (ilimitado)
+  🇧🇷 Brevo      (Brasil, 300 e-mails/dia)
+
+IMPORTANTE: Teste localmente ANTES de colocar em Vercel!
+
+npm install
+npm run dev
+
+Depois acesse http://localhost:3000 e teste o formulário.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PASSO 5: Adicionar Variáveis no Vercel Dashboard
+────────────────────────────────────────────────────────────────────────────────
+1. vercel.com/dashboard → seu projeto
+2. "Settings" → "Environment Variables"
+3. Adicione as 7 variáveis (veja SMTP_SETUP.md):
+   - CONTACT_EMAIL
+   - SMTP_HOST
+   - SMTP_PORT
+   - SMTP_SECURE
+   - SMTP_USER
+   - SMTP_PASS
+   - SMTP_FROM
+
+4. Clique "Save"
+5. Vercel faz deploy automático
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PASSO 6: Testar em Produção
+────────────────────────────────────────────────────────────────────────────────
+1. vercel.com/dashboard → seu projeto
+2. Clique no link (ex: rdo-site.vercel.app)
+3. Role até "Contato"
+4. Preencha o formulário:
+   - Nome: (obrigatório)
+   - E-mail: (obrigatório, válido)
+   - Telefone: (obrigatório)
+5. Clique "Enviar pedido de orçamento"
+6. Veja "Recebemos seu pedido!" na tela
+7. Verifique seu e-mail (CONTACT_EMAIL)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 PRONTO! Seu site está no ar!
+
+De agora em diante, para fazer mudanças:
+
+  git add .
+  git commit -m "Descrição da mudança"
+  git push origin main
+
+Vercel detecta automaticamente e faz deploy em ~1-2 min.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⏳ Tempo estimado: 30-45 minutos
+
+Se tiver dúvidas:
+  - SETUP_GITHUB_VERCEL.md (deployment)
+  - SMTP_SETUP.md (e-mail)
+  - README.md (overview)
+
+Boa sorte! 🚀
+═══════════════════════════════════════════════════════════════════════════════

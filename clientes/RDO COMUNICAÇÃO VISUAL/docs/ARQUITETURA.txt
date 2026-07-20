@@ -1,0 +1,301 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║  🏗️  ARQUITETURA RDO SITE — GitHub → Vercel                                 ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│                           FLUXO DE DEPLOYMENT                              │
+│                                                                             │
+│  Seu Computador                GitHub                    Vercel             │
+│  ──────────────              ────────                   ────────            │
+│                                                                             │
+│   (1) Código local           (2) Repositório           (3) Servidor        │
+│       ↓                          ↓                          ↓              │
+│   .git/                    github.com/seu-               vercel.app       │
+│   index.html                 usuario/rdo-site            (automático)     │
+│   api/contact.js                                                          │
+│   ...                                                                      │
+│                                                                             │
+│   (A) git push origin main → (B) GitHub recebe → (C) Vercel detecta       │
+│                                                  → Deploy automático       │
+│                                                  → Seu site no ar!         │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  ESTRUTURA DE PASTAS                                                          ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+site/
+├── 📁 .git/                      ← Repositório Git (criado)
+├── 📁 api/
+│   └── contact.js               ← Vercel Function (backend)
+├── 📁 css/
+│   └── style.css                ← Estilos (design tokens)
+├── 📁 js/
+│   └── main.js                  ← Lógica frontend
+├── 📁 assets/
+│   ├── rdo-logo.png
+│   ├── eyes-blink.mp4
+│   ├── eyes-poster.png
+│   └── premio-banner.png
+│
+├── 📄 index.html                ← Landing page
+├── 📄 package.json              ← Dependências Node.js
+├── 📄 vercel.json               ← Configuração Vercel
+├── 📄 .gitignore                ← Arquivos ignorados
+├── 📄 .gitattributes            ← Line endings normalizados
+├── 📄 .env.example              ← Template de variáveis
+│
+├── 📄 README.md                 ← Overview técnico
+├── 📄 SETUP_GITHUB_VERCEL.md    ← Guia de deployment ⭐
+├── 📄 SMTP_SETUP.md             ← Configurações SMTP ⭐
+└── 📄 QUICK_START.txt           ← Guia rápido ⭐
+
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  FLUXO DO FORMULÁRIO (Nova Pipeline)                                          ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+         FRONTEND (index.html)
+              ↓
+      ┌─────────────────────┐
+      │  1. Usuário clica   │
+      │  "Enviar pedido"    │
+      └─────────────────────┘
+              ↓
+      ┌─────────────────────────────────────┐
+      │  2. Validação JavaScript            │
+      │  - Nome obrigatório?                │
+      │  - E-mail válido?                   │
+      │  - Telefone preenchido?             │
+      │  (main.js: function validate())     │
+      └─────────────────────────────────────┘
+              ↓
+         [Válido?]
+         /      \
+       SIM     NÃO → Mostra erro no campo
+        ↓
+      ┌─────────────────────────────────────────────┐
+      │  3. POST /api/contact                       │
+      │  (JavaScript: fetch /api/contact)           │
+      │  {                                          │
+      │    name, email, phone, service, message     │
+      │  }                                          │
+      └─────────────────────────────────────────────┘
+              ↓
+      ┌──────────────────────────────────────────────────┐
+      │  BACKEND (Vercel Function: api/contact.js)      │
+      │                                                  │
+      │  4. Validação Backend (novamente!)              │
+      │     - E-mail válido?                            │
+      │     - Campos obrigatórios?                       │
+      │     - Segurança: HTML escape                     │
+      │                                                  │
+      │  5. Prepare Email                               │
+      │     - Nome, email, telefone, serviço, msg       │
+      │     - HTML formatado                            │
+      │                                                  │
+      │  6. Nodemailer → SMTP                           │
+      │     Seu servidor SMTP (Gmail, SendGrid, etc)    │
+      └──────────────────────────────────────────────────┘
+              ↓
+      ┌──────────────────────────────────────┐
+      │  7. E-mail é enviado                │
+      │     SMTP → Servidor do provedor     │
+      │                                      │
+      │  Destino: CONTACT_EMAIL             │
+      │  contato@rdocomvisual.com.br        │
+      └──────────────────────────────────────┘
+              ↓
+      ┌──────────────────────────────────────┐
+      │  8. Resposta volta ao frontend      │
+      │     { success: true }                │
+      │                                      │
+      │  9. Mostra "Recebemos seu pedido!"   │
+      │     (Formulário desaparece)          │
+      └──────────────────────────────────────┘
+
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  TECNOLOGIAS & VERSÕES                                                        ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+Frontend
+  • HTML5
+  • CSS3 (variáveis CSS, flexbox, grid)
+  • JavaScript ES6 (vanilla, sem frameworks)
+  • Google Fonts (Saira, Poppins, Manrope, IBM Plex Mono)
+
+Backend
+  • Node.js 20.x
+  • Nodemailer 6.9.7 (envio de e-mail)
+  • dotenv 16.3.1 (variáveis de ambiente)
+
+Hosting & Deployment
+  • Vercel (serverless)
+  • Vercel Functions (backend APIs)
+  • GitHub (versionamento)
+  • SMTP (e-mail — Gmail/SendGrid/seu servidor)
+
+Ambiente Local
+  • Git (versionamento)
+  • npm (dependências)
+  • PowerShell/Bash (terminal)
+
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  VARIÁVEIS DE AMBIENTE (Vercel Dashboard)                                     ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+Essas variáveis SÃO ADICIONADAS NO VERCEL DASHBOARD (não no .env local).
+
+┌──────────────────────────────────────────────────────────────┐
+│ CONTACT_EMAIL    → contato@rdocomvisual.com.br              │
+│ SMTP_HOST        → smtp.gmail.com (ou outro)                │
+│ SMTP_PORT        → 587 (ou 465)                             │
+│ SMTP_SECURE      → false (ou true)                          │
+│ SMTP_USER        → seu-email@gmail.com                      │
+│ SMTP_PASS        → senha-de-app (16 caracteres)            │
+│ SMTP_FROM        → noreply@rdocomvisual.com.br              │
+└──────────────────────────────────────────────────────────────┘
+
+⚠️  IMPORTANTE: Essas variáveis NÃO ficam visíveis no GitHub.
+               Só a Vercel e o seu terminal local as veem.
+
+
+╔═══════════════════════════════════════════════════════════════╗
+║  SEGURANÇA & BEST PRACTICES                                  ║
+╚═══════════════════════════════════════════════════════════════╝
+
+✅ XSS Prevention
+   - HTML escape no backend (api/contact.js)
+   - Previne injeção de JavaScript
+
+✅ Input Validation
+   - Frontend: validação visual
+   - Backend: validação de integridade
+   - Ambas são necessárias
+
+✅ Secrets Management
+   - .env em .gitignore
+   - Variáveis sensíveis NÃO são commitadas
+   - Apenas em Vercel Dashboard
+
+✅ HTTPS
+   - Automático na Vercel
+   - Toda comunicação é criptografada
+
+✅ Rate Limiting (Futuro)
+   - Pode ser adicionado se tiver spam
+   - Vercel oferece suporte
+
+
+╔═══════════════════════════════════════════════════════════════╗
+║  MONITORAMENTO & LOGS (Após Deploy)                          ║
+╚═══════════════════════════════════════════════════════════════╝
+
+Para acompanhar o site depois de deployado:
+
+1. Vercel Dashboard
+   vercel.com/dashboard
+   → seu projeto → Deployments
+   → Vê status verde = OK
+
+2. Logs de Função
+   vercel.com/dashboard
+   → seu projeto → Functions → contact
+   → Mostra logs em tempo real
+   → Útil se formulário não funcionar
+
+3. Tráfego & Analytics
+   vercel.com/dashboard
+   → seu projeto → Analytics
+   → Quantas requisições, latência, etc
+
+4. E-mails Recebidos
+   Seu inbox (contato@rdocomvisual.com.br)
+   → Confirma que está funcionando
+
+
+╔═══════════════════════════════════════════════════════════════╗
+║  WORKFLOW: Como Fazer Mudanças Depois                        ║
+╚═══════════════════════════════════════════════════════════════╝
+
+Depois de tudo deployado, para fazer mudanças:
+
+1. Edite seu arquivo (ex: index.html)
+
+2. Commit local
+   git add .
+   git commit -m "Descrição da mudança"
+
+3. Push para GitHub
+   git push origin main
+
+4. Vercel detecta automaticamente
+   → Começa deploy
+   → ~1-2 minutos depois está no ar
+   → Novo código em produção
+
+Exemplo: Receber foto nova do portfólio
+   • Salve em assets/portfolio/nova-foto.png
+   • Atualize <img src> em index.html
+   • Commit: git commit -m "Add nova foto portfólio"
+   • Push: git push origin main
+   • Pronto! Vercel faz deploy
+
+
+╔═══════════════════════════════════════════════════════════════╗
+║  ESCALABILIDADE & PRÓXIMOS PASSOS                            ║
+╚═══════════════════════════════════════════════════════════════╝
+
+Site atual:
+  ✅ Estático (HTML/CSS/JS puro)
+  ✅ Backend simples (Vercel Function)
+  ✅ E-mail via SMTP
+  ✅ Sem banco de dados
+
+Se precisar escalar:
+  → Adicionar CMS (Contentful, Sanity, etc)
+  → Banco de dados (PostgreSQL, MongoDB)
+  → Analytics avançado
+  → Integrações (CRM, WhatsApp API, etc)
+  → Rate limiting, autenticação
+
+Mas por enquanto, a estrutura atual é perfeita!
+
+
+╔═══════════════════════════════════════════════════════════════╗
+║  RESUMO: 3 Partes Principais                                 ║
+╚═══════════════════════════════════════════════════════════════╝
+
+1. CLIENTE (seu navegador)
+   ├─ Vê a página bonita (HTML/CSS)
+   ├─ Preenche o formulário
+   └─ Clica "Enviar"
+
+2. SERVIDOR (Vercel Function)
+   ├─ Recebe os dados
+   ├─ Valida novamente
+   ├─ Prepara o e-mail
+   └─ Envia via SMTP
+
+3. E-MAIL (Gmail/SendGrid/seu SMTP)
+   ├─ Recebe via SMTP
+   └─ Entrega em CONTACT_EMAIL
+
+Tudo rooda automaticamente. Vercel cuida da orquestração.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 VOCÊ ENTENDEU A ARQUITETURA?
+
+Sim ✓ → Vá para QUICK_START.txt ou CHECKLIST_DEPLOYMENT.md
+Não   → Releia este arquivo ou consulte SETUP_GITHUB_VERCEL.md
+
+═══════════════════════════════════════════════════════════════════════════════

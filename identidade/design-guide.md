@@ -8,52 +8,43 @@
 
 ## Cores
 
-- **Fundo principal:**
-
-- **Cor de destaque / CTA:**
-
-- **Texto principal:**
-
-- **Fundo alternativo / cards:**
-
-- **Cor proibida:**
+**Pendente de definição** — Guilherme ainda não definiu a paleta da marca.
 
 ---
 
 ## Tipografia
 
-- **Títulos e destaques:**
-
-- **Corpo, subtítulos e botões:**
-
-- **Peso do título:**
+**Pendente de definição** — Defina quando tiver a identidade visual consolidada.
 
 ---
 
 ## Estilo geral
 
+Moderno, tech, confiável. Marca de IA que faz automação profissional.
+
 ---
 
 ## Elementos-chave
 
-- Bordas:
-- Border-radius dos cards:
-- Botões:
-- Sombras:
+**Pendente** — Será preenchido quando a identidade visual for consolidada.
 
 ---
 
 ## O que NUNCA fazer
 
+**Pendente** — Será definido conforme evolui a marca.
+
 ---
 
 ## Logo
 
-- **Arquivo:** *(ex: identidade/logo.png ou identidade/logo.svg)*
-- **Versão pra fundo escuro:** *(se tiver — ex: identidade/logo-branco.png)*
-- **Onde usar:** slide final do carrossel (CTA), header de propostas, slides de apresentação
-- **Tamanho sugerido:** largura entre 120-200px nos HTMLs
+- **Arquivo:** `identidade/logo.png` (Montara.ai — azul + branco)
+- **Versão pra fundo escuro:** Pendente
+- **Onde usar:** Propostas, carrossel, slides de apresentação, header de sites
+- **Tamanho sugerido:** 150-180px nos HTMLs
 
 ---
 
 ## Observações adicionais
+
+A marca ainda está em construção. As cores e tipografia devem ser definidas em breve. Quando forem, atualiza esse arquivo para que as skills gerem conteúdo alinhado.
