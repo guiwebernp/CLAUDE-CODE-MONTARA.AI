@@ -26,4 +26,4 @@ Automatizar a criação de sites. Criar templates reutilizáveis para cada nicho
 **Clientes atuais:**
 - RDO Comunicação Visual (Florianópolis) — site institucional
 - Plotter Service (São José/SC) — site institucional com hero animada (mobile responsivo finalizado)
-- Clínica Reab (Florianópolis) — site de fisioterapia (design em progresso, implementação pendente)
+- Clínica Reab (Florianópolis) — site de fisioterapia (implementado e finalizado)

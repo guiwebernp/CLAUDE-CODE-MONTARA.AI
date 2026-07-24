@@ -13,9 +13,6 @@
 <body>
 
 <nav class="navbar">
-  <a href="#topo" class="navbar__logo">
-    <span class="navbar__wordmark">Clínica Reab</span>
-  </a>
   <button class="navbar__toggle" aria-label="Menu">
     <span></span>
     <span></span>
@@ -37,6 +34,7 @@
   </video>
   <div class="hero__overlay hero__overlay--primary"></div>
   <div class="hero__overlay hero__overlay--secondary"></div>
+  <canvas id="hero-canvas" class="hero__canvas" aria-hidden="true"></canvas>
 
   <div class="hero__content">
     <p class="hero__badge">Fisioterapia em Florianópolis · desde 2008</p>
@@ -50,20 +48,20 @@
 
   <div class="hero__stats">
     <div class="stat">
-      <div class="stat__number"><span class="count" data-target="18">0</span> anos</div>
+      <div class="stat__number"><span class="count" data-target="18">18</span> anos</div>
       <div class="stat__label">de excelência em fisioterapia</div>
     </div>
     <div class="stat">
-      <div class="stat__number"><span class="count" data-target="15000">0</span>+</div>
+      <div class="stat__number"><span class="count" data-target="15000">15000</span>+</div>
       <div class="stat__label">pacientes atendidos</div>
     </div>
     <div class="stat">
-      <div class="stat__number"><span class="count" data-target="6">0</span> salas</div>
+      <div class="stat__number"><span class="count" data-target="6">6</span> salas</div>
       <div class="stat__label">climatizadas de atendimento</div>
     </div>
     <div class="stat">
       <div class="stat__number">BIODEX 4 PRO</div>
-      <div class="stat__label">avaliação isocinética</div>
+      <div class="stat__label">avaliação isocinética de precisão</div>
     </div>
   </div>
 </header>
@@ -131,7 +129,7 @@
           <span class="service-card__cta">Saiba mais →</span>
         </div>
         <div class="service-card__image">
-          <div class="placeholder" style="background: rgba(247,245,240,0.08);">foto: exame isocinético / BIODEX</div>
+          <img src="assets/avaliacao-isocinetica.jpg" alt="Avaliação isocinética com equipamento BIODEX" loading="lazy">
         </div>
       </a>
     </div>
@@ -327,6 +325,7 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

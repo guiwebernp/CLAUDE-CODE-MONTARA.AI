@@ -126,7 +126,7 @@ interna pra cuidar disso, entregando sites profissionais + integração de IA.
 
 1. **RDO Comunicação Visual** (Florianópolis) — site institucional + formulário
 2. **Plotter Service** (São José/SC) — site institucional com hero animada + portfólio de trabalhos
-3. **Clínica Reab** (Florianópolis) — site moderno de fisioterapia (design em progresso)
+3. **Clínica Reab** (Florianópolis) — site moderno de fisioterapia (implementado e finalizado)
 
 ## Como trabalho
 

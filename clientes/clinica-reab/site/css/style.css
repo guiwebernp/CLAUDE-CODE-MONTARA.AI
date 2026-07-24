@@ -11,8 +11,8 @@
   --color-text-light: #F2E9E8;
   --color-text-secondary: #B9ACA9;
   --color-text-tertiary: #9c8f8c;
-  --color-accent: #8C4450;
-  --color-accent-light: #B5525F;
+  --color-accent: #D62839;
+  --color-accent-light: #F04E4E;
   --color-accent-muted: #e8b394;
   --font-display: 'Bricolage Grotesque', sans-serif;
   --font-body: 'Instrument Sans', sans-serif;
@@ -62,31 +62,36 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 56px;
+  padding: 20px 56px;
   background: rgba(31, 25, 23, 0);
   transition: all 0.35s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(20, 16, 15, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 16, 15, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(140, 68, 80, 0.2);
+  padding: 16px 56px;
 }
 
 .navbar__logo {
   cursor: pointer;
   display: flex;
   align-items: center;
-  background: #111;
-  border-radius: 8px;
-  padding: 6px 14px;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.navbar__logo:hover {
+  opacity: 0.8;
 }
 
 .navbar__wordmark {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-text-light);
+  letter-spacing: -0.5px;
 }
 
 .navbar__toggle {
@@ -122,32 +127,51 @@ a:hover {
 .navbar__menu {
   display: flex;
   align-items: center;
-  gap: 32px;
-  font-size: 15px;
+  gap: 40px;
+  font-size: 13px;
   font-weight: 500;
+  margin-left: auto;
 }
 
 .navbar__link {
-  color: var(--color-text-light);
-  transition: color 0.2s;
+  color: rgba(242, 233, 232, 0.7);
+  transition: all 0.2s;
+  position: relative;
 }
 
 .navbar__link:hover {
-  color: var(--color-accent-light);
+  color: var(--color-text-light);
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.navbar__link:hover::after {
+  width: 100%;
 }
 
 .navbar__cta {
   background: var(--color-accent);
   color: #F7F5F0;
-  padding: 11px 22px;
-  border-radius: 999px;
+  padding: 12px 28px;
+  border-radius: 8px;
   font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border: 1px solid var(--color-accent);
 }
 
 .navbar__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(140, 68, 80, 0.3);
+  box-shadow: 0 8px 24px rgba(140, 68, 80, 0.35);
   color: #F7F5F0;
 }
 
@@ -196,12 +220,13 @@ a:hover {
 /* HERO */
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   overflow: hidden;
   background: var(--color-bg-dark);
+  padding-top: 60px;
 }
 
 .hero__video {
@@ -225,6 +250,20 @@ a:hover {
 
 .hero__overlay--secondary {
   background: linear-gradient(180deg, rgba(20,16,15,0.4) 0%, rgba(20,16,15,0.1) 20%, rgba(20,16,15,0.1) 75%, rgba(20,16,15,0.5) 100%);
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .hero__canvas {
+    display: none;
+  }
 }
 
 .hero__content {
@@ -322,13 +361,14 @@ a:hover {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 3;
+  z-index: 10;
   display: flex;
   gap: 64px;
-  padding: 28px 56px;
+  padding: 32px 56px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(20, 16, 15, 0.55);
-  backdrop-filter: blur(8px);
+  background: rgba(20, 16, 15, 0.8);
+  backdrop-filter: blur(12px);
+  align-items: center;
 }
 
 .stat {
@@ -483,7 +523,8 @@ a:hover {
   width: 100%;
   aspect-ratio: 4/3;
   border-radius: 6px;
-  background: repeating-linear-gradient(45deg, #241C1B 0 12px, #2b2220 12px 24px);
+  background: linear-gradient(145deg, #241C1B 0%, #2b201f 55%, #221a19 100%);
+  border: 1px solid rgba(214, 40, 57, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -673,6 +714,14 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.service-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .service-card__image .placeholder {
@@ -763,7 +812,8 @@ a:hover {
 
 .gallery-item {
   border-radius: 6px;
-  background: repeating-linear-gradient(45deg, #241C1B 0 12px, #2b2220 12px 24px);
+  background: linear-gradient(145deg, #241C1B 0%, #2b201f 55%, #221a19 100%);
+  border: 1px solid rgba(214, 40, 57, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1185,7 +1235,7 @@ a:hover {
 
 /* CONTACT */
 .contact {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #B5525F 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
   padding: 120px 0;
 }
 
@@ -1232,7 +1282,8 @@ a:hover {
 /* FOOTER */
 .footer {
   padding: 40px;
-  background: #0F172A;
+  background: var(--color-bg-darker);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: #F7F5F0;
   text-align: center;
 }
@@ -1267,7 +1318,8 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: repeating-linear-gradient(45deg, #241C1B 0 12px, #2b2220 12px 24px);
+  background: linear-gradient(145deg, #241C1B 0%, #2b201f 55%, #221a19 100%);
+  border: 1px solid rgba(214, 40, 57, 0.14);
   color: var(--color-text-tertiary);
   font-family: monospace;
   font-size: 13px;
@@ -1275,32 +1327,25 @@ a:hover {
   text-align: center;
 }
 
-/* DATA-REVEAL ANIMATIONS */
+/* DATA-REVEAL ANIMATIONS — transition-based, driven only by IntersectionObserver (js/main.js) */
 [data-reveal] {
   opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
 
-[data-reveal]:nth-child(2) {
-  animation-delay: 0.1s;
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-[data-reveal]:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-[data-reveal]:nth-child(4) {
-  animation-delay: 0.3s;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+    transform: none;
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
