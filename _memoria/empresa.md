@@ -15,7 +15,7 @@
 
 **Equipe:** Freelancer solo — Guilherme Weber.
 
-**Ferramentas:** Claude Code, HTML/CSS/JS, Vercel, GitHub, IA.
+**Ferramentas:** Claude Code, HTML/CSS/JS, Vercel, Netlify, GitHub, IA.
 
 **Principais entregas:** Sites profissionais com design responsivo.
 

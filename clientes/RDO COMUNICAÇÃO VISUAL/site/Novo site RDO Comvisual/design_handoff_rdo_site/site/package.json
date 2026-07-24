@@ -1,0 +1,17 @@
+{
+  "name": "rdo-site",
+  "version": "1.0.0",
+  "description": "RDO Comunicação Visual — Site institucional",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site, no build needed'",
+    "start": "echo 'Use vercel dev to test locally'"
+  },
+  "keywords": ["rdo", "comunicacao-visual", "florianopolis"],
+  "author": "RDO Comunicação Visual",
+  "license": "Proprietary",
+  "dependencies": {
+    "nodemailer": "^6.9.7",
+    "dotenv": "^16.3.1"
+  }
+}

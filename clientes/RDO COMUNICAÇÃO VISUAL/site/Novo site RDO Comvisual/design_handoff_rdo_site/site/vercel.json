@@ -1,0 +1,24 @@
+{
+  "buildCommand": "",
+  "installCommand": "",
+  "framework": null,
+  "outputDirectory": ".",
+  "env": {
+    "CONTACT_EMAIL": "@CONTACT_EMAIL"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/contact",
+      "dest": "/api/contact.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "$1"
+    }
+  ]
+}
