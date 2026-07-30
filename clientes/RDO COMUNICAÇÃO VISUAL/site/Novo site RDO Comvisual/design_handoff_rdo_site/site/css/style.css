@@ -368,9 +368,10 @@ a:hover { color: var(--blue-link-hover); }
 
 .hero__service {
   display: flex;
-  gap: 11px;
+  flex-direction: column;
+  gap: 10px;
   align-items: flex-start;
-  padding: 4px 16px;
+  padding: 4px 20px;
   min-width: 0;
   border-left: 1px solid var(--border-14);
   text-align: left;
@@ -378,18 +379,18 @@ a:hover { color: var(--blue-link-hover); }
 .hero__service-icon {
   flex-shrink: 0;
   display: block;
-  width: 56px;
-  height: 56px;
-  margin-top: -4px;
+  width: 48px;
+  height: 48px;
 }
 .hero__service-title {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.03em;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   line-height: 1.15;
   color: var(--text-white);
+  white-space: nowrap;
 }
 .hero__service-desc {
   font-size: 11.5px;
@@ -397,6 +398,10 @@ a:hover { color: var(--blue-link-hover); }
   color: var(--text-soft-5);
   margin-top: 6px;
 }
+
+.hero__service--cta { color: inherit; display: none; }
+.hero__service--cta .hero__service-icon { color: var(--blue-link); display: none; }
+.hero__service--cta .hero__service-desc { color: var(--blue-link); font-weight: 600; }
 
 .hero__chevron { position: relative; padding: 34px 0 40px; }
 .hero__chevron a {
@@ -409,8 +414,13 @@ a:hover { color: var(--blue-link-hover); }
   .hero__wordmark { width: 270px; }
   .hero__phone { font-size: 38px; }
   .hero__locality { font-size: 14px; letter-spacing: 0.3em; }
-  .hero__services { grid-template-columns: repeat(2, 1fr); gap: 20px 0; }
-  .hero__service { border-left: none; padding: 4px 8px; }
+  .hero__services { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; padding: 0 20px; }
+  .hero__service { flex-direction: column; gap: 8px; border-left: none; padding: 0; min-width: 0; }
+  .hero__service-icon { width: 44px; height: 44px; margin-top: 0; }
+  .hero__service--cta { display: flex; }
+  .hero__service--cta .hero__service-icon { display: block; }
+  .hero__service-title, .hero__service-desc { overflow-wrap: break-word; }
+  .hero__service-title { font-size: 12.5px; }
   /* the diagonal streaks are sized for the shorter desktop hero; on the
      much taller stacked mobile layout they stretch across the eyes photo
      and tagline instead of staying a subtle corner accent. */

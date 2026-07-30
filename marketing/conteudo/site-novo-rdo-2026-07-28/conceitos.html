@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@600;700;800;900&family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Manrope', sans-serif; background: #222; }
+    .slide {
+        width: 1080px; height: 1350px; position: relative; overflow: hidden; color: #fff;
+    }
+    .badge-num {
+        position: absolute; top: 40px; left: 40px; z-index: 20;
+        background: rgba(0,0,0,0.6); color: #fff; font-family: 'IBM Plex Mono', monospace;
+        font-size: 22px; font-weight: 700; padding: 10px 20px; border-radius: 8px;
+        letter-spacing: 0.1em;
+    }
+
+    /* ===================== CONCEITO A — MOCKUP CELULAR ===================== */
+    .conceito-a {
+        background: radial-gradient(circle at 50% 30%, #1f6fe0 0%, #0d3f9e 55%, #06246a 100%);
+    }
+    .a-eyebrow {
+        position: absolute; top: 130px; left: 0; right: 0; text-align: center;
+        font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 700;
+        letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.85);
+    }
+    .a-title {
+        position: absolute; top: 185px; left: 0; right: 0; text-align: center;
+        font-family: 'Saira', sans-serif; font-weight: 900; font-size: 92px;
+        letter-spacing: -0.04em; line-height: 0.98; z-index: 5;
+        text-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    }
+    .phone {
+        position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%);
+        width: 440px; height: 900px; background: #05070d;
+        border-radius: 56px; border: 14px solid #0a0d14;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.55), 0 0 0 2px rgba(255,255,255,0.06);
+        overflow: hidden;
+    }
+    .phone::before {
+        content: ''; position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+        width: 130px; height: 26px; background: #0a0d14; border-radius: 20px; z-index: 3;
+    }
+    .phone img { width: 100%; display: block; }
+    .a-site {
+        position: absolute; bottom: 46px; left: 0; right: 0; text-align: center; z-index: 10;
+        font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 30px;
+        color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    /* ===================== CONCEITO B — EDITORIAL MINIMALISTA ===================== */
+    .conceito-b {
+        background: #05070d; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; text-align: center;
+    }
+    .conceito-b::after {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(circle at 50% 42%, rgba(43,143,255,0.16) 0%, transparent 55%);
+    }
+    .b-inner { position: relative; z-index: 5; padding: 0 90px; }
+    .b-eyebrow {
+        font-family: 'IBM Plex Mono', monospace; font-size: 19px; font-weight: 700;
+        letter-spacing: 0.42em; text-transform: uppercase; color: #4c9bff; margin-bottom: 54px;
+    }
+    .b-wordmark {
+        font-family: 'Saira', sans-serif; font-weight: 900; font-size: 200px;
+        letter-spacing: -0.05em; line-height: 1; color: #fff; margin-bottom: 6px;
+    }
+    .b-ruler { width: 90px; height: 4px; background: #2b8fff; margin: 40px auto; }
+    .b-title {
+        font-family: 'Saira', sans-serif; font-weight: 800; font-size: 60px;
+        letter-spacing: -0.03em; line-height: 1.05; color: #fff; margin-bottom: 28px;
+    }
+    .b-sub {
+        font-size: 22px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+    }
+
+    /* ===================== CONCEITO C — BOLD IMPACTO (olhos) ===================== */
+    .conceito-c { background: #05070d; }
+    .c-bg {
+        position: absolute; inset: 0;
+        background-image: url('foto-eyes.png'); background-size: cover; background-position: center 42%;
+    }
+    .c-overlay {
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(180deg, rgba(5,7,13,0.4) 0%, rgba(5,7,13,0) 35%, rgba(5,7,13,0.75) 68%, rgba(5,7,13,0.98) 100%),
+          linear-gradient(90deg, rgba(11,60,150,0.35) 0%, transparent 40%, transparent 60%, rgba(11,60,150,0.35) 100%);
+    }
+    .c-content {
+        position: absolute; bottom: 0; left: 0; right: 0; padding: 0 70px 110px; z-index: 5;
+    }
+    .c-eyebrow {
+        display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 700;
+        letter-spacing: 0.3em; text-transform: uppercase; color: #fff;
+        background: #2b8fff; padding: 10px 22px; border-radius: 6px; margin-bottom: 30px;
+    }
+    .c-title {
+        font-family: 'Saira', sans-serif; font-weight: 900; font-size: 118px;
+        letter-spacing: -0.045em; line-height: 0.94; margin-bottom: 26px;
+        text-shadow: 0 6px 30px rgba(0,0,0,0.6);
+    }
+    .c-title .hl { color: #4c9bff; }
+    .c-sub {
+        font-size: 24px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+        color: rgba(255,255,255,0.7);
+    }
+</style>
+</head>
+<body>
+
+<!-- ========== CONCEITO A ========== -->
+<div class="slide conceito-a">
+    <div class="badge-num">CONCEITO A</div>
+    <div class="a-eyebrow">Nova fase</div>
+    <div class="a-title">SITE NOVO<br>NO AR</div>
+    <div class="phone">
+        <img src="img-mobile.png" alt="">
+    </div>
+    <div class="a-site">rdocomvisual.com.br</div>
+</div>
+
+<!-- ========== CONCEITO B ========== -->
+<div class="slide conceito-b">
+    <div class="badge-num">CONCEITO B</div>
+    <div class="b-inner">
+        <div class="b-eyebrow">Nova fase</div>
+        <div class="b-wordmark">RDO</div>
+        <div class="b-ruler"></div>
+        <div class="b-title">Nosso site<br>está novo.</div>
+        <div class="b-sub">rdocomvisual.com.br</div>
+    </div>
+</div>
+
+<!-- ========== CONCEITO C ========== -->
+<div class="slide conceito-c">
+    <div class="badge-num">CONCEITO C</div>
+    <div class="c-bg"></div>
+    <div class="c-overlay"></div>
+    <div class="c-content">
+        <span class="c-eyebrow">// Nova fase</span>
+        <div class="c-title">SITE<br><span class="hl">NOVO.</span></div>
+        <div class="c-sub">rdocomvisual.com.br</div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -24,6 +24,6 @@ Automatizar a criação de sites. Criar templates reutilizáveis para cada nicho
 **Candidata a skill:** `/template-builder` ou `/gerar-modelos-site` (quando usar `/mapear-rotinas`)
 
 **Clientes atuais:**
-- RDO Comunicação Visual (Florianópolis) — site institucional
+- RDO Comunicação Visual (Florianópolis) — site institucional (finalizado e no ar em rdocomvisual.com.br)
 - Plotter Service (São José/SC) — site institucional com hero animada (mobile responsivo finalizado)
 - Clínica Reab (Florianópolis) — site de fisioterapia (implementado e finalizado)

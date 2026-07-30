@@ -124,7 +124,7 @@ interna pra cuidar disso, entregando sites profissionais + integração de IA.
 
 ## Clientes ativos
 
-1. **RDO Comunicação Visual** (Florianópolis) — site institucional + formulário
+1. **RDO Comunicação Visual** (Florianópolis) — site institucional completo, finalizado e no ar em rdocomvisual.com.br
 2. **Plotter Service** (São José/SC) — site institucional com hero animada + portfólio de trabalhos
 3. **Clínica Reab** (Florianópolis) — site moderno de fisioterapia (implementado e finalizado)
 
@@ -279,4 +279,4 @@ Assim, customizar cores é trocar 4 linhas, não o CSS todo.
 
 ---
 
-*Última atualização: 20 de julho de 2026 — Setup MazyOS completo via `/instalar`*
+*Última atualização: 24 de julho de 2026 — RDO Comunicação Visual finalizado e publicado*
