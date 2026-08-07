@@ -6,7 +6,8 @@
 
 ## Fase
 
-**Crescimento** — De 2 clientes fechados para escalar a entrega.
+**Crescimento** — De 2 clientes fechados para escalar a entrega. Rebrand recém-concluído
+(Montara.AI → WNP, 2026-08-07): site institucional novo no ar em `clientes/WNP/site/`.
 
 ## Prioridade principal
 

@@ -28,7 +28,7 @@ Esse projeto herda:
 - Ferramentas: HTML/CSS/JS vanilla (sem frameworks)
 - Deploy: Vercel
 - Tom de voz: direto, amigável, contextual
-- Identidade visual: cores e tipografia da Montara.AI como base (customizar conforme marca do cliente)
+- Identidade visual: cores e tipografia da WNP (antes Montara.AI) como base (customizar conforme marca do cliente)
 
 ## Stack
 

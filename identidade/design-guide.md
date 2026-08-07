@@ -1,4 +1,4 @@
-# Identidade visual
+# Identidade visual — WNP
 
 > Como a marca aparece em tudo que o MazyOS gera.
 > As skills de conteúdo, carrossel e post leem esse arquivo antes de criar qualquer visual.
@@ -6,71 +6,99 @@
 
 ---
 
+## Rebrand (2026-08-07)
+
+O negócio, antes "Montara.AI", passou a se chamar **WNP** (WNP Comunicação Visual). Identidade visual
+completamente nova — cores, tipografia e tom passam de "tech dark azul" para "editorial dark coral/mint".
+O material da marca antiga (logo montanha/M azul, paleta `#2E9EFF`) foi arquivado em
+`clientes/WNP/_site-antigo-montara/identidade-montara/` como referência histórica — não usar mais.
+
+---
+
 ## Cores
 
-Paleta base (formato CSS variables, mesmo padrão usado nos sites de cliente):
+Paleta base (formato CSS variables, mesmo padrão usado nos sites de cliente — ver
+`clientes/WNP/site/css/style.css` para a implementação completa dos tokens):
 
 ```css
---color-bg-dark: #0A0A0F;      /* fundo principal, quase preto */
---color-bg-darker: #050507;    /* fundo mais escuro (footer, seções alternadas) */
---color-bg-card: #12121A;      /* cards, blocos elevados */
---color-text-light: #F5F7FA;   /* texto principal sobre fundo escuro */
---color-text-secondary: #A0A8B8; /* texto secundário, descrições */
---color-text-tertiary: #6B7280;  /* legendas, metadados */
---color-accent: #2E9EFF;       /* azul da marca — CTA, links, destaques */
---color-accent-light: #5CB6FF; /* azul mais claro — hover, glow */
---color-accent-muted: #1B4A7A; /* azul escurecido — bordas sutis, backgrounds tênues */
+/* neutros — quase preto, nunca cinza puro */
+--ink-850: #0D0E0E;      /* fundo principal */
+--ink-900: #0C0C0C;      /* fundo mais escuro (footer) */
+--ink-750: #171615;      /* cards */
+--ink-700: #1C1B1A;      /* cards em hover/elevados */
+--ink-800: #121211;      /* superfícies "inset» (painéis, inputs) */
+--paper-0: #FCFBFC;      /* texto principal sobre fundo escuro */
+--paper-300: #AAAAA8;    /* texto secundário, descrições */
+--paper-500: #7C7B78;    /* legendas, metadados */
+
+/* coral — acento primário da marca */
+--coral-400: #FF8968;    /* CTA, links, destaques */
+--coral-300: #FFA184;    /* hover */
+--coral-500: #F2683F;    /* press */
+--coral-600: #C4502E;    /* bordas de destaque */
+
+/* mint — acento secundário, só para completar um título ou marcar algo positivo */
+--mint-400: #6DB578;
+--mint-300: #86D093;
 ```
 
-O azul (`--color-accent`) vem direto do logo oficial. Fundo sempre escuro — é a base da identidade (todas as variações do logo foram feitas sobre preto).
+Fundo sempre escuro (quase preto, `#0D0E0E`) — dark mode é a base, não uma opção. Coral é o acento
+principal (CTAs, links, ícones); mint aparece com moderação, normalmente só para fechar uma frase de
+destaque num título (ex: "lugar **certo**", "próximo **nível**").
 
 ---
 
 ## Tipografia
 
 ```css
---font-display: 'Space Grotesk', sans-serif;  /* títulos, headline — geométrica, tech */
---font-body: 'Inter', sans-serif;              /* corpo de texto — neutra, legível */
+--font-display: 'Sora', 'Segoe UI', system-ui, sans-serif;  /* títulos, headline — geométrica, editorial */
+--font-body: 'Manrope', 'Segoe UI', system-ui, sans-serif;   /* corpo de texto — neutra, legível */
 ```
 
-Ambas via Google Fonts. `Space Grotesk` reforça o caráter geométrico do ícone (montanha/M feita de linhas retas); `Inter` mantém o corpo de texto limpo e profissional.
+Ambas via Google Fonts. `Sora` traz peso editorial/moderno para títulos; `Manrope` mantém o corpo limpo.
 
 ---
 
 ## Estilo geral
 
-Moderno, tech, confiável. Marca de IA que faz automação profissional. Visual escuro (dark mode como padrão, não como opção), com o azul do logo como único acento de cor — evitar múltiplas cores concorrendo com a marca.
+Editorial, quente, humano — mas ainda confiável e "tech" no fundo. Visual escuro (dark mode como padrão),
+com coral como acento dominante e mint só como toque secundário. Cards com bordas sutis (`1px solid`
+quase invisível) e sombras suaves em vez de contornos duros. Tipografia grande e confiante nos títulos.
 
 ---
 
 ## Elementos-chave
 
-- **Ícone:** montanha estilizada formando um "M" (duas linhas que se cruzam, sem preenchimento — só contorno), remete a "montar"/"Montara" e a picos/crescimento
-- **Uso do ícone sozinho:** favicon, avatar, elementos decorativos pequenos
-- **Uso do wordmark (ícone + "Montara.ai"):** header de sites, propostas, assinaturas, apresentações
+- **Logo:** por enquanto é tipográfico — "WNP" em `Sora` bold, cor coral (`--coral-400`) sobre fundo
+  escuro, com tagline opcional "Comunicação Visual" em caixa alta, tracking largo, cor `--paper-500`.
+  Não há ainda um ícone/símbolo desenhado (ao contrário da Montara, que tinha o ícone de montanha/M).
+- **Uso do wordmark:** header de sites, propostas, assinaturas, apresentações, footer.
 
 ---
 
 ## O que NUNCA fazer
 
-- Não usar o logo sobre fundos claros/brancos sem antes gerar uma versão invertida — ele foi desenhado para fundo escuro
-- Não colorir o ícone com cores fora da paleta (a versão verde existe como variação testada, mas o azul é a oficial)
-- Não preencher o ícone (ele é uma linha/contorno, preencher descaracteriza)
-- Não misturar a tipografia com outras fontes decorativas — `Space Grotesk` + `Inter` é a combinação fechada
+- Não usar o logo/paleta antigos da Montara (azul `#2E9EFF`, ícone de montanha) — está descontinuado,
+  só arquivado como histórico
+- Não colorir o texto "WNP" fora de coral (`--coral-400`) ou branco (`--paper-0`) sem necessidade
+- Não misturar a tipografia com outras fontes decorativas — `Sora` + `Manrope` é a combinação fechada
+- Não usar mint como cor dominante — ele é sempre um acento secundário, pontual
 
 ---
 
 ## Logo
 
-- **Arquivo principal:** `identidade/logo.png` (ícone azul sobre fundo preto)
-- **Wordmark:** `identidade/logo-wordmark.png` (ícone + "Montara.ai", fundo preto)
-- **Versão pra fundo escuro:** é a versão padrão — já nasceu pra isso
-- **Versão pra fundo claro:** Pendente (gerar se algum dia precisar de aplicação sobre branco)
-- **Onde usar:** Propostas, carrossel, slides de apresentação, header/footer de sites, favicon
-- **Tamanho sugerido:** 150-180px nos HTMLs (wordmark); 32-40px (ícone isolado, ex: favicon/nav mobile)
+- **Arquivo:** ainda não existe um ícone/símbolo gráfico para a WNP — o wordmark é só tipografia
+  (ver `.logo` / `.logo__mark` em `clientes/WNP/site/css/style.css`)
+- **Versão pra fundo claro:** pendente (a marca nasceu para fundo escuro)
+- **Onde usar:** header/footer de sites, propostas, carrossel, slides de apresentação
 
 ---
 
 ## Observações adicionais
 
-Identidade consolidada em 2026-08-03 a partir dos arquivos de logo em `identidade/logo.png` e `identidade/logo-wordmark.png`. Primeira aplicação real: site institucional da própria Montara.AI (`clientes/Montara.AI/site/`).
+Identidade reconstruída em 2026-08-07 a partir do handoff de design da homepage da WNP
+(`clientes/WNP/design_handoff_wnp/WNP Site.dc.html`, projeto Claude Design
+`1b0d213a-596f-4ed8-b8ff-a7b5be15ed8e`). Primeira aplicação real: site institucional da própria WNP
+(`clientes/WNP/site/`). Identidade anterior (Montara.AI, azul/montanha) consolidada em 2026-08-03 e
+arquivada em `clientes/WNP/_site-antigo-montara/`.

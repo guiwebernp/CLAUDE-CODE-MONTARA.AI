@@ -100,4 +100,4 @@ Site moderno e colorido, respeitando a identidade visual vibrante da Plotter Ser
 
 ---
 
-*Plotter Service × Montara.AI*
+*Plotter Service × WNP (antes Montara.AI)*

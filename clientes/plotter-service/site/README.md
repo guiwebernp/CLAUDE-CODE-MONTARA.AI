@@ -133,7 +133,7 @@ Cada seção é independente. Basta copiar a estrutura e adaptar.
 
 ## Suporte
 
-Para dúvidas ou ajustes, fale com Guilherme — workspace Montara.AI.
+Para dúvidas ou ajustes, fale com Guilherme — workspace WNP (antes Montara.AI).
 
 ---
 

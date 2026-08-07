@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
-# Guilherme Weber — Montara.AI (MazyOS)
+# Guilherme Weber — WNP (MazyOS)
 
-> Operação Montara.AI. Aqui ficam clientes, propostas, entregas, portfólio
-> e tudo que girar em torno de captar e entregar sites com IA.
+> Operação WNP (antes Montara.AI — rebrand em 2026-08-07). Aqui ficam clientes, propostas, entregas,
+> portfólio e tudo que girar em torno de captar e entregar sites com IA.
 
 ## Desenvolvimento de Sites para Clientes
 
@@ -80,7 +80,7 @@ cp -r templates/corporativo clientes/novo-cliente/site
 - `templates/corporativo/` — branding, hero, sobre, serviços, footer (base padrão)
 - `templates/ecommerce-simples/` — produtos em grid, carrinho, checkout conceitual
 - `templates/agencia/` — portfólio, case studies, contato
-- `templates/identidade/` — inclui colors.css com palette da Montara.AI
+- `templates/identidade/` — inclui colors.css com palette da WNP
 
 **Quando criar template novo:** após 2+ clientes no mesmo nicho, consolidar em `templates/`.
 
@@ -88,13 +88,14 @@ cp -r templates/corporativo clientes/novo-cliente/site
 
 ## O que é esse workspace
 
-Montara.AI — automação com inteligência artificial, focando em criação
-de sites profissionais para empresas que não têm recursos internos.
+WNP — comunicação visual e posicionamento digital, com automação usando
+inteligência artificial, focando em criação de sites profissionais para
+empresas que não têm recursos internos. (Antes "Montara.AI" — rebrand em 2026-08-07.)
 
 **Estrutura de pastas:**
 
 - `_memoria/` — quem sou, como falo, prioridades atuais
-- `identidade/` — marca visual Montara.AI (cores, logo, tipografia)
+- `identidade/` — marca visual WNP (cores, logo, tipografia)
 - `clientes/` — uma pasta por cliente (RDO, Plotter Service, etc)
   - `clientes/RDO COMUNICAÇÃO VISUAL/` — briefing, documentação, site
   - `clientes/plotter-service/` — briefing, documentação, site
@@ -279,4 +280,4 @@ Assim, customizar cores é trocar 4 linhas, não o CSS todo.
 
 ---
 
-*Última atualização: 24 de julho de 2026 — RDO Comunicação Visual finalizado e publicado*
+*Última atualização: 7 de agosto de 2026 — rebrand Montara.AI → WNP, novo site institucional implementado*

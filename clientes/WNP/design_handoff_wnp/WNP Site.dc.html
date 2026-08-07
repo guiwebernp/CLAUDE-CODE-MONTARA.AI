@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/radius.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/elevation.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/tokens/base.css">
+  <link rel="stylesheet" href="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/styles.css">
+  <script src="_ds/wnp-design-system-bb551a5b-48db-4a9a-b5bc-f9d5ab8f6939/_ds_bundle.js"></script>
+  <style>body{margin:0;background:var(--bg-page)}
+  a{color:var(--coral-400);text-decoration:none}
+  a:hover{color:var(--coral-300,var(--coral-400))}</style>
+</helmet>
+<div onClick="{{ onRootClick }}" style="position:relative">
+  <div style="position:fixed;top:0;left:0;right:0;z-index:40">
+    <x-import component-from-global-scope="WNPSite.NavBar" from="./site/NavBar.jsx" links="{{ navLinks }}" transparent="{{ navTransparent }}" cta-label="Falar com especialista" on-navigate="{{ goto }}" hint-size="100%,80px"></x-import>
+  </div>
+  <x-import component-from-global-scope="WNPSite.Hero" from="./site/Hero.jsx" on-cta="{{ openDialog }}" hint-size="100%,760px"></x-import>
+  <div id="pilares"><x-import component-from-global-scope="WNPSite.Pillars" from="./site/Pillars.jsx" hint-size="100%,460px"></x-import></div>
+  <div id="por-que"><x-import component-from-global-scope="WNPSite.WhyBand" from="./site/WhyAndProcess.jsx" hint-size="100%,220px"></x-import></div>
+  <x-import component-from-global-scope="WNPSite.Process" from="./site/WhyAndProcess.jsx" hint-size="100%,180px"></x-import>
+  <div id="sobre"><x-import component-from-global-scope="WNPSite.FounderSection" from="./site/FounderSection.jsx" on-cta="{{ openDialog }}" hint-size="100%,400px"></x-import></div>
+  <div id="cta"><x-import component-from-global-scope="WNPSite.CtaBand" from="./site/CtaBand.jsx" on-cta="{{ openDialog }}" hint-size="100%,320px"></x-import></div>
+  <x-import component-from-global-scope="WNPDesignSystem_bb551a.SiteFooter" legal="{{ footerLegal }}" social="{{ footerSocial }}" columns="{{ footerColumns }}" hint-size="100%,280px"></x-import>
+</div>
+<x-import component-from-global-scope="WNPSite.ContactDialog" from="./site/ContactDialog.jsx" open="{{ dialogOpen }}" on-close="{{ closeDialog }}" hint-size="0,0"></x-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { scrolled: false, dialogOpen: false };
+
+  componentDidMount() {
+    this.onScroll = () => this.setState({ scrolled: window.scrollY > 40 });
+    window.addEventListener('scroll', this.onScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+  }
+
+  openDialog = () => this.setState({ dialogOpen: true });
+  closeDialog = () => this.setState({ dialogOpen: false });
+
+  goto = (href) => {
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  onRootClick = (e) => {
+    const btn = e.target.closest ? e.target.closest('button') : null;
+    if (btn && btn.textContent.includes('Falar com especialista')) this.openDialog();
+  };
+
+  renderVals() {
+    return {
+      navTransparent: !this.state.scrolled,
+      dialogOpen: this.state.dialogOpen,
+      openDialog: this.openDialog,
+      closeDialog: this.closeDialog,
+      goto: this.goto,
+      onRootClick: this.onRootClick,
+      navLinks: [
+        { label: 'Serviços', href: '#pilares' },
+        { label: 'Soluções', href: '#por-que' },
+        { label: 'Sobre', href: '#sobre' },
+        { label: 'Contato', href: '#cta' },
+      ],
+      footerLegal: '© 2026 WNP Comunicação Visual\nTodos os direitos reservados.',
+      footerSocial: [
+        { icon: 'instagram', href: '#' },
+        { icon: 'message-circle', href: '#' },
+        { icon: 'linkedin', href: '#' },
+      ],
+      footerColumns: [
+        { title: 'Navegação', items: ['Serviços', 'Sobre', 'Contato', 'Cases'] },
+        { title: 'Serviços', items: ['Criação de Sites e LPs', 'Posicionamento (SEO)', 'Tráfego Pago', 'Sistemas com IA', 'Automações'] },
+        { title: 'Contato', items: ['(48) 99999-9999', 'contato@wnp.com.br', 'Florianópolis - SC'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
