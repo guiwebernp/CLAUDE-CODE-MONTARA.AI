@@ -27,3 +27,8 @@ Automatizar a criação de sites. Criar templates reutilizáveis para cada nicho
 - RDO Comunicação Visual (Florianópolis) — site institucional (finalizado e no ar em rdocomvisual.com.br)
 - Plotter Service (São José/SC) — site institucional com hero animada (mobile responsivo finalizado)
 - Clínica Reab (Florianópolis) — site de fisioterapia (implementado e finalizado)
+
+**Em andamento / prospecção (ainda não fechados):**
+- Ingleses Congelados (Florianópolis) — indústria de pães/salgados congelados B2B. Site em produção (institucional + calculadora "Monte seu pedido"); proposta pronta mas ainda não enviada ao cliente
+- Móveis do Bem (Florianópolis) — móveis de demolição. Site em produção a partir de handoff Figma; faltam fotos do catálogo em alta resolução
+- Central Floripa (Florianópolis) — comunicação visual. Demo de proposta pronta (baseada no site do Plotter Service); **não confirmado se a empresa segue ativa**, checar por telefone antes de prosseguir

@@ -11,7 +11,7 @@
 
 **Perfil de cliente:** Empresas com site desatualizado ou que não possuem funcionário interno para cuidar disso.
 
-**Atende clientes:** Sim — RDO Comunicação Visual (Florianópolis), Plotter Service (impressão digital & offset, São José/SC) e Clínica Reab (fisioterapia, Florianópolis).
+**Atende clientes:** Sim — RDO Comunicação Visual (Florianópolis), Plotter Service (impressão digital & offset, São José/SC) e Clínica Reab (fisioterapia, Florianópolis) — fechados e finalizados. Em produção/prospecção: Ingleses Congelados, Móveis do Bem e Central Floripa (detalhes em `_memoria/estrategia.md`).
 
 **Equipe:** Freelancer solo — Guilherme Weber.
 

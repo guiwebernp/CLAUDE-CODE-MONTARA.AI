@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="./image-slot.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#141210; font-family:'Work Sans',sans-serif; }
+a { color:#c9ad7f; text-decoration:none; } a:hover { color:#f5efe2; }
+html { scroll-behavior:smooth; }
+@keyframes kenburns { from { transform:scale(1.08); } to { transform:scale(1); } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes pulse { 0%,100% { box-shadow:0 0 0 0 rgba(143,214,176,0.6); } 60% { box-shadow:0 0 0 8px rgba(143,214,176,0); } }
+@keyframes floaty { 0%,100% { transform:translateY(0); } 50% { transform:translateY(6px); } }
+[data-reveal] { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease, transform 0.8s ease; }
+[data-reveal].on { opacity:1; transform:translateY(0); }
+@keyframes leafFall { 0% { transform:translateY(-10%) translateX(0) rotate(0deg); opacity:0; } 8% { opacity:0.8; } 92% { opacity:0.7; } 100% { transform:translateY(650px) translateX(40px) rotate(340deg); opacity:0; } }
+@keyframes leafSway { 0%,100% { margin-left:0; } 50% { margin-left:26px; } }
+</style>
+</helmet>
+<div style="background:#141210;">
+
+<div data-screen-label="Hero" style="position:relative; height:100vh; min-height:640px; overflow:hidden;">
+  <video ref="{{ vidA }}" autoplay muted playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:1; transition:opacity 1.4s ease;">
+    <source src="uploads/Sunlight_drifting_across_room_202607302119.mp4" type="video/mp4">
+  </video>
+  <video ref="{{ vidB }}" muted playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1.4s ease;">
+    <source src="uploads/Sunlight_drifting_across_room_202607302119.mp4" type="video/mp4">
+  </video>
+  <div style="position:absolute; inset:0; background:linear-gradient(rgba(12,10,8,0.6), rgba(12,10,8,0.38) 40%, rgba(12,10,8,0.8));"></div>
+  <div style="position:absolute; top:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between; padding:28px 64px; z-index:2;">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <img src="assets/logo-icon.png" alt="" style="height:42px; display:block; filter:drop-shadow(0 1px 6px rgba(0,0,0,0.5));">
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <img src="assets/logo-text-title.png" alt="Móveis do Bem" style="height:24px; display:block; filter:brightness(0) invert(1) drop-shadow(0 1px 6px rgba(0,0,0,0.5));">
+        <img src="assets/logo-subtitle.png" alt="Móveis de demolição" style="height:9px; display:block; filter:brightness(0) invert(1) drop-shadow(0 1px 6px rgba(0,0,0,0.5));">
+      </div>
+    </div>
+    <div style="display:flex; gap:38px; font:500 14px 'Work Sans'; letter-spacing:0.5px;">
+      <a href="#catalogo" style="color:rgba(245,239,226,0.85);">Catálogo</a>
+      <a href="#sobmedida" style="color:rgba(245,239,226,0.85);">Sob medida</a>
+      <a href="#sobrenos" style="color:rgba(245,239,226,0.85);">Sobre nós</a>
+      <a href="#sobre" style="color:rgba(245,239,226,0.85);">A loja</a>
+      <a href="#contato" style="color:rgba(245,239,226,0.85);">Contato</a>
+    </div>
+    <a href="{{ waLink }}" style="background:rgba(245,239,226,0.14); border:1px solid rgba(245,239,226,0.4); backdrop-filter:blur(6px); color:#f5efe2; font:500 13px 'Work Sans'; padding:12px 24px; border-radius:99px;">WhatsApp</a>
+  </div>
+  <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 8vw;">
+    <div style="font:500 13px 'Work Sans'; letter-spacing:4px; color:rgba(245,239,226,0.7); text-transform:uppercase; margin-bottom:22px; animation:fadeUp 0.9s 0.2s ease both;">Madeira de demolição · Florianópolis</div>
+    <h1 style="font:400 clamp(48px, 7.5vw, 100px)/1.02 'Instrument Serif',serif; color:#f5efe2; margin:0 0 32px; max-width:16ch; text-wrap:balance; animation:fadeUp 1s 0.45s ease both;">Madeira com passado.<br><span style="font-style:italic;">Móveis com futuro.</span></h1>
+    <div style="display:flex; gap:18px; flex-wrap:wrap; justify-content:center; animation:fadeUp 1s 0.75s ease both;">
+      <a href="#catalogo" style="background:#f5efe2; color:#141210; font:600 15px 'Work Sans'; padding:18px 38px; border-radius:99px; transition:transform 0.25s, box-shadow 0.25s;" style-hover="transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.35);">Explorar o catálogo</a>
+      <a href="#sobmedida" style="border:1px solid rgba(245,239,226,0.6); color:#f5efe2; font:500 15px 'Work Sans'; padding:18px 38px; border-radius:99px; transition:background 0.25s, transform 0.25s;" style-hover="background:rgba(245,239,226,0.12); transform:translateY(-3px);">Projeto sob medida</a>
+    </div>
+  </div>
+  <div style="position:absolute; left:0; right:0; bottom:22px; text-align:center; font:400 12px 'Work Sans'; letter-spacing:2px; color:rgba(245,239,226,0.55); animation:floaty 2.2s ease-in-out infinite;">ROLE PARA DESCOBRIR ↓</div>
+</div>
+
+<div style="background:#f5efe2; padding:24px 0; overflow:hidden;">
+  <div style="display:flex; gap:56px; width:max-content; font:600 13px 'Work Sans'; letter-spacing:1.5px; color:#4a3b28; text-transform:uppercase; animation:marquee 26s linear infinite; align-items:center;">
+    <span>Sob medida</span><span style="color:#a3541e;">✦</span><span>Pronta-entrega</span><span style="color:#a3541e;">✦</span><span>Garantia</span><span style="color:#a3541e;">✦</span><span>Até 10x</span><span style="color:#a3541e;">✦</span><span>Montagem em casa</span><span style="color:#a3541e;">✦</span><span>Eco-amigável</span><span style="color:#a3541e;">✦</span><span>Sob medida</span><span style="color:#a3541e;">✦</span><span>Pronta-entrega</span><span style="color:#a3541e;">✦</span><span>Garantia</span><span style="color:#a3541e;">✦</span><span>Até 10x</span><span style="color:#a3541e;">✦</span><span>Montagem em casa</span><span style="color:#a3541e;">✦</span><span>Eco-amigável</span><span style="color:#a3541e;">✦</span>
+  </div>
+</div>
+
+<div id="catalogo" data-screen-label="Catálogo" style="background:#1c1916; padding:96px 64px;">
+  <div data-reveal style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:44px; flex-wrap:wrap; gap:20px;">
+    <h2 style="font:400 clamp(36px,4vw,54px) 'Instrument Serif',serif; color:#f5efe2; margin:0;">Peças únicas, <span style="font-style:italic; color:#c9ad7f;">de agora</span></h2>
+    <a href="{{ waLink }}" style="font:500 14px 'Work Sans'; color:#c9ad7f; letter-spacing:1px;">CONSULTAR DISPONIBILIDADE →</a>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+    <sc-for list="{{ produtos }}" as="pr" hint-placeholder-count="8">
+      <a href="{{ waLink }}" data-reveal style="position:relative; overflow:hidden; border-radius:6px; display:block; transition:transform 0.35s, box-shadow 0.35s;" style-hover="transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.45);">
+        <div style="height:320px;"><image-slot id="prod-{{ pr.slot }}" shape="rect" src="{{ pr.img }}" placeholder="Arraste a foto: {{ pr.nome }}"></image-slot></div>
+        <div style="position:absolute; left:0; right:0; bottom:0; padding:50px 20px 18px; background:linear-gradient(transparent, rgba(10,8,6,0.9));">
+          <div style="font:500 17px 'Work Sans'; color:#f5efe2;">{{ pr.nome }}</div>
+          <div style="font:400 13px 'Work Sans'; color:#c9ad7f; margin-top:3px;">{{ pr.detalhe }}</div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+  <div style="text-align:center; margin-top:44px;">
+    <div style="font:400 15px 'Work Sans'; color:#8d7f68;">O estoque muda toda semana — cada peça é única.</div>
+    <a href="{{ waLink }}" style="display:inline-block; margin-top:18px; border:1px solid #c9ad7f; color:#c9ad7f; font:500 14px 'Work Sans'; padding:15px 34px; border-radius:99px;">Pergunte o que chegou hoje</a>
+  </div>
+</div>
+
+<div id="sobmedida" data-screen-label="Sob medida" style="display:grid; grid-template-columns:1fr 1fr; background:#f5efe2; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; opacity:0.05; background-image:repeating-linear-gradient(100deg, #6b4c2a 0px, #6b4c2a 2px, transparent 2px, transparent 60px), repeating-linear-gradient(102deg, #4a3320 0px, #4a3320 1px, transparent 1px, transparent 34px); pointer-events:none;"></div>
+  <div style="position:absolute; top:-40px; left:-40px; width:340px; height:340px; background:radial-gradient(circle, rgba(38,67,58,0.08), transparent 70%); pointer-events:none;"></div>
+  <div style="position:absolute; inset:0; overflow:hidden; pointer-events:none;">
+    <sc-for list="{{ folhas }}" as="f" hint-placeholder-count="10">
+      <div style="position:absolute; top:0; left:{{ f.left }}; font-size:{{ f.size }}; color:{{ f.cor }}; animation:leafFall {{ f.dur }} linear infinite, leafSway {{ f.swayDur }} ease-in-out infinite; animation-delay:{{ f.delay }};">🍃</div>
+    </sc-for>
+  </div>
+  <div data-reveal style="padding:96px 64px; align-self:center; position:relative;">
+    <div style="font:500 13px 'Work Sans'; letter-spacing:3px; color:#a3541e; text-transform:uppercase; margin-bottom:18px;">Sob medida</div>
+    <h2 style="font:400 clamp(34px,3.5vw,48px)/1.1 'Instrument Serif',serif; color:#1c1916; margin:0 0 22px;">Do resgate da madeira à sua sala</h2>
+    <div style="width:56px; height:2px; background:#a3541e; margin-bottom:26px;"></div>
+    <p style="font:400 16px/1.75 'Work Sans'; color:#5b4d3c; margin:0 0 32px; max-width:48ch;">Cada peça nasce de madeiras nobres resgatadas de demolições. Projetamos no tamanho exato do seu espaço, entregamos e montamos na sua casa.</p>
+    <div style="display:flex; flex-direction:column; gap:22px; margin:0 0 40px;">
+      <sc-for list="{{ beneficios }}" as="b" hint-placeholder-count="3">
+        <div style="display:flex; gap:16px; align-items:flex-start;">
+          <div style="flex:none; width:40px; height:40px; border-radius:99px; background:#26433a; display:flex; align-items:center; justify-content:center; font-size:17px; color:#f5efe2;">{{ b.icone }}</div>
+          <div>
+            <div style="font:600 15px 'Work Sans'; color:#1c1916;">{{ b.titulo }}</div>
+            <div style="font:400 14px/1.5 'Work Sans'; color:#7d7057; margin-top:2px;">{{ b.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <a href="{{ waLink }}" style="display:inline-flex; align-items:center; gap:10px; background:#1c1916; color:#f5efe2; font:600 15px 'Work Sans'; padding:17px 34px; border-radius:99px; transition:transform 0.25s;" style-hover="transform:translateY(-3px);">Pedir orçamento no WhatsApp</a>
+  </div>
+  <div style="position:relative; min-height:560px; min-width:0; overflow:hidden;"><div style="position:absolute; inset:0;"><image-slot id="sobmedida" shape="rect" src="uploads/pasted-1785458285346-0.png" placeholder="Foto de projeto sob medida"></image-slot></div></div>
+</div>
+
+<div id="depoimentos" data-screen-label="Depoimentos" style="background:#141210; padding:96px 64px;">
+  <h2 data-reveal style="font:400 clamp(34px,3.5vw,48px) 'Instrument Serif',serif; color:#f5efe2; margin:0 0 48px; text-align:center;">Quem levou uma história pra casa</h2>
+  <sc-if value="{{ mostrarDepoimentos }}" hint-placeholder-val="{{ true }}">
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1200px; margin:0 auto;">
+    <sc-for list="{{ depoimentos }}" as="d" hint-placeholder-count="3">
+      <div data-reveal style="border:1px solid #33291e; border-radius:10px; padding:34px 30px; transition:border-color 0.3s, transform 0.35s;" style-hover="border-color:#c9ad7f; transform:translateY(-4px);">
+        <div style="color:#c9ad7f; font-size:16px; letter-spacing:3px; margin-bottom:16px;">★★★★★</div>
+        <div style="font:400 17px/1.6 'Instrument Serif',serif; font-style:italic; color:#e8dfc9;">"{{ d.texto }}"</div>
+        <div style="font:500 13px 'Work Sans'; color:#8d7f68; margin-top:18px; letter-spacing:1px; text-transform:uppercase;">{{ d.autor }}</div>
+      </div>
+    </sc-for>
+  </div>
+  </sc-if>
+</div>
+
+<div id="sobrenos" data-screen-label="Sobre nós" style="position:relative; height:760px; background:#141210; overflow:hidden;">
+  <div style="position:absolute; inset:0;"><image-slot id="sobrenos-bg" shape="rect" src="uploads/pasted-1785525891973-0.png" placeholder="Foto do ateliê / cliente"></image-slot></div>
+    <div data-reveal style="position:absolute; inset:0; display:flex; align-items:center; padding:0 64px;">
+    <div style="max-width:600px;">
+      <div style="font:500 13px 'Work Sans'; letter-spacing:3px; color:#c9ad7f; text-transform:uppercase; margin-bottom:20px;">Sobre nós</div>
+      <h2 style="font:400 clamp(32px,4vw,52px)/1.1 'Instrument Serif',serif; color:#f5efe2; margin:0 0 24px;">Mais que móveis,<br>criamos histórias.</h2>
+      <div style="width:56px; height:2px; background:#c9ad7f; margin-bottom:28px;"></div>
+      <p style="font:400 16px/1.8 'Work Sans'; color:#d8cdb8; margin:0 0 20px;">A Móveis do Bem nasceu do sonho de transformar o que seria descartado em peças únicas que carregam propósito, beleza e memória.</p>
+      <p style="font:400 16px/1.8 'Work Sans'; color:#d8cdb8; margin:0 0 40px;">Cada móvel que passa por nossas mãos ganha uma nova vida e encontra um novo lar, levando com ele sustentabilidade, afeto e boas histórias.</p>
+      <div style="display:flex; gap:36px; flex-wrap:wrap;">
+        <sc-for list="{{ valores }}" as="v" hint-placeholder-count="3">
+          <div style="max-width:150px;">
+            <div style="width:48px; height:48px; border-radius:99px; border:1px solid #c9ad7f; display:flex; align-items:center; justify-content:center; margin-bottom:12px; font-size:20px; color:#c9ad7f;">{{ v.icone }}</div>
+            <div style="font:600 15px 'Work Sans'; color:#f5efe2; margin-bottom:4px;">{{ v.titulo }}</div>
+            <div style="font:400 13px/1.5 'Work Sans'; color:#a89b83;">{{ v.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="background:#26433a; padding:24px 0; display:flex; align-items:center; justify-content:center;">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+    <img src="assets/logo-icon.png" alt="" style="height:34px; display:block;">
+    <img src="assets/logo-text-title.png" alt="Móveis do Bem" style="height:20px; display:block; filter:brightness(0) invert(1);">
+    <img src="assets/logo-subtitle.png" alt="Móveis de demolição" style="height:8px; display:block; filter:brightness(0) invert(1); opacity:0.8;">
+  </div>
+</div>
+
+<div id="sobre" data-screen-label="A loja" style="display:grid; grid-template-columns:1fr 1fr; background:#1c1916;">
+  <div style="position:relative; min-height:560px; min-width:0; overflow:hidden;"><div style="position:absolute; inset:0;"><image-slot id="loja" shape="rect" src="uploads/pasted-1785524816313-0.png" placeholder="Foto da loja"></image-slot></div></div>
+  <div data-reveal style="padding:96px 64px; align-self:center;">
+    <div style="font:500 13px 'Work Sans'; letter-spacing:3px; color:#c9ad7f; text-transform:uppercase; margin-bottom:18px;">A loja</div>
+    <h2 style="font:400 clamp(34px,3.5vw,48px)/1.1 'Instrument Serif',serif; color:#f5efe2; margin:0 0 22px;">Venha ver e tocar cada peça</h2>
+    <p style="font:400 16px/1.75 'Work Sans'; color:#b3a68e; margin:0 0 36px; max-width:46ch;">Nossa loja em Florianópolis é um espaço para descobrir móveis com história — e conversar sobre o projeto perfeito para a sua casa.</p>
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="{{ mapsLink }}" style="background:#f5efe2; color:#141210; font:600 15px 'Work Sans'; padding:16px 32px; border-radius:99px;">Como chegar</a>
+      <a href="{{ instaLink }}" style="border:1px solid rgba(245,239,226,0.5); color:#f5efe2; font:500 15px 'Work Sans'; padding:16px 32px; border-radius:99px;">@moveisdobem_floripa</a>
+    </div>
+  </div>
+</div>
+
+<div id="contato" data-screen-label="Contato / rodapé" style="background:#0e0c0a; padding:80px 64px 40px;">
+  <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:48px; max-width:1200px; margin:0 auto;">
+    <div>
+      <div style="display:inline-flex; align-items:center; gap:10px; margin-bottom:16px;">
+        <img src="assets/logo-icon.png" alt="" style="height:34px; display:block;">
+        <div style="display:flex; flex-direction:column; gap:3px;">
+          <img src="assets/logo-text-title.png" alt="Móveis do Bem" style="height:19px; display:block; filter:brightness(0) invert(1);">
+          <img src="assets/logo-subtitle.png" alt="Móveis de demolição" style="height:7px; display:block; filter:brightness(0) invert(1);">
+        </div>
+      </div>
+      <p style="font:400 14px/1.7 'Work Sans'; color:#8d7f68; margin:0; max-width:36ch;">Móveis de madeira de demolição feitos à mão em Florianópolis. Viva histórias únicas, viva histórias novas.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px; font:400 14px 'Work Sans';">
+      <div style="font:600 12px 'Work Sans'; letter-spacing:2px; color:#5f5443; text-transform:uppercase; margin-bottom:4px;">Navegue</div>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#sobmedida">Sob medida</a>
+      <a href="#sobrenos">Sobre nós</a>
+      <a href="#sobre">A loja</a>
+      <a href="#depoimentos">Depoimentos</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px; font:400 14px 'Work Sans';">
+      <div style="font:600 12px 'Work Sans'; letter-spacing:2px; color:#5f5443; text-transform:uppercase; margin-bottom:4px;">Contato</div>
+      <a href="{{ waLink }}">WhatsApp: {{ telefoneDisplay }}</a>
+      <a href="{{ instaLink }}">Instagram</a>
+      <a href="{{ mapsLink }}">Florianópolis · SC</a>
+    </div>
+  </div>
+  <div style="text-align:center; font:400 12px 'Work Sans'; color:#5f5443; margin-top:56px; border-top:1px solid #221c15; padding-top:24px;">© 2026 Móveis do Bem · Florianópolis</div>
+</div>
+
+<a href="{{ waLink }}" data-screen-label="Botão flutuante" style="position:fixed; right:28px; bottom:28px; z-index:9; background:#2f6152; color:#f5efe2; font:600 14px 'Work Sans'; padding:16px 26px; border-radius:99px; box-shadow:0 6px 24px rgba(0,0,0,0.4); display:flex; align-items:center; gap:10px; transition:transform 0.25s;" style-hover="transform:scale(1.05);">
+  <span style="width:9px; height:9px; border-radius:99px; background:#8fd6b0; display:inline-block; animation:pulse 2s infinite;"></span>Fale conosco
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;554896144147&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;},&quot;telefoneDisplay&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;48 9614-4147&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;},&quot;mostrarDepoimentos&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this._setupVideoCrossfade();
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); this._io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    const scan = () => document.querySelectorAll('[data-reveal]:not(.on)').forEach(el => this._io.observe(el));
+    scan();
+    this._scanT = setInterval(scan, 800);
+    setTimeout(() => clearInterval(this._scanT), 5000);
+  }
+  componentWillUnmount() {
+    this._io && this._io.disconnect();
+    clearInterval(this._scanT);
+    clearInterval(this._vidT);
+  }
+  _setupVideoCrossfade() {
+    const a = this.vidA, b = this.vidB;
+    if (!a || !b) return;
+    let active = a, idle = b;
+    const FADE = 1.4, CHECK = 150;
+    a.currentTime = 0; a.play().catch(() => {});
+    this._vidT = setInterval(() => {
+      if (!active.duration) return;
+      const remaining = active.duration - active.currentTime;
+      if (remaining <= FADE && idle.style.opacity === '0') {
+        idle.currentTime = 0;
+        idle.play().catch(() => {});
+        idle.style.opacity = '1';
+        active.style.opacity = '0';
+        const prevActive = active;
+        active = idle; idle = prevActive;
+        setTimeout(() => { idle.pause(); }, FADE * 1000 + 100);
+      }
+    }, CHECK);
+  }
+  renderVals() {
+    const tel = this.props.whatsapp ?? '5548999999999';
+    return {
+      vidA: (el) => { this.vidA = el; },
+      vidB: (el) => { this.vidB = el; },
+      waLink: 'https://wa.me/' + tel.replace(/\D/g, ''),
+      telefoneDisplay: this.props.telefoneDisplay ?? '(48) 9 9999-9999',
+      instaLink: 'https://instagram.com/moveisdobem_floripa',
+      mapsLink: 'https://maps.google.com/?q=M%C3%B3veis+do+Bem+Florian%C3%B3polis',
+      mostrarDepoimentos: this.props.mostrarDepoimentos ?? true,
+      folhas: Array.from({ length: 10 }).map((_, i) => ({
+        left: (i * 9.5 + 2) + '%',
+        size: (14 + (i % 4) * 5) + 'px',
+        cor: i % 2 === 0 ? '#7a9c7f' : '#a3541e',
+        dur: (10 + (i % 5) * 2.4) + 's',
+        swayDur: (3 + (i % 3)) + 's',
+        delay: (-(i * 1.7)) + 's',
+      })),
+      beneficios: [
+        { icone: '🌿', titulo: 'Origem com responsabilidade', desc: 'Madeira de demolição selecionada com consciência.' },
+        { icone: '🛡', titulo: 'Qualidade em cada detalhe', desc: 'Acabamentos que valorizam a beleza natural da madeira.' },
+        { icone: '🪑', titulo: 'Funcionalidade com afeto', desc: 'Móveis feitos para durar e fazer parte da sua história.' },
+      ],
+      valores: [
+        { icone: '♡', titulo: 'Propósito', desc: 'Transformar com significado' },
+        { icone: '🌿', titulo: 'Sustentabilidade', desc: 'Menos descarte, mais cuidado' },
+        { icone: '⌂', titulo: 'Afeto', desc: 'Peças que tornam ambientes únicos' },
+      ],
+      produtos: [
+        { img: 'assets/p22.png', nome: 'Cristaleira 2 portas', slot: 'cristaleira-2p', detalhe: 'Peça única' },
+        { img: 'assets/p20.png', nome: 'Mesa de jantar', slot: 'mesa-jantar', detalhe: 'Sob medida disponível' },
+        { img: 'assets/p13.png', nome: 'Cômoda rústica', slot: 'comoda-rustica', detalhe: 'Peça única' },
+        { img: 'assets/p02.png', nome: 'Armário pátina', slot: 'armario-patina', detalhe: 'Peça única' },
+        { img: 'assets/p07.png', nome: 'Cristaleira pátina', slot: 'cristaleira-patina', detalhe: 'Peça única' },
+        { img: 'assets/p24.png', nome: 'Mesa maciça', slot: 'mesa-macica', detalhe: 'Pronta-entrega' },
+        { img: 'assets/p04.png', nome: 'Cômoda com espelho', slot: 'comoda-espelho', detalhe: 'Peça única' },
+        { img: 'assets/p23.png', nome: 'Aparador com espelho', slot: 'aparador-espelho', detalhe: 'Peça única' },
+      ],
+      depoimentos: [
+        { texto: 'A mesa ficou perfeita no espaço — e a montagem em casa foi impecável.', autor: 'Cliente · Campeche' },
+        { texto: 'Peça linda, com história. Atendimento pelo WhatsApp super rápido.', autor: 'Cliente · Lagoa da Conceição' },
+        { texto: 'Fizeram a cristaleira sob medida exatamente como imaginei.', autor: 'Cliente · Trindade' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

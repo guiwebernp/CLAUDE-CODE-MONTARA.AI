@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>O Sistema Operacional do Negócio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg: #0B0F14;
+    --panel: #121820;
+    --panel-edge: #1E2733;
+    --amber: #C9962F;
+    --amber-soft: rgba(201,150,47,0.18);
+    --cream: #EDE6D8;
+    --muted: #7C8797;
+    --line: #263140;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;}
+  body{
+    padding:56px 24px 80px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(201,150,47,0.06), transparent 45%),
+      var(--bg);
+  }
+  .wrap{max-width:1120px;margin:0 auto;}
+
+  header{text-align:center;margin-bottom:64px;}
+  .eyebrow{
+    font-size:12px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--amber); font-weight:600; margin-bottom:14px;
+  }
+  h1{
+    font-family:'Playfair Display',serif;
+    font-weight:700;
+    font-size:clamp(28px,4.2vw,46px);
+    margin:0 0 12px;
+    color:#fff;
+    letter-spacing:-0.01em;
+  }
+  h1 span{color:var(--amber);}
+  .sub{color:var(--muted); font-size:15px; max-width:560px; margin:0 auto; line-height:1.6;}
+
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    position:relative;
+  }
+  @media (max-width:860px){ .pillars{grid-template-columns:1fr;} }
+
+  .pillar{
+    background:linear-gradient(180deg,var(--panel),#0E131A);
+    border:1px solid var(--panel-edge);
+    border-radius:14px;
+    padding:28px 24px 22px;
+    position:relative;
+    overflow:hidden;
+  }
+  .pillar::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--amber),transparent);
+    opacity:0.7;
+  }
+  .p-head{display:flex; align-items:center; gap:12px; margin-bottom:6px;}
+  .p-num{
+    font-family:'Playfair Display',serif;
+    font-size:20px; color:var(--amber); font-weight:700;
+    border:1px solid var(--amber-soft);
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .p-title{font-size:17px; font-weight:700; color:#fff; letter-spacing:0.01em;}
+  .p-desc{font-size:13px; color:var(--muted); margin:2px 0 20px 46px; line-height:1.5;}
+
+  .items{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .items li{
+    display:flex; align-items:center; gap:10px;
+    font-size:13.5px; color:#D9DDE3;
+    background:rgba(255,255,255,0.02);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:9px 12px;
+  }
+  .items li .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--amber); flex-shrink:0;
+  }
+
+  .core{
+    margin:56px auto 0;
+    max-width:420px;
+    text-align:center;
+    position:relative;
+  }
+  .core-ring{
+    width:150px; height:150px; margin:0 auto 18px;
+    border-radius:50%;
+    border:1px solid var(--amber-soft);
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle,rgba(201,150,47,0.10),transparent 70%);
+    position:relative;
+  }
+  .core-ring::after{
+    content:""; position:absolute; inset:-14px;
+    border-radius:50%; border:1px solid rgba(201,150,47,0.12);
+  }
+  .core-ring .txt{
+    font-family:'Playfair Display',serif; font-weight:700; color:#fff;
+    font-size:15px; line-height:1.35;
+  }
+  .core-ring .txt b{display:block; color:var(--amber); font-size:19px; margin-bottom:2px;}
+
+  .flow-line{
+    width:1px; height:36px; background:linear-gradient(var(--amber-soft),transparent);
+    margin:0 auto;
+  }
+
+  .result{
+    margin-top:14px;
+    display:inline-block;
+    padding:14px 28px;
+    border:1px solid var(--amber-soft);
+    border-radius:10px;
+    background:linear-gradient(180deg,rgba(201,150,47,0.08),transparent);
+  }
+  .result b{font-family:'Playfair Display',serif; color:#fff; font-size:18px; letter-spacing:0.01em;}
+  .result span{display:block; font-size:12px; color:var(--muted); margin-top:4px; letter-spacing:0.03em;}
+
+  footer{
+    text-align:center; margin-top:50px; font-size:12px; color:var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Framework de negócio · Montara</div>
+    <h1>O Sistema Operacional do <span>Negócio</span></h1>
+    <p class="sub">3 pilares. 1 sistema. Toda empresa, de qualquer tamanho ou nicho, se sustenta sobre essa estrutura.</p>
+  </header>
+
+  <div class="pillars">
+
+    <div class="pillar">
+      <div class="p-head">
+        <div class="p-num">1</div>
+        <div class="p-title">Tráfego</div>
+      </div>
+      <div class="p-desc">Gerar demanda e atrair o público certo</div>
+      <ul class="items">
+        <li><span class="dot"></span>Meta Ads</li>
+        <li><span class="dot"></span>Google Ads</li>
+        <li><span class="dot"></span>Instagram e conteúdo orgânico</li>
+        <li><span class="dot"></span>SEO</li>
+        <li><span class="dot"></span>Landing pages</li>
+        <li><span class="dot"></span>Geração de carrosséis com IA</li>
+        <li><span class="dot"></span>Roteiro e vídeo com IA</li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <div class="p-head">
+        <div class="p-num">2</div>
+        <div class="p-title">Comercial</div>
+      </div>
+      <div class="p-desc">Transformar interesse em cliente fechado</div>
+      <ul class="items">
+        <li><span class="dot"></span>Atendimento via WhatsApp</li>
+        <li><span class="dot"></span>Chatbot e qualificação de lead</li>
+        <li><span class="dot"></span>CRM e funil de vendas</li>
+        <li><span class="dot"></span>Agendamento automático</li>
+        <li><span class="dot"></span>Follow-up automatizado</li>
+        <li><span class="dot"></span>Geração de propostas</li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <div class="p-head">
+        <div class="p-num">3</div>
+        <div class="p-title">Operacional</div>
+      </div>
+      <div class="p-desc">Entregar com eficiência e manter o controle</div>
+      <ul class="items">
+        <li><span class="dot"></span>Automação de processos</li>
+        <li><span class="dot"></span>Dashboards e relatórios</li>
+        <li><span class="dot"></span>Controle financeiro</li>
+        <li><span class="dot"></span>Documentos e contratos automáticos</li>
+        <li><span class="dot"></span>Base de conhecimento interna</li>
+        <li><span class="dot"></span>Sucesso do cliente</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="core">
+    <div class="flow-line"></div>
+    <div class="core-ring">
+      <div class="txt"><b>Sistema</b>de Negócio</div>
+    </div>
+    <div class="flow-line"></div>
+    <div class="result">
+      <b>Negócio escalável</b>
+      <span>MAIS DEMANDA · MAIS FECHAMENTO · MAIS EFICIÊNCIA</span>
+    </div>
+  </div>
+
+  <footer>Cada solução que a Montara constrói para um cliente entra em um desses três pilares.</footer>
+
+</div>
+</body>
+</html>

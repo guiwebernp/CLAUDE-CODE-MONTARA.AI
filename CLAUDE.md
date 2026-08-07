@@ -32,7 +32,7 @@ clientes/<nome-cliente>/
 
 1. **Design** → Figma `.dc.html` handoff (em `design_handoff_*/`)
 2. **Dev** → HTML/CSS/JS vanilla (sem frameworks, sem build step)
-3. **Deploy** → Vercel (via GitHub, branch `main` em produção automaticamente)
+3. **Deploy** → padrão é Vercel (via GitHub, branch `main` em produção automaticamente). **Exceção: RDO Comunicação Visual** usa cPanel — repo próprio `github.com/guiwebernp/rdo-comunicacao-visual` (separado deste monorepo) + deploy manual em cPanel → Git™ Version Control → "Update from Remote" → "Deploy HEAD Commit". Ao editar o site da RDO, sincronizar `index.html`, `css/`, `js/`, `assets/` da pasta de trabalho pra esse repo separado antes de dar push (detalhes em `rdo-deploy-workflow` na memória).
 4. **Suporte** → Site roda sob demanda, documentação em `/site/README.md`
 
 ### Stack e padrões
