@@ -1,13 +1,14 @@
+import { projetosRepository } from "@/lib/data/projetos.repository";
+import { clientesRepository } from "@/lib/data/clientes.repository";
 import { PageContainer } from "@/components/ui/PageContainer";
-import { EmptyState } from "@/components/ui/EmptyState";
+import { ProjetosTable } from "@/components/operacional/ProjetosTable";
 
-export default function ProjetosPage() {
+export default async function ProjetosPage() {
+  const [projetos, clientes] = await Promise.all([projetosRepository.getAll(), clientesRepository.getAtivos()]);
+
   return (
     <PageContainer title="Projetos" subtitle="Projetos em andamento para os clientes da WNP.">
-      <EmptyState
-        titulo="Módulo em construção"
-        descricao="Status, progresso, deadline e tarefas por projeto chegam na próxima fase."
-      />
+      <ProjetosTable projetos={projetos} clientes={clientes} />
     </PageContainer>
   );
 }

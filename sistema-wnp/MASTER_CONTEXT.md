@@ -140,23 +140,67 @@ briefing funcional deste sistema.
       mock foram escritos em torno dessa data e ficariam incoerentes com o relógio real do
       sistema assim que o dia virasse. Trocar por `new Date()` nos call sites quando os dados
       pararem de ser mock (Fase K).
-- [ ] **Fase C — Comercial 1**: Prospecção (lista + kanban) usando `prospectsRepository`.
-- [ ] **Fase D — Comercial 2**: Dossiê do prospect (`/comercial/prospeccao/[id]`) — Diagnóstico,
-      Oportunidades, Histórico, botão "Gerar abordagem" (simulado, mas com assinatura isolada
-      em `lib/ai/` para trocar por LLM real depois).
-- [ ] **Fase E — Comercial 3**: Propostas (criação + preview + status).
-- [ ] **Fase F — Operacional 1**: Clientes (lista + detalhe).
-- [ ] **Fase G — Operacional 2**: Projetos + Tarefas.
-- [ ] **Fase H — Tráfego**: Campanhas Google/Meta Ads (mock, cards + tabela).
-- [ ] **Fase I — Foco do Dia**: página dedicada, reaproveitando componentes da Fase B.
-- [ ] **Fase J — Central de IA**: modal/painel lateral, chat/voz, contexto por página.
+- [x] **Fase C — Comercial 1**: Prospecção em `/comercial/prospeccao` com toggle Kanban/Tabela
+      (`ProspectsView`, client). Kanban agrupa por `PROSPECT_PIPELINE` (9 colunas, scroll
+      horizontal); tabela é densa com `StatusBadge`. Ambas linkam pra
+      `/comercial/prospeccao/[id]` (dossiê — ainda placeholder, é a Fase D). Componentes em
+      `src/components/comercial/`.
+- [x] **Fase D — Comercial 2**: Dossiê do prospect (`/comercial/prospeccao/[id]`) — Dados da
+      empresa, Contato, Presença digital, Diagnóstico Digital (`DiagnosticoPanel`, client —
+      botão "Gerar diagnóstico" chama `lib/ai/diagnostico.ts`, heurística simulada sobre os
+      dados do prospect), Oportunidades (serviços recomendados dentro do próprio diagnóstico),
+      Histórico (atividades relacionadas ao prospect + suas propostas), Próximos passos.
+      "Gerar abordagem" (`AbordagemPanel`, client) chama `lib/ai/abordagem.ts` — gera
+      WhatsApp/e-mail/roteiro de ligação/Instagram/follow-up com templates preenchidos, em abas.
+      Ambos os geradores têm assinatura isolada (`gerarDiagnostico(prospect)`,
+      `gerarAbordagem(prospect)`) pra trocar por LLM real na Fase J sem mexer na UI.
+- [x] **Fase E — Comercial 3**: Propostas (`/comercial/propostas`) — lista expansível
+      (`PropostasList`, client) mostrando prospect, valores, status, e preview dos itens ao
+      clicar. **Não há formulário de criação** — não existe camada de escrita/persistência
+      ainda (tudo é mock read-only), então "criar proposta" fica pra quando o Supabase entrar
+      (Fase K). O que existe cobre listar, ver status e detalhar itens/valores.
+- [x] **Fase F — Operacional 1**: Clientes — lista em `/operacional/clientes`
+      (`ClientesTable`) e detalhe em `/operacional/clientes/[id]` (serviços contratados,
+      mensalidade, projetos com progresso, tarefas e campanhas relacionadas, histórico,
+      observações). Documentos e reuniões não têm modelo de dados ainda — a página avisa isso
+      em vez de fingir que existe.
+- [x] **Fase G — Operacional 2**: Projetos (`/operacional/projetos`, tabela com progresso e
+      link pro cliente) e Tarefas (`/operacional/tarefas`, quadro por status — A fazer/Em
+      andamento/Aguardando/Concluído — com prioridade e a entidade relacionada resolvida por
+      nome).
+- [x] **Fase H — Tráfego**: Campanhas (`/trafego/campanhas`) — `CompactKpiRow` com
+      investimento/leads/CPL médio/alertas agregados, mais `CampanhasTable` densa (cliente,
+      canal, status, investimento, leads, CPL, ROAS).
+- [x] **Fase I — Foco do Dia**: página dedicada (`/foco-do-dia`) reaproveitando
+      `FocoHojeHero` (lista completa, sem o corte de 5 itens da prévia do dashboard) +
+      Prospects para hoje, Clientes que precisam de atenção, Campanhas com alerta,
+      Oportunidades comerciais. A lógica de montar os itens do Foco de Hoje foi extraída pra
+      `src/lib/foco/buildFocoHoje.ts`, compartilhada entre `/visao-geral` (prévia, top 5) e
+      `/foco-do-dia` (lista completa) — não duplicar essa lógica nas duas páginas.
+- [~] **Fase J — Central de IA**: o essencial já está no ar desde o refinamento da Visão Geral
+      (`AiLauncherButton` com painel "Pergunte à WNP", perguntas sugeridas, respostas
+      computadas do mock data em `lib/ai/sugestoes.ts`). O que falta pra fechar a fase
+      completa do prompt original: input de texto livre funcional (hoje é só decorativo/
+      desabilitado), modo Voz, e contexto por página (hoje as sugestões são globais/
+      transversais, não mudam se você está dentro de um prospect específico, por exemplo).
 - [ ] **Fase K — Supabase**: troca de implementação nos `*.repository.ts` de mock para client
-      Supabase real, + autenticação.
+      Supabase real, + autenticação, + camada de escrita (criar/editar prospect, proposta,
+      tarefa etc — hoje tudo é somente leitura). **Precisa de decisão/input do Guilherme**
+      (criar projeto Supabase, definir schema das tabelas, variáveis de ambiente) — não dá pra
+      avançar sozinho aqui.
 
 Ordem pensada assim: Comercial primeiro porque é onde a WNP mais precisa de ferramenta hoje
 (prospecção ativa), Operacional depois porque depende de Clientes existirem, Tráfego é o
 pilar mais isolado/mockável a qualquer momento, IA e Supabase por último por serem
 transversais e de maior risco técnico.
+
+### Limitação importante desta rodada (mock read-only)
+
+Nenhuma tela tem escrita real — não existe criar/editar/mover prospect de coluna no kanban,
+criar proposta, marcar tarefa como concluída, etc. Tudo isso depende de uma camada de
+mutação (Server Actions ou API routes) que só faz sentido implementar depois que os dados
+pararem de ser mock estático (Fase K, Supabase). Até lá, o sistema é uma "maquete funcional
+navegável" — todas as rotas, relações e visualizações são reais, só a escrita que falta.
 
 ## Entidades e relacionamentos
 

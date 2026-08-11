@@ -76,6 +76,16 @@ export function getStatusMeta(dominio: StatusDominio, status: string): StatusMet
   return STATUS_POR_DOMINIO[dominio][status] ?? { label: status, tom: "neutro" };
 }
 
+export const LABEL_SERVICO: Record<string, string> = {
+  criacao_site: "Criação de site",
+  google_ads: "Google Ads",
+  meta_ads: "Meta Ads",
+  seo: "SEO",
+  automacao_comercial: "Automação comercial",
+  crm: "CRM",
+  chatbot_ia: "Chatbot IA",
+};
+
 export const PRIORIDADE_META: Record<string, StatusMeta> = {
   baixa: { label: "Baixa", tom: "neutro" },
   normal: { label: "Normal", tom: "progresso" },

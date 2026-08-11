@@ -1,13 +1,13 @@
+import { prospectsRepository } from "@/lib/data/prospects.repository";
 import { PageContainer } from "@/components/ui/PageContainer";
-import { EmptyState } from "@/components/ui/EmptyState";
+import { ProspectsView } from "@/components/comercial/ProspectsView";
 
-export default function ProspeccaoPage() {
+export default async function ProspeccaoPage() {
+  const prospects = await prospectsRepository.getAll();
+
   return (
     <PageContainer title="Prospecção" subtitle="Pipeline de prospects — de Novo a Ganho/Perdido.">
-      <EmptyState
-        titulo="Módulo em construção"
-        descricao="Lista em tabela e kanban, com dossiê por prospect, chega na próxima fase."
-      />
+      <ProspectsView prospects={prospects} />
     </PageContainer>
   );
 }

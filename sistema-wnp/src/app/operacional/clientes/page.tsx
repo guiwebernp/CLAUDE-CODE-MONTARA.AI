@@ -1,13 +1,13 @@
+import { clientesRepository } from "@/lib/data/clientes.repository";
 import { PageContainer } from "@/components/ui/PageContainer";
-import { EmptyState } from "@/components/ui/EmptyState";
+import { ClientesTable } from "@/components/operacional/ClientesTable";
 
-export default function ClientesPage() {
+export default async function ClientesPage() {
+  const clientes = await clientesRepository.getAtivos();
+
   return (
     <PageContainer title="Clientes" subtitle="Clientes ativos da WNP — serviços contratados, projetos e histórico.">
-      <EmptyState
-        titulo="Módulo em construção"
-        descricao="Lista e página de detalhe de cliente chegam na próxima fase."
-      />
+      <ClientesTable clientes={clientes} />
     </PageContainer>
   );
 }
