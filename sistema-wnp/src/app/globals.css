@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Sistema WNP — design tokens
+   Base: paleta de marca WNP (identidade/design-guide.md), com mint como
+   accent primário deste sistema interno (em vez de coral, primário no site
+   institucional) — o prompt original pede "verde" como cor principal, e o
+   mint da marca já é esse verde.
+   ========================================================================== */
+@theme {
+  /* neutros — quase preto, nunca cinza puro */
+  --color-ink-900: #0c0c0c;
+  --color-ink-850: #0d0e0e;
+  --color-ink-800: #121211;
+  --color-ink-750: #171615;
+  --color-ink-700: #1c1b1a;
+  --color-ink-600: #262524;
+
+  --color-paper-0: #fcfbfc;
+  --color-paper-300: #aaaaa8;
+  --color-paper-500: #7c7b78;
+
+  /* mint — accent primário do sistema interno */
+  --color-mint-200: #a9dfb4;
+  --color-mint-300: #86d093;
+  --color-mint-400: #6db578;
+  --color-mint-500: #4f9760;
+  --color-mint-900: #12210f;
+
+  /* coral — reservado para alerta/urgência/erro, nunca decoração de marca aqui */
+  --color-coral-300: #ffa184;
+  --color-coral-400: #ff8968;
+  --color-coral-500: #f2683f;
+  --color-coral-600: #c4502e;
+
+  --font-display: var(--font-sora), "Segoe UI", system-ui, sans-serif;
+  --font-body: var(--font-manrope), "Segoe UI", system-ui, sans-serif;
+
+  --radius-card: 10px;
+  --radius-control: 6px;
+
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-ink-850);
+  color: var(--color-paper-300);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-paper-0);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-mint-400) 32%, transparent);
+  color: var(--color-paper-0);
+}
+
+* {
+  scrollbar-color: var(--color-ink-600) transparent;
+  scrollbar-width: thin;
+}

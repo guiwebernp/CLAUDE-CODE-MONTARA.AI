@@ -75,12 +75,11 @@ cp -r templates/corporativo clientes/novo-cliente/site
 
 ### Reutilização e templates
 
-**O gargalo é fazer sites do zero.** Usar templates reduz de 2-3 semanas para 3-5 dias:
-
-- `templates/corporativo/` — branding, hero, sobre, serviços, footer (base padrão)
-- `templates/ecommerce-simples/` — produtos em grid, carrinho, checkout conceitual
-- `templates/agencia/` — portfólio, case studies, contato
-- `templates/identidade/` — inclui colors.css com palette da WNP
+**O gargalo é fazer sites do zero.** Usar templates reduz de 2-3 semanas para 3-5 dias — mas isso ainda
+**não existe**: `templates/` hoje só tem material de configuração do próprio MazyOS (`ferramentas/`,
+`identidade/exemplos/`, `perfis/`, `skills/`), nenhum template de site de cliente pronto. Criar
+`templates/corporativo/`, `templates/ecommerce-simples/`, `templates/agencia/` etc. a partir dos sites já
+entregues (RDO, Plotter Service, Clínica Reab) segue sendo a prioridade principal (ver `_memoria/estrategia.md`).
 
 **Quando criar template novo:** após 2+ clientes no mesmo nicho, consolidar em `templates/`.
 
@@ -228,6 +227,46 @@ Faz `git add .`, `git commit` com mensagem automática, e `git push origin main`
 
 Guia interativo: pergunta nome, cria pasta em `clientes/`, inicia com `briefing.md` e `.gitignore`.
 
+### Prospectar leads por nicho/cidade
+
+```
+/prospectar
+```
+
+Mapeia empresas de um nicho numa cidade via busca web e prioriza quem tem o site mais ruim (ou nenhum) — lista pronta pra abordagem no WhatsApp. Output em `saidas/prospeccao/`.
+
+### Qualificar lead antes de propor
+
+```
+/consultar-cnpj
+```
+
+Confirma CNPJ ativo, ramo, porte e sócios via BrasilAPI (dados oficiais, gratuito) antes de mandar proposta. Roda depois do `/prospectar`.
+
+### Tirar cheiro de IA de um texto
+
+```
+/humanizar
+```
+
+Revisa proposta, email ou copy de site removendo jargão de IA, hedging e estrutura repetitiva — calibrado pelo tom em `_memoria/preferencias.md`.
+
+### Escrever copy de página de site
+
+```
+/copywriting
+```
+
+Levanta propósito, ação primária, público e objeções antes de escrever — devolve copy por seção com 2-3 alternativas de headline/CTA.
+
+### Checklist de conversão antes de entregar
+
+```
+/cro
+```
+
+Analisa uma página em 7 dimensões (proposta de valor, headline, CTA, hierarquia visual, prova social, objeções, fricção) e devolve Quick Wins + mudanças de alto impacto.
+
 ### Atualizar memória com aprendizados
 
 ```
@@ -235,6 +274,19 @@ Guia interativo: pergunta nome, cria pasta em `clientes/`, inicia com `briefing.
 ```
 
 Varre o projeto (clientes, sites, templates), detecta mudanças, sugere atualizações em `_memoria/`.
+
+### MCP de design systems (pendente de instalação manual)
+
+Pra acelerar a escolha de direção visual de um template novo, tem um MCP (`refero`) com
+~200 design systems curados, buscável por descrição em linguagem natural. Requer instalação
+manual (comando roda fora do escopo do repo, não é auto-aprovado):
+
+```powershell
+claude mcp add refero -- npx -y fidgetcoding-refero-mcp
+```
+
+Sem API key funciona por busca de palavras-chave. Pra busca semântica por "vibe" (ex: "dark
+editorial com serif"), adicionar `--env OPENAI_API_KEY=sk-...` no comando acima.
 
 ---
 

@@ -33,3 +33,8 @@ Automatizar a criação de sites. Criar templates reutilizáveis para cada nicho
 - Ingleses Congelados (Florianópolis) — indústria de pães/salgados congelados B2B. Site em produção (institucional + calculadora "Monte seu pedido"); proposta pronta mas ainda não enviada ao cliente
 - Móveis do Bem (Florianópolis) — móveis de demolição. Site em produção a partir de handoff Figma; faltam fotos do catálogo em alta resolução
 - Central Floripa (Florianópolis) — comunicação visual. Demo de proposta pronta (baseada no site do Plotter Service); **não confirmado se a empresa segue ativa**, checar por telefone antes de prosseguir
+- Neger Telecom — proposta de posicionamento digital (site + Instagram + Google) ainda a apresentar; falta briefing formal do cliente (histórico, cores, tom, concorrentes)
+- Schaefer Yachts — iniciativa pessoal de prospecção: site nível internacional (nicho de iates/lanchas) sendo construído como peça de abordagem, sem contrato fechado
+
+**Outras iniciativas:**
+- Nicho Certo (`clientes/Nicho Certo/`) — sistema de agentes de IA para advogados no nicho de ludopatia; produto/ferramenta própria, não é site de cliente no padrão usual

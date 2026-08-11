@@ -20,7 +20,12 @@ e Operacional (sistemas, dashboards, automações com IA) — ver `[[wnp-3-pilar
 
 **Atende clientes:** Sim — RDO Comunicação Visual (Florianópolis), Plotter Service (impressão digital &
 offset, São José/SC) e Clínica Reab (fisioterapia, Florianópolis) — fechados e finalizados. Em
-produção/prospecção: Ingleses Congelados, Móveis do Bem e Central Floripa (detalhes em `_memoria/estrategia.md`).
+produção/prospecção: Ingleses Congelados, Móveis do Bem, Central Floripa, Neger Telecom e Schaefer Yachts
+(detalhes em `_memoria/estrategia.md`).
+
+**Outra frente:** Nicho Certo (`clientes/Nicho Certo/`) — produto próprio, sistema de agentes de IA para
+advogados no nicho de ludopatia. Não é site de cliente no padrão usual (sem `briefing.md`/`site/`); tem
+CRM, painel e templates próprios.
 
 **Equipe:** Freelancer solo — Guilherme Weber.
 
