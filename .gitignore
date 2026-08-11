@@ -17,6 +17,9 @@ Thumbs.db
 # Dependências
 node_modules/
 
+# Netlify (estado local de link do CLI, não deve ir pro repo)
+.netlify/
+
 # Arquivos temporários
 *.log
 *.tmp

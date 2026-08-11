@@ -103,6 +103,7 @@ empresas que não têm recursos internos. (Antes "Montara.AI" — rebrand em 202
 - `saidas/` — emails, documentos pontuais
 - `dados/` — arquivos de clientes (imagens, specs, etc)
 - `scripts/` — utilitários e automações
+- `sistema-wnp/` — dashboard interno (Next.js) de prospecção/clientes/tráfego, uso próprio — não é entrega de cliente
 
 ---
 
@@ -117,16 +118,33 @@ interna pra cuidar disso, entregando sites profissionais + integração de IA.
 - **Sites profissionais com IA** — estrutura, design responsivo, integração
 - **Automação de processos** — usando agentes de IA
 - **Consuloria técnica** — como implementar IA no negócio
+- **Posicionamento em IA (ChatGPT Ads)** — *frente em exploração, ver `_memoria/estrategia.md`* — preparar clientes pra jornada de compra via IA (não só Google), com estrutura de site + mapeamento de intenções + campanha
 
 **Perfil de cliente:** Micro/pequena empresa com 5-50 pessoas  
 **Ticket médio:** ~R$ 3-8k por site  
-**Capacidade:** 2 projetos simultâneos (máximo)
+**Capacidade:** ~2 projetos em desenvolvimento ativo por vez (outros ficam em fila de prospecção/proposta até avançar)
+
+**Mensagem-chave (posicionamento 2026):** "Posicionamos sua empresa onde o cliente pesquisa, pergunta e decide" — Google captura quem pesquisa, ChatGPT/IA captura quem pergunta e compara. O site profissional deixa de ser o produto final e vira a peça de infraestrutura que sustenta os dois canais. Ver `_memoria/estrategia.md` para status e ressalvas antes de vender isso pra cliente.
 
 ## Clientes ativos
 
-1. **RDO Comunicação Visual** (Florianópolis) — site institucional completo, finalizado e no ar em rdocomvisual.com.br
-2. **Plotter Service** (São José/SC) — site institucional com hero animada + portfólio de trabalhos
-3. **Clínica Reab** (Florianópolis) — site moderno de fisioterapia (implementado e finalizado)
+1. **RDO Comunicação Visual** (Florianópolis) — único cliente ativo (site no ar em rdocomvisual.com.br, relação contínua)
+
+**Em negociação/pendente (site pronto ou quase, fechamento não concluído):**
+- Plotter Service (São José/SC) — site institucional com hero animada + portfólio de trabalhos; ainda em negociação
+- Clínica Reab (Florianópolis) — site moderno de fisioterapia pronto; falta retomar contato com o cliente
+
+**Em produção/prospecção (ainda não fechados):**
+- Ingleses Congelados (Florianópolis) — site institucional + calculadora "Monte seu pedido"; proposta pronta, ainda não enviada
+- Móveis do Bem (Florianópolis) — site em produção a partir de handoff Figma; faltam fotos do catálogo
+- Central Floripa (Florianópolis) — comunicação visual; demo pronta, mas não confirmado se a empresa segue ativa
+- Neger Telecom — proposta de posicionamento digital (site + Instagram + Google) a apresentar
+- Schaefer Yachts — site nível internacional como peça de prospecção, sem contrato fechado
+
+**Produto próprio (não é site de cliente):**
+- Nicho Certo (`clientes/Nicho Certo/`) — sistema de agentes de IA para advogados no nicho de ludopatia
+
+Detalhes de cada um em `_memoria/estrategia.md`.
 
 ## Como trabalho
 
@@ -275,6 +293,22 @@ Analisa uma página em 7 dimensões (proposta de valor, headline, CTA, hierarqui
 
 Varre o projeto (clientes, sites, templates), detecta mudanças, sugere atualizações em `_memoria/`.
 
+### Outras skills disponíveis
+
+Existem mais skills em `.claude/skills/` além das documentadas acima — usar `/nome-da-skill` diretamente:
+
+- `/carrossel` — gera carrossel de imagens (Instagram/LinkedIn) a partir de um tema, seguindo `identidade/design-guide.md`
+- `/publicar-tema` — cria o conteúdo (post/carrossel) de um tema pra fila de publicação
+- `/aprovar-post` — aprova um post da fila e publica (site + Instagram + Facebook via Meta Graph API)
+- `/anuncio-google` — monta estrutura de campanha Google Ads
+- `/relatorio-ads` — relatório de performance de anúncios
+- `/analisar-dados` — análise de dados/planilhas
+- `/seo` — checklist/otimização de SEO de uma página
+- `/email-profissional` — escreve email profissional (proposta, follow-up, etc)
+- `/responder-avaliacoes` — gera resposta pra avaliação de cliente (Google/Instagram)
+- `/instalar` — configuração inicial do MazyOS num novo workspace
+- `/mapear-rotinas` — identifica tarefa repetível e transforma em skill nova
+
 ### MCP de design systems (pendente de instalação manual)
 
 Pra acelerar a escolha de direção visual de um template novo, tem um MCP (`refero`) com
@@ -332,4 +366,4 @@ Assim, customizar cores é trocar 4 linhas, não o CSS todo.
 
 ---
 
-*Última atualização: 7 de agosto de 2026 — rebrand Montara.AI → WNP, novo site institucional implementado*
+*Última atualização: 11 de agosto de 2026 — `/atualizar`: seção "Clientes ativos" reconciliada (RDO é o único cliente ativo; 5 em prospecção/produção listados), `sistema-wnp/` adicionado à estrutura de pastas, skills não documentadas listadas em "Outras skills disponíveis"*

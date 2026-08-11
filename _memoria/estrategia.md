@@ -19,15 +19,44 @@ Automatizar a criação de sites. Criar templates reutilizáveis para cada nicho
 - Montar portfólio de templates para mostrar aos clientes
 - Captar mais clientes com portfólio forte
 
+## Nova frente: Posicionamento em IA / ChatGPT Ads (2026-08-11, em exploração)
+
+Ideia trazida de conversa com ChatGPT: reposicionar a WNP de "faço site" pra "posiciono sua
+empresa onde o cliente pesquisa, pergunta e decide" — cobrindo Google (busca) e ChatGPT Ads
+(conversa/intenção). Vira "Arquitetura de Aquisição Digital": site + mapeamento de intenções
+por produto + criativos pra IA + campanha (Google + ChatGPT) + relatório. Encaixa como camada
+nova dentro do pilar Tráfego do framework já validado ([[wnp-3-pilares-framework]] na memória),
+não como serviço isolado.
+
+**Antes de vender pra cliente real, confirmar:**
+- Se ChatGPT Ads já está disponível pra contas brasileiras comprarem (piloto anunciado pra
+  expandir ao Brasil em maio/2026, mas checar disponibilidade real antes de prometer entrega).
+- CPC sugerido pela OpenAI (~US$3-5, ~R$17-28) é caro pro ticket médio de cliente da WNP
+  (R$3-8k, micro/pequena empresa) — risco de vender expectativa que o cliente não sustenta
+  em verba de mídia. Enquadrar como "estruturação/preparação" enquanto não há orçamento de
+  ads condizente, e só oferecer gestão de campanha quando o cliente tiver verba real.
+- Isso muda o modelo de negócio de produto pontual (site) pra recorrência (retainer de mídia)
+  — decisão maior que precisa ser deliberada, não só um texto novo no site.
+
+**Status:** mensagem já aplicada no site institucional da WNP (`clientes/WNP/site/index.html`,
+2026-08-11) — hero, pilar Tráfego, seção "por que escolher", produtos e rodapé. Linguagem
+usada é "presença/preparação para buscas com IA", sem prometer gestão de campanha ChatGPT Ads
+ainda (ressalva de disponibilidade acima segue valendo). Falta aplicar em propostas de cliente.
+
+**Próximo passo concreto:** validar disponibilidade real do ChatGPT Ads Manager pra Brasil
+antes de oferecer gestão de campanha (não só posicionamento) em proposta comercial.
+
 ## Contexto com prazo
 
 **Gargalo atual:** Fazer sites manualmente é lento.  
 **Candidata a skill:** `/template-builder` ou `/gerar-modelos-site` (quando usar `/mapear-rotinas`)
 
-**Clientes atuais:**
-- RDO Comunicação Visual (Florianópolis) — site institucional (finalizado e no ar em rdocomvisual.com.br)
-- Plotter Service (São José/SC) — site institucional com hero animada (mobile responsivo finalizado)
-- Clínica Reab (Florianópolis) — site de fisioterapia (implementado e finalizado)
+**Cliente ativo:**
+- RDO Comunicação Visual (Florianópolis) — site institucional (finalizado e no ar em rdocomvisual.com.br), relação contínua
+
+**Em negociação/pendente:**
+- Plotter Service (São José/SC) — site pronto (hero animada, mobile responsivo), ainda em negociação
+- Clínica Reab (Florianópolis) — site de fisioterapia pronto, falta retomar contato com o cliente
 
 **Em andamento / prospecção (ainda não fechados):**
 - Ingleses Congelados (Florianópolis) — indústria de pães/salgados congelados B2B. Site em produção (institucional + calculadora "Monte seu pedido"); proposta pronta mas ainda não enviada ao cliente

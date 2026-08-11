@@ -18,10 +18,11 @@ e Operacional (sistemas, dashboards, automações com IA) — ver `[[wnp-3-pilar
 
 **Perfil de cliente:** Empresas com site desatualizado ou que não possuem funcionário interno para cuidar disso.
 
-**Atende clientes:** Sim — RDO Comunicação Visual (Florianópolis), Plotter Service (impressão digital &
-offset, São José/SC) e Clínica Reab (fisioterapia, Florianópolis) — fechados e finalizados. Em
-produção/prospecção: Ingleses Congelados, Móveis do Bem, Central Floripa, Neger Telecom e Schaefer Yachts
-(detalhes em `_memoria/estrategia.md`).
+**Atende clientes:** Sim — RDO Comunicação Visual (Florianópolis) é o único cliente ativo (relação contínua).
+Plotter Service (impressão digital & offset, São José/SC) e Clínica Reab (fisioterapia, Florianópolis) têm
+site pronto mas ainda não fechados de vez — Plotter Service em negociação, Clínica Reab aguardando retomar
+contato. Em produção/prospecção: Ingleses Congelados, Móveis do Bem, Central Floripa, Neger Telecom e
+Schaefer Yachts (detalhes em `_memoria/estrategia.md`).
 
 **Outra frente:** Nicho Certo (`clientes/Nicho Certo/`) — produto próprio, sistema de agentes de IA para
 advogados no nicho de ludopatia. Não é site de cliente no padrão usual (sem `briefing.md`/`site/`); tem
