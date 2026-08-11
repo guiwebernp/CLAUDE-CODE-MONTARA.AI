@@ -6,7 +6,7 @@ Site institucional (homepage) da WNP Comunicação Visual. HTML/CSS/JS vanilla, 
 
 ```
 site/
-├── index.html       # página única (nav, hero, pilares, por que, como funciona, sobre, cta, footer, dialog)
+├── index.html       # página única (nav, hero, comparação antes/agora, pipeline de aquisição, entregáveis, por que/modelo/clientes, sobre, cta, footer, dialog)
 ├── css/style.css     # design tokens (cores, tipografia, espaçamento) + estilos
 ├── js/main.js        # ícones inline (Lucide/MIT), scroll da nav, menu mobile, smooth scroll, dialog de contato
 └── assets/
@@ -27,7 +27,9 @@ python -m http.server 8000
 
 ## Deploy
 
-Padrão Vercel (raiz do site = esta pasta `/site`). Ver `CLAUDE.md` na raiz do workspace para o fluxo completo.
+Netlify (exceção ao padrão Vercel dos demais sites, ver `CLAUDE.md`) — projeto `wnp-comunicacao-visual`,
+site id `3a88aeec-f39c-45cc-a9fc-7c9d4c098ad0`. Redeploy via MCP Netlify (`deploy-site`), que devolve um
+comando `npx @netlify/mcp` pra rodar dentro desta pasta.
 
 ## Pendências
 

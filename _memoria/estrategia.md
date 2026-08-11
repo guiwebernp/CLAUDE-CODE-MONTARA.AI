@@ -38,10 +38,12 @@ não como serviço isolado.
 - Isso muda o modelo de negócio de produto pontual (site) pra recorrência (retainer de mídia)
   — decisão maior que precisa ser deliberada, não só um texto novo no site.
 
-**Status:** mensagem já aplicada no site institucional da WNP (`clientes/WNP/site/index.html`,
-2026-08-11) — hero, pilar Tráfego, seção "por que escolher", produtos e rodapé. Linguagem
-usada é "presença/preparação para buscas com IA", sem prometer gestão de campanha ChatGPT Ads
-ainda (ressalva de disponibilidade acima segue valendo). Falta aplicar em propostas de cliente.
+**Status:** mensagem aplicada e home reestruturada em formato pedagógico (comparação antes/agora,
+pipeline "Arquitetura de Aquisição Digital", entregáveis concretos) no site institucional da WNP
+(`clientes/WNP/site/`, 2026-08-11). Publicado no Netlify em `wnp-comunicacao-visual.netlify.app`
+(exceção ao padrão Vercel, ver `CLAUDE.md`). Linguagem usada é "presença/preparação para buscas
+com IA", sem prometer gestão de campanha ChatGPT Ads ainda (ressalva de disponibilidade acima
+segue valendo). Falta aplicar em propostas de cliente.
 
 **Próximo passo concreto:** validar disponibilidade real do ChatGPT Ads Manager pra Brasil
 antes de oferecer gestão de campanha (não só posicionamento) em proposta comercial.
@@ -64,6 +66,11 @@ antes de oferecer gestão de campanha (não só posicionamento) em proposta come
 - Central Floripa (Florianópolis) — comunicação visual. Demo de proposta pronta (baseada no site do Plotter Service); **não confirmado se a empresa segue ativa**, checar por telefone antes de prosseguir
 - Neger Telecom — proposta de posicionamento digital (site + Instagram + Google) ainda a apresentar; falta briefing formal do cliente (histórico, cores, tom, concorrentes)
 - Schaefer Yachts — iniciativa pessoal de prospecção: site nível internacional (nicho de iates/lanchas) sendo construído como peça de abordagem, sem contrato fechado
+
+**Leva de prospecção 2026-08-11** (listas geradas em `saidas/prospeccao/`, abordagem já iniciada com):
+- Meneghetti Móveis, Alemão Defumados, JC Embalagens, Mc Gráfica, Imagem SC — vieram das listas de
+  fábricas/produtos SC, B2B médio-grande Floripa, comunicação visual Floripa e NSC Total; ainda sem
+  fechamento, primeiro contato em andamento
 
 **Outras iniciativas:**
 - Nicho Certo (`clientes/Nicho Certo/`) — sistema de agentes de IA para advogados no nicho de ludopatia; produto/ferramenta própria, não é site de cliente no padrão usual
