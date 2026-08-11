@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicho Certo — plataforma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+    --wa-bg:#0B141A; --wa-head:#1F2C34; --wa-in:#1F2C34; --wa-out:#005C4B;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  a{color:inherit;text-decoration:none}button{font-family:inherit}
+
+  .topnav{position:sticky;top:0;z-index:30;background:rgba(14,20,31,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1000px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo{font-family:var(--display);font-weight:600;font-size:17px}.logo .d{color:var(--certo)}
+  .navlinks{display:flex;gap:4px;flex-wrap:wrap}
+  .navlinks a{font-size:13px;color:var(--muted);padding:6px 11px;border-radius:7px;transition:.15s}
+  .navlinks a:hover,.navlinks a.on{color:var(--text);background:var(--bg2)}
+  @media (max-width:680px){.navlinks{display:none}}
+
+  .sec{max-width:1000px;margin:0 auto;padding:74px 24px;border-bottom:1px solid var(--line)}
+  .seyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo);margin-bottom:14px}
+  .stitle{font-family:var(--display);font-weight:500;font-size:clamp(25px,4vw,34px);letter-spacing:-.015em;margin:0;max-width:20ch}
+  .slead{color:var(--muted);font-size:16px;max-width:46em;margin:14px 0 0}
+
+  .hero{position:relative;text-align:center;overflow:hidden}
+  .glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:680px;height:420px;background:radial-gradient(ellipse at center,rgba(52,201,139,.13),transparent 65%);pointer-events:none}
+  .hero h1{font-family:var(--display);font-weight:600;font-size:clamp(36px,7vw,62px);letter-spacing:-.025em;line-height:1.02;margin:0 auto;max-width:16ch;position:relative}
+  .hero h1 .hl{color:var(--certo)}
+  .hero .sub{font-size:clamp(16px,2.3vw,20px);color:var(--muted);max-width:32em;margin:20px auto 0;position:relative}
+  .hstats{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:38px;position:relative}
+  .hstat .b{font-family:var(--display);font-weight:700;font-size:clamp(24px,4vw,34px);color:var(--certo);letter-spacing:-.02em;line-height:1;text-align:center}
+  .hstat .c{font-size:12px;color:var(--muted);margin-top:7px;max-width:13ch;text-align:center}
+
+  /* pyramid */
+  .pyr{margin:40px auto 0;display:flex;flex-direction:column;align-items:center;position:relative}
+  .srcglow{position:absolute;top:-24px;width:340px;height:110px;background:radial-gradient(ellipse at center,rgba(52,201,139,.16),transparent 70%);pointer-events:none}
+  .layer{position:relative;z-index:1;border-radius:14px;padding:18px 24px;text-align:center;display:flex;flex-direction:column;align-items:center}
+  .l1{width:min(440px,92%);background:linear-gradient(180deg,rgba(52,201,139,.16),rgba(52,201,139,.07));border:1px solid rgba(52,201,139,.45)}
+  .l2{width:min(640px,98%);background:var(--bg2);border:1px solid var(--line2);border-top:2px solid var(--steel)}
+  .l3{width:min(840px,100%);background:var(--bg2);border:1px solid var(--line)}
+  .ltag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+  .l1 .ltag{color:var(--certo)}.l2 .ltag{color:var(--steel)}.l3 .ltag{color:var(--faint)}
+  .ltitle{font-family:var(--display);font-weight:600;font-size:clamp(17px,2.6vw,22px);letter-spacing:-.01em}
+  .lsub{font-size:12.5px;color:var(--muted);margin-top:5px;max-width:42ch}
+  .arrow{z-index:1;color:var(--certo);font-size:16px;margin:6px 0;opacity:.8}
+  .insight{margin-top:40px;background:rgba(52,201,139,.05);border:1px solid var(--line);border-left:2px solid var(--certo);border-radius:14px;padding:22px 26px;text-align:center}
+  .insight p{margin:0;font-size:clamp(16px,2.4vw,20px);color:var(--text);line-height:1.4}
+  .insight b{color:var(--certo);font-weight:600}
+  .insight .sm{font-size:13px;color:var(--muted);margin-top:10px;display:block}
+
+  /* layer block in demos */
+  .lblock{margin-top:46px}
+  .lhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .ltagbig{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+  .ltagbig.topo{color:var(--certo);background:var(--certo-fill);border:1px solid rgba(52,201,139,.4)}
+  .ltagbig.meio{color:var(--steel);background:var(--steel-fill);border:1px solid rgba(105,166,224,.4)}
+  .ltagbig.base{color:var(--text);background:var(--bg3);border:1px solid var(--line2)}
+  .lhead h3{font-size:19px;font-weight:600;margin:0}
+  .lhead p{font-size:13px;color:var(--faint);margin:2px 0 0}
+
+  /* teses */
+  .t2grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .t2{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:19px 21px}
+  .t2.a{border-top:2px solid var(--certo)}.t2.b{border-top:2px solid var(--steel)}
+  .t2 .lb{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .t2 h4{font-family:var(--display);font-weight:500;font-size:18px;margin:5px 0 8px}
+  .t2 p{font-size:13px;color:var(--muted);margin:0 0 11px;line-height:1.5}
+  .t2 .f{font-family:var(--mono);font-size:11px;color:var(--text);background:var(--bg3);padding:5px 9px;border-radius:6px;display:inline-block}
+
+  /* radar */
+  .rdr{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+  .rdr-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px}
+  .rchip{font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer;transition:.15s}
+  .rchip:hover{color:var(--text)}.rchip.on{background:var(--certo-fill);border-color:rgba(52,201,139,.45);color:var(--certo)}
+  .rdr-feed{display:flex;flex-direction:column;gap:9px;margin-top:4px}
+  .dec{background:var(--bg3);border:1px solid var(--line);border-radius:11px;padding:13px 15px;display:flex;align-items:center;gap:13px}
+  .court{font-family:var(--mono);font-size:11px;padding:4px 8px;border-radius:6px;background:var(--steel-fill);color:var(--steel);min-width:56px;text-align:center;flex:none}
+  .dmid{flex:1;min-width:0}.dmid .tm{font-size:14px;font-weight:500}.dmid .mt{font-size:11.5px;color:var(--faint);margin-top:2px}
+  .res{font-family:var(--mono);font-size:10.5px;padding:4px 9px;border-radius:999px;flex:none}
+  .res.fav{color:var(--certo);background:var(--certo-fill)}.res.par{color:var(--amber);background:var(--amber-fill)}
+
+  /* chatbot */
+  .botwrap{display:flex;flex-direction:column;align-items:center}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+  .pill{font-size:13.5px;padding:8px 16px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer;transition:.15s}
+  .pill:hover{color:var(--text)}.pill.on{background:var(--certo-fill);border-color:rgba(52,201,139,.5);color:var(--certo);font-weight:500}
+  .botdesc{font-size:13px;color:var(--muted);text-align:center;margin:10px 2px 18px;min-height:20px}
+  .phone{background:#000;border-radius:34px;padding:10px;box-shadow:0 30px 70px rgba(0,0,0,.5);border:1px solid #2a2a2a;width:330px;max-width:100%}
+  .screen{background:var(--wa-bg);border-radius:26px;overflow:hidden;height:540px;display:flex;flex-direction:column}
+  .wahead{background:var(--wa-head);padding:13px 15px;display:flex;align-items:center;gap:11px;flex:none}
+  .ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--certo),#1F7A56);display:grid;place-items:center;font-family:var(--display);font-weight:600;color:#06241a;font-size:14px;flex:none}
+  .wahead .nm{font-size:14px;font-weight:500;color:#E9EDEF}.wahead .st{font-size:11px;color:#8696a0}
+  .chat{flex:1;overflow-y:auto;padding:15px 12px;display:flex;flex-direction:column;gap:7px}.chat::-webkit-scrollbar{width:0}
+  .row{display:flex}.row.in{justify-content:flex-start}.row.out{justify-content:flex-end}
+  .bub{max-width:80%;padding:7px 10px 6px;border-radius:9px;font-size:13px;line-height:1.42;color:#E9EDEF;animation:pop .25s ease}
+  .in .bub{background:var(--wa-in);border-top-left-radius:2px}.out .bub{background:var(--wa-out);border-top-right-radius:2px}
+  .bub .tmx{font-size:9px;color:rgba(233,237,239,.5);float:right;margin:5px 0 -2px 8px}
+  @keyframes pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .opts{display:flex;flex-direction:column;gap:4px;margin-top:3px;max-width:80%;align-self:flex-start}
+  .opt{background:var(--wa-in);border-radius:7px;text-align:center;padding:8px;font-size:12.5px;color:#53bdeb;animation:pop .25s ease}
+  .opt.chosen{color:#06241a;background:var(--certo);font-weight:500}
+  .typing{display:inline-flex;gap:3px;padding:10px 12px;background:var(--wa-in);border-radius:9px;border-top-left-radius:2px}
+  .typing i{width:6px;height:6px;border-radius:50%;background:#8696a0;animation:blink 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  .replay{margin-top:15px;font-size:13px;color:var(--certo);background:var(--certo-fill);border:1px solid rgba(52,201,139,.4);border-radius:999px;padding:9px 18px;cursor:pointer}
+  .feednote{text-align:center;font-family:var(--mono);font-size:11px;color:var(--certo);margin-top:16px}
+
+  /* plans */
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:32px}
+  .plan{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:24px 22px;display:flex;flex-direction:column}
+  .plan.rec{border-color:rgba(52,201,139,.5)}
+  .plan .bd{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--certo);height:13px;margin-bottom:9px}
+  .plan h3{font-family:var(--display);font-weight:500;font-size:22px;margin:0}
+  .plan .pr{display:flex;align-items:baseline;gap:4px;margin:12px 0 16px}
+  .plan .pr .v{font-family:var(--display);font-size:31px;font-weight:600}.plan .pr .p{font-size:12.5px;color:var(--muted)}
+  .plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .plan li{font-size:13px;color:var(--muted);display:flex;gap:8px}.plan li::before{content:"✓";color:var(--certo);flex:none}
+  .draft{text-align:center;font-family:var(--mono);font-size:11px;color:var(--amber);margin-top:18px}
+
+  .close{text-align:center;border-bottom:0}
+  .close h2{font-family:var(--display);font-weight:500;font-size:clamp(26px,4.5vw,40px);letter-spacing:-.01em;margin:0;line-height:1.18}
+  .close h2 b{color:var(--certo);font-weight:600}
+  .close p{color:var(--muted);font-size:15px;margin:16px auto 0;max-width:32em}
+  .micro{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em;margin-top:26px}
+
+  @media (max-width:720px){.t2grid,.pgrid{grid-template-columns:1fr}.hstats{gap:22px}.layer{padding:15px 16px}}
+  @media (prefers-reduced-motion:reduce){.bub,.opt{animation:none}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+  <div class="topnav"><div class="nav-in">
+    <div class="logo">Nicho<span class="d"> Certo</span></div>
+    <div class="navlinks">
+      <a href="#oportunidade" class="on">Oportunidade</a>
+      <a href="#modelo">O modelo</a>
+      <a href="#demos">Ver por dentro</a>
+      <a href="#planos">Planos</a>
+    </div>
+  </div></div>
+
+  <!-- OPORTUNIDADE -->
+  <section class="sec hero" id="oportunidade">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="seyebrow" style="position:relative">A oportunidade</div>
+    <h1>25 milhões apostando. As vítimas já estão <span class="hl">ganhando na Justiça.</span></h1>
+    <p class="sub">Um novo nicho jurídico nasceu — demanda gigante, jurisprudência a favor e quase ninguém posicionado. A janela está aberta agora.</p>
+    <div class="hstats">
+      <div class="hstat"><div class="b">+25 mi</div><div class="c">apostando em 2025</div></div>
+      <div class="hstat"><div class="b">R$ 36 bi</div><div class="c">ficaram com as plataformas</div></div>
+      <div class="hstat"><div class="b">já vence</div><div class="c">TJSP · TJSC · TJRS · TJDFT</div></div>
+    </div>
+  </section>
+
+  <!-- O MODELO -->
+  <section class="sec" id="modelo">
+    <div class="seyebrow">O que me torna especialista</div>
+    <h2 class="stitle">Tudo nasce do conhecimento de ludopatia</h2>
+    <p class="slead">Empresas de automação entregam ferramentas genéricas e vazias. Aqui, cada peça desce da mesma fonte — as teses e a jurisprudência de ludopatia. Por isso tudo já chega especialista.</p>
+
+    <div class="pyr">
+      <div class="srcglow" aria-hidden="true"></div>
+      <div class="layer l1"><div class="ltag">a fonte</div><div class="ltitle">Conhecimento de ludopatia</div><div class="lsub">Teses, jurisprudência e os padrões de quem vive a ludopatia.</div></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="layer l2"><div class="ltag">transforma</div><div class="ltitle">Inteligência de IA</div><div class="lsub">Os agentes mantêm o conhecimento vivo e o aplicam a cada caso.</div></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="layer l3"><div class="ltag">entrega ao cliente final</div><div class="ltitle">As soluções</div><div class="lsub">Cada ferramenta já fala a língua do cliente ludopata.</div></div>
+    </div>
+
+    <div class="insight">
+      <p>O nicho não é o mercado lá fora. É o <b>ingrediente dentro do produto</b>.</p>
+      <span class="sm">Empresas de automação vendem a base vazia. Você entrega a pirâmide inteira — com o topo que ninguém tem.</span>
+    </div>
+  </section>
+
+  <!-- VER POR DENTRO (desce a pirâmide) -->
+  <section class="sec" id="demos">
+    <div class="seyebrow">Ver por dentro</div>
+    <h2 class="stitle">Descendo a pirâmide, camada por camada</h2>
+    <p class="slead">Cada camada com sua prova — rodando aqui mesmo.</p>
+
+    <!-- TOPO -->
+    <div class="lblock">
+      <div class="lhead"><span class="ltagbig topo">topo · conhecimento</span><div><h3>As teses que já vencem</h3><p>a base de tudo — verificada e viva</p></div></div>
+      <div class="t2grid">
+        <div class="t2 a"><div class="lb">tese 1 · via direta</div><h4>Nulidade de pleno direito</h4><p>Quem tem ludopatia é impedido de apostar; as apostas são nulas e os valores devem voltar.</p><span class="f">Lei 14.790/2023 · art. 26, VI + §1º</span></div>
+        <div class="t2 b"><div class="lb">tese 2 · cumulada</div><h4>Falha no dever de cuidado</h4><p>A plataforma deve informar e proteger o apostador. Falhou, responde civilmente.</p><span class="f">CDC + deveres da Lei 14.790</span></div>
+      </div>
+    </div>
+
+    <!-- MEIO -->
+    <div class="lblock">
+      <div class="lhead"><span class="ltagbig meio">meio · inteligência</span><div><h3>O Radar de jurisprudência</h3><p>a IA alimentada dessas teses, sempre atual — filtre por tribunal ou tese</p></div></div>
+      <div class="rdr">
+        <div class="rdr-filters" id="rf-court"></div>
+        <div class="rdr-filters" id="rf-tese"></div>
+        <div class="rdr-feed" id="rfeed"></div>
+      </div>
+      <p class="feednote">● alimentado com a jurisprudência de ludopatia</p>
+    </div>
+
+    <!-- BASE -->
+    <div class="lblock">
+      <div class="lhead"><span class="ltagbig base">base · soluções</span><div><h3>O chatbot que fala com o ludopata</h3><p>não é um bot genérico — escolha o tom e veja</p></div></div>
+      <div class="botwrap">
+        <div class="pills" id="bpills"></div>
+        <div class="botdesc" id="bdesc"></div>
+        <div class="phone"><div class="screen">
+          <div class="wahead"><div class="ava">NC</div><div><div class="nm">Escritório · Atendimento</div><div class="st" id="bst">online</div></div></div>
+          <div class="chat" id="bchat"></div>
+        </div></div>
+        <button class="replay" id="breplay">▶ reproduzir</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="sec" id="planos">
+    <div class="seyebrow">Planos</div>
+    <h2 class="stitle">Três formas de entrar</h2>
+    <p class="slead">Assinatura fixa por mês. Sem comissão por caso, sem percentual sobre honorários.</p>
+    <div class="pgrid">
+      <div class="plan"><div class="bd"></div><h3>Essencial</h3><div class="pr"><span class="v">R$ 897</span><span class="p">/mês</span></div><ul><li>Criativos + landing page</li><li>Chatbot de triagem</li><li>Base jurídica + blindagem</li></ul></div>
+      <div class="plan rec"><div class="bd">recomendado</div><h3>Growth</h3><div class="pr"><span class="v">R$ 1.797</span><span class="p">/mês</span></div><ul><li>Tudo do Essencial</li><li>Radar de jurisprudência (IA)</li><li>Preparador de caso (IA)</li><li>Implementação inclusa</li></ul></div>
+      <div class="plan"><div class="bd"></div><h3>Pro</h3><div class="pr"><span class="v">R$ 2.997</span><span class="p">/mês</span></div><ul><li>Tudo do Growth</li><li>Suporte prioritário</li><li>Acompanhamento contínuo</li></ul></div>
+    </div>
+    <p class="draft">preços em rascunho — validar nas calls</p>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="sec close">
+    <h2>Você não monta nada.<br><b>Liga a chave.</b></h2>
+    <p>Tudo desce do conhecimento de ludopatia — e chega até você pronto, personalizado e blindado.</p>
+    <div class="micro">nicho certo · a operação de ludopatia, automatizada</div>
+  </section>
+
+<script>
+(function(){
+  const links=[...document.querySelectorAll('.navlinks a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('on'));map.get(e.target.id)?.classList.add('on');}});},{rootMargin:'-25% 0px -65% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+
+(function(){
+  const DATA=[
+    {court:"TJSP",tema:"Saque bloqueado (caso Betano)",res:"fav",tese:"nulidade"},
+    {court:"TJSC",tema:"Saques retidos sem justificativa",res:"fav",tese:"cuidado"},
+    {court:"TJRS",tema:"Vício de informação na contratação",res:"fav",tese:"cuidado"},
+    {court:"TJDFT",tema:"Nulidade contratual e restituição",res:"fav",tese:"nulidade"},
+    {court:"TJSP",tema:"Publicidade e indução ao consumo",res:"par",tese:"cuidado"},
+    {court:"TJSC",tema:"Falha no dever de informar o risco",res:"fav",tese:"cuidado"}
+  ];
+  const TESES={nulidade:"Nulidade · Lei 14.790",cuidado:"Dever de cuidado · CDC"};
+  const st={court:"todos",tese:"todas"};
+  function chips(id,key,opts){const c=document.getElementById(id);opts.forEach(o=>{const b=document.createElement('button');b.className='rchip'+(st[key]===o.v?' on':'');b.textContent=o.l;b.dataset.k=key;b.dataset.v=o.v;b.onclick=()=>{st[key]=o.v;sync();};c.appendChild(b);});}
+  chips('rf-court','court',[{v:'todos',l:'Todos'},{v:'TJSP',l:'TJSP'},{v:'TJSC',l:'TJSC'},{v:'TJRS',l:'TJRS'},{v:'TJDFT',l:'TJDFT'}]);
+  chips('rf-tese','tese',[{v:'todas',l:'Todas as teses'},{v:'nulidade',l:'Nulidade'},{v:'cuidado',l:'Dever de cuidado'}]);
+  function render(){const feed=document.getElementById('rfeed');const list=DATA.filter(d=>(st.court==='todos'||d.court===st.court)&&(st.tese==='todas'||d.tese===st.tese));feed.innerHTML=list.length?'':'<p style="color:var(--faint);font-size:13px;padding:8px 2px">Nenhuma decisão com esses filtros.</p>';list.forEach(d=>{const el=document.createElement('div');el.className='dec';el.innerHTML=`<span class="court">${d.court}</span><div class="dmid"><div class="tm">${d.tema}</div><div class="mt">${TESES[d.tese]}</div></div><span class="res ${d.res}">${d.res==='fav'?'favorável':'parcial'}</span>`;feed.appendChild(el);});}
+  function sync(){document.querySelectorAll('.rchip').forEach(b=>b.classList.toggle('on',st[b.dataset.k]===b.dataset.v));render();}
+  render();
+})();
+
+(function(){
+  const MODELS={
+    acolhedor:{nome:'Acolhedor',tom:'empático · humano',steps:[
+      {w:'bot',t:'Oi! Que bom que você chegou até aqui. Sei que dar esse passo não é fácil — pode falar comigo no seu tempo. 💚'},
+      {w:'lead',t:'obrigado'},
+      {w:'bot',t:'Antes de qualquer coisa jurídica, como você está se sentindo com tudo isso hoje?'},
+      {w:'opts',o:['Sobrecarregado','Tentando me reerguer'],c:1},
+      {w:'bot',t:'Isso já diz muito sobre você. Em situações assim existe base legal para discutir a devolução dos valores — quem avalia com calma é o advogado.'},
+      {w:'bot',t:'E vale também procurar apoio de saúde. Quer que eu organize uma conversa com o advogado?'},
+      {w:'opts',o:['Quero','Preciso pensar'],c:0},
+      {w:'lead',t:'João, fim da tarde'},
+      {w:'bot',t:'Obrigado por confiar, João. O advogado fala com você no fim da tarde. Cuide de você. 💚'}
+    ]},
+    objetivo:{nome:'Objetivo',tom:'direto · respeita o tempo',steps:[
+      {w:'bot',t:'Olá! Você chegou pelo nosso conteúdo sobre apostas. Posso te ajudar em poucos minutos?'},
+      {w:'lead',t:'pode'},
+      {w:'bot',t:'Direto ao ponto: em casos de ludopatia existe base jurídica para discutir a devolução de valores. O advogado avalia se o seu caso se encaixa.'},
+      {w:'bot',t:'As apostas chegaram a causar prejuízo financeiro relevante?'},
+      {w:'opts',o:['Sim','Prefiro não dizer'],c:0},
+      {w:'bot',t:'Já é suficiente para uma primeira conversa. Quer que eu agende com o advogado?'},
+      {w:'opts',o:['Quero','Agora não'],c:0},
+      {w:'lead',t:'João, amanhã 14h'},
+      {w:'bot',t:'Anotado, João — amanhã às 14h o advogado te liga. Vale também buscar apoio de saúde. Cuide de você.'}
+    ]},
+    educativo:{nome:'Educativo',tom:'informa · gera autoridade',steps:[
+      {w:'bot',t:'Olá! Deixa eu te explicar algo que muita gente não sabe.'},
+      {w:'lead',t:'ok'},
+      {w:'bot',t:'A Lei 14.790/2023 considera que quem tem ludopatia está impedido de apostar. Na prática, isso abre caminho para discutir na Justiça a devolução dos valores.'},
+      {w:'bot',t:'E a plataforma tem o dever de proteger o apostador. Quando falha, também responde. Cada caso é avaliado pelo advogado. Faz sentido?'},
+      {w:'opts',o:['Faz sentido','Tenho dúvidas'],c:0},
+      {w:'bot',t:'Ótimo. O advogado pode olhar a sua situação e te dizer os caminhos. Quer agendar?'},
+      {w:'opts',o:['Quero','Vou pensar'],c:0},
+      {w:'lead',t:'João, sexta de manhã'},
+      {w:'bot',t:'Combinado, João. E lembre: vale também cuidar da saúde nesse processo.'}
+    ]},
+    formal:{nome:'Formal',tom:'institucional · sóbrio',steps:[
+      {w:'bot',t:'Olá. Aqui é o atendimento do escritório. Agradecemos o seu contato.'},
+      {w:'lead',t:'olá'},
+      {w:'bot',t:'Identificamos que sua procura se relaciona a perdas em plataformas de apostas. Há fundamento jurídico para discutir a restituição de valores em casos dessa natureza.'},
+      {w:'bot',t:'A análise é conduzida individualmente pelo advogado responsável. Podemos agendar uma conversa?'},
+      {w:'opts',o:['Sim, podemos','Em outro momento'],c:0},
+      {w:'lead',t:'João, segunda às 10h'},
+      {w:'bot',t:'Registrado, Sr. João. O advogado entrará em contato na segunda às 10h. Recomendamos, ademais, buscar acompanhamento de saúde. À disposição.'}
+    ]}
+  };
+  const ORDER=['acolhedor','objetivo','educativo','formal'];
+  const chat=document.getElementById('bchat'),bst=document.getElementById('bst'),pills=document.getElementById('bpills'),bdesc=document.getElementById('bdesc');
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let token=0,current='acolhedor';
+  const tm=()=>{const d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');};
+  const wait=ms=>new Promise(r=>setTimeout(r,reduce?0:ms));
+  ORDER.forEach(k=>{const b=document.createElement('button');b.className='pill';b.textContent=MODELS[k].nome;b.dataset.k=k;b.onclick=()=>play(k);pills.appendChild(b);});
+  function syncP(){document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('on',p.dataset.k===current));}
+  function bubble(w,t){const r=document.createElement('div');r.className='row '+(w==='bot'?'in':'out');r.innerHTML=`<div class="bub">${t}<span class="tmx">${tm()}</span></div>`;chat.appendChild(r);chat.scrollTop=chat.scrollHeight;}
+  function options(a,c){const wr=document.createElement('div');wr.className='opts';a.forEach((o,i)=>{const b=document.createElement('div');b.className='opt'+(i===c?' chosen':'');b.textContent=o;wr.appendChild(b);});chat.appendChild(wr);chat.scrollTop=chat.scrollHeight;}
+  async function typing(my){const r=document.createElement('div');r.className='row in';r.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';chat.appendChild(r);chat.scrollTop=chat.scrollHeight;bst.textContent='digitando…';await wait(700);r.remove();bst.textContent='online';}
+  async function play(k){const my=++token;current=k;syncP();bdesc.textContent=MODELS[k].tom;chat.innerHTML='';
+    for(const s of MODELS[k].steps){if(my!==token)return;
+      if(s.w==='bot'){await typing(my);if(my!==token)return;bubble('bot',s.t);await wait(540);}
+      else if(s.w==='lead'){await wait(340);if(my!==token)return;bubble('lead',s.t);await wait(380);}
+      else{await wait(240);if(my!==token)return;options(s.o,s.c);await wait(540);if(my!==token)return;bubble('lead',s.o[s.c]);await wait(320);}
+    }}
+  document.getElementById('breplay').onclick=()=>play(current);
+  play('acolhedor');
+})();
+</script>
+</body>
+</html>

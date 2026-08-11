@@ -1,0 +1,8 @@
+node_modules/
+.env
+clientes/
+*.zip
+index.html
+index_clean.html
+assets/
+_extracted_*.html

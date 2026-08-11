@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A pirâmide — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --amber:#E3A53C;
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:900px;margin:0 auto;padding:48px 24px 80px}
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--certo);text-align:center}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;line-height:1.05;margin:14px auto 0;text-align:center;max-width:16ch}
+  .thesis{font-size:clamp(15px,2.2vw,18px);color:var(--muted);max-width:36em;margin:18px auto 0;text-align:center}
+  .thesis b{color:var(--text);font-weight:500}
+
+  /* pyramid */
+  .pyr{margin:48px auto 0;display:flex;flex-direction:column;align-items:center;position:relative}
+  .srcglow{position:absolute;top:-30px;width:340px;height:120px;background:radial-gradient(ellipse at center,rgba(52,201,139,.16),transparent 70%);pointer-events:none}
+  .layer{position:relative;z-index:1;border-radius:14px;padding:20px 26px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .l1{width:min(460px,92%);background:linear-gradient(180deg,rgba(52,201,139,.16),rgba(52,201,139,.07));border:1px solid rgba(52,201,139,.45)}
+  .l2{width:min(660px,98%);background:var(--bg2);border:1px solid var(--line2);border-top:2px solid var(--steel)}
+  .l3{width:min(860px,100%);background:var(--bg2);border:1px solid var(--line)}
+  .ltag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+  .l1 .ltag{color:var(--certo)}.l2 .ltag{color:var(--steel)}.l3 .ltag{color:var(--faint)}
+  .ltitle{font-family:var(--display);font-weight:600;font-size:clamp(18px,2.6vw,23px);letter-spacing:-.01em}
+  .lsub{font-size:13px;color:var(--muted);margin-top:6px;max-width:40ch}
+  .arrow{z-index:1;color:var(--certo);font-size:17px;margin:7px 0;opacity:.8}
+
+  /* layer 3 chips */
+  .l3chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:13px}
+  .l3chips span{font-size:12px;color:var(--muted);background:var(--bg3);border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+
+  /* explanation cards */
+  .ex{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:54px}
+  .exc{background:var(--bg2);border:1px solid var(--line);border-radius:15px;padding:20px 21px}
+  .exc.c1{border-top:2px solid var(--certo)}.exc.c2{border-top:2px solid var(--steel)}.exc.c3{border-top:2px solid var(--faint)}
+  .exc .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .exc h3{font-size:16px;font-weight:600;margin:7px 0 8px}
+  .exc p{font-size:13.3px;color:var(--muted);margin:0;line-height:1.5}
+
+  .insight{margin-top:34px;background:rgba(52,201,139,.05);border:1px solid var(--line);border-left:2px solid var(--certo);border-radius:14px;padding:22px 26px;text-align:center}
+  .insight p{margin:0;font-size:clamp(16px,2.4vw,20px);color:var(--text);line-height:1.4}
+  .insight b{color:var(--certo);font-weight:600}
+  .insight .sm{font-size:13px;color:var(--muted);margin-top:10px;display:block}
+
+  @media (max-width:680px){.ex{grid-template-columns:1fr}.layer{padding:17px 18px}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">O modelo</div>
+  <h1>Tudo nasce de um lugar só</h1>
+  <p class="thesis">O conhecimento de ludopatia é a fonte. Cada solução desce dele — e é isso que faz cada ferramenta ser <b>especialista</b>, não genérica.</p>
+
+  <div class="pyr">
+    <div class="srcglow" aria-hidden="true"></div>
+
+    <div class="layer l1">
+      <div class="ltag">a fonte</div>
+      <div class="ltitle">Conhecimento de ludopatia</div>
+      <div class="lsub">Teses, jurisprudência e os padrões de quem vive a ludopatia.</div>
+    </div>
+
+    <div class="arrow" aria-hidden="true">↓</div>
+
+    <div class="layer l2">
+      <div class="ltag">transforma</div>
+      <div class="ltitle">Inteligência de IA</div>
+      <div class="lsub">Os agentes pegam esse conhecimento e o tornam útil: o Radar mantém vivo, o preparador aplica ao caso de cada cliente.</div>
+    </div>
+
+    <div class="arrow" aria-hidden="true">↓</div>
+
+    <div class="layer l3">
+      <div class="ltag">entrega ao cliente final</div>
+      <div class="ltitle">As soluções</div>
+      <div class="lsub">Onde o conhecimento encosta no mundo real — cada ferramenta já fala a língua do cliente ludopata.</div>
+      <div class="l3chips">
+        <span>Chatbot com tons de ludopata</span>
+        <span>Criativos que captam vítima de aposta</span>
+        <span>Landing page</span>
+        <span>Blindagem OAB</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="exc c1">
+      <div class="n">topo</div>
+      <h3>Conhecimento</h3>
+      <p>A internet tem isso cru e espalhado. Aqui é organizado, verificado e vivo. É o que você sabe que o concorrente genérico não sabe.</p>
+    </div>
+    <div class="exc c2">
+      <div class="n">meio</div>
+      <h3>Inteligência</h3>
+      <p>A IA não inventa: ela é alimentada pelas teses de ludopatia. Por isso o radar vigia essa jurisprudência e o preparador monta o dossiê certo.</p>
+    </div>
+    <div class="exc c3">
+      <div class="n">base</div>
+      <h3>Soluções</h3>
+      <p>Mesmas ferramentas que todo mundo tem — mas as suas já vêm pensadas pro cliente ludopata. O nicho está dentro de cada uma.</p>
+    </div>
+  </div>
+
+  <div class="insight">
+    <p>O nicho não é o mercado lá fora. É o <b>ingrediente dentro do produto</b>.</p>
+    <span class="sm">Empresas de automação vendem a base vazia. Você vende a pirâmide inteira — com o topo que ninguém tem.</span>
+  </div>
+
+</div>
+</body>
+</html>

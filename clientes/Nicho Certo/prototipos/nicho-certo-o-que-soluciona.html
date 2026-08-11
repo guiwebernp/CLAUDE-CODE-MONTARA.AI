@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O que você soluciona para o advogado — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --red:#E8806B; --red-fill:rgba(232,128,107,.1);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:900px;margin:0 auto;padding:36px 22px 80px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo)}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(32px,5.5vw,52px);letter-spacing:-.02em;margin:14px 0 0;line-height:1.0}
+  .thesis{font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:32em;margin:18px 0 0}
+  .thesis b{color:var(--text);font-weight:500}
+
+  /* transform band */
+  .band{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:14px;margin:40px 0 8px}
+  .state{border-radius:16px;padding:22px 24px}
+  .state.from{background:var(--red-fill);border:1px solid rgba(232,128,107,.25)}
+  .state.to{background:var(--certo-fill);border:1px solid rgba(52,201,139,.3)}
+  .state .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}
+  .state.from .lbl{color:var(--red)}.state.to .lbl{color:var(--certo)}
+  .state p{margin:0;font-size:14.5px;color:var(--text);line-height:1.5}
+  .arrow{display:flex;align-items:center;color:var(--faint);font-size:26px}
+
+  .sec{margin-top:50px}
+  .shead{font-family:var(--display);font-weight:500;font-size:24px;margin:0 0 6px;letter-spacing:-.01em}
+  .slead{color:var(--muted);font-size:14.5px;margin:0 0 24px}
+
+  .pain{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--bg2);border:1px solid var(--line);border-radius:15px;overflow:hidden;margin-bottom:12px}
+  .pleft{padding:19px 22px;border-right:1px solid var(--line);position:relative}
+  .pleft::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:2px;background:var(--red);opacity:.55}
+  .pq{font-size:14.5px;color:var(--text);font-style:italic;line-height:1.5}
+  .pk{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+  .pright{padding:19px 22px;display:flex;flex-direction:column}
+  .psol{font-size:14.5px;color:var(--text);line-height:1.5}
+  .pmod{margin-top:auto;padding-top:12px}
+  .pmod span{font-family:var(--mono);font-size:11px;color:var(--certo);background:var(--certo-fill);padding:5px 10px;border-radius:7px}
+
+  .close{margin-top:46px;background:var(--bg2);border:1px solid var(--line2);border-radius:18px;padding:30px 32px;text-align:center}
+  .close h2{font-family:var(--display);font-weight:500;font-size:clamp(22px,3.5vw,30px);letter-spacing:-.01em;margin:0;line-height:1.25}
+  .close h2 b{color:var(--certo);font-weight:600}
+  .close p{color:var(--muted);font-size:14px;margin:14px auto 0;max-width:34em}
+
+  @media (max-width:680px){
+    .band{grid-template-columns:1fr;}
+    .arrow{transform:rotate(90deg);justify-content:center;padding:2px 0}
+    .pain{grid-template-columns:1fr}
+    .pleft{border-right:0;border-bottom:1px solid var(--line)}
+  }
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Nicho Certo · a tese</div>
+  <h1>O que você soluciona para o advogado</h1>
+  <p class="thesis">Ele vê que ludopatia é oportunidade, mas <b>não tem como entrar</b>. Você entrega a operação inteira, pronta pra rodar.</p>
+
+  <div class="band">
+    <div class="state from">
+      <div class="lbl">antes de você</div>
+      <p>Advogado parado fora do nicho: sem conhecer a tese, sem máquina de captação e com medo de cruzar a linha da OAB.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="state to">
+      <div class="lbl">com o Nicho Certo</div>
+      <p>Operação de ludopatia rodando: captando clientes, com a tese pronta e dentro das regras — sem ele ter montado nada.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2 class="shead">As dores que você resolve</h2>
+    <p class="slead">Cada dor do advogado tem um módulo do produto como resposta. É isso que você mostra na call.</p>
+
+    <div class="pain">
+      <div class="pleft"><div class="pk">a dor</div><p class="pq">"Nem sabia que dava pra atuar nisso. Não conheço esse nicho."</p></div>
+      <div class="pright"><p class="psol">Você entrega o nicho mastigado: a oportunidade, como funciona e por onde começar.</p><div class="pmod"><span>Nicho + base jurídica</span></div></div>
+    </div>
+
+    <div class="pain">
+      <div class="pleft"><div class="pk">a dor</div><p class="pq">"Não sei conseguir cliente — e morro de medo de fazer algo errado com a OAB."</p></div>
+      <div class="pright"><p class="psol">Máquina de captação ética e pronta: landing page, criativos e tráfego, já dentro das regras.</p><div class="pmod"><span>Comercial + Compliance</span></div></div>
+    </div>
+
+    <div class="pain">
+      <div class="pleft"><div class="pk">a dor</div><p class="pq">"É assunto novo, não domino a tese pra sustentar o caso."</p></div>
+      <div class="pright"><p class="psol">Teses prontas e já vencendo nos tribunais, com o que provar e os contra-argumentos.</p><div class="pmod"><span>Kit de teses</span></div></div>
+    </div>
+
+    <div class="pain">
+      <div class="pleft"><div class="pk">a dor</div><p class="pq">"A jurisprudência muda toda hora e eu não consigo acompanhar."</p></div>
+      <div class="pright"><p class="psol">O Radar atualiza as decisões toda semana — a tese dele nunca fica desatualizada.</p><div class="pmod"><span>Radar de jurisprudência</span></div></div>
+    </div>
+
+    <div class="pain">
+      <div class="pleft"><div class="pk">a dor</div><p class="pq">"Não tenho tempo nem estrutura pra montar tudo isso e ainda atender."</p></div>
+      <div class="pright"><p class="psol">O bot capta e tria os clientes, e o setup é feito por você. Ele só recebe o caso pronto.</p><div class="pmod"><span>Operacional + onboarding</span></div></div>
+    </div>
+
+  </div>
+
+  <div class="close">
+    <h2>Você não vende um serviço.<br>Vende uma <b>operação pronta pra rodar</b>.</h2>
+    <p>O advogado não monta nada. Ele liga a chave — e a blindagem da OAB já vem dentro.</p>
+  </div>
+
+</div>
+</body>
+</html>

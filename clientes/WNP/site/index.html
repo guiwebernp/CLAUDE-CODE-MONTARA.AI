@@ -21,7 +21,7 @@
 
 <!-- NAV -->
 <header class="nav" id="nav">
-  <span class="logo"><span class="logo__mark">WNP</span></span>
+  <span class="logo"><img class="logo__img" src="assets/logo-wnp-mark-dark.png" alt="WNP"></span>
 
   <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
     <span class="icon" data-icon="menu"></span>
@@ -30,12 +30,13 @@
   <div class="nav__menu">
     <ul class="nav__links">
       <li><a href="#pilares" data-goto="#pilares">Serviços</a></li>
+      <li><a href="#produtos" data-goto="#produtos">Produtos</a></li>
       <li><a href="#por-que" data-goto="#por-que">Soluções</a></li>
       <li><a href="#sobre" data-goto="#sobre">Sobre</a></li>
       <li><a href="#cta" data-goto="#cta">Contato</a></li>
     </ul>
 
-    <button class="btn btn--outline btn--sm nav__cta" data-open-dialog>
+    <button class="btn btn--outline-mint btn--sm nav__cta" data-open-dialog>
       Falar com especialista
       <span class="icon" data-icon="arrow-right"></span>
     </button>
@@ -68,8 +69,11 @@
 
     <div class="logo-wall">
       <span class="logo-wall__label">Empresas que confiam</span>
-      <div class="logo-wall__items">
-        <span>RDO</span><span>PLOTHOUSE</span><span>SCHAEFER</span><span>KINUCA</span><span>OMNI</span>
+      <div class="logo-wall__marquee">
+        <div class="logo-wall__track">
+          <span>RDO</span><span>PLOTHOUSE</span><span>SCHAEFER</span><span>KINUCA</span><span>OMNI</span>
+          <span>RDO</span><span>PLOTHOUSE</span><span>SCHAEFER</span><span>KINUCA</span><span>OMNI</span>
+        </div>
       </div>
     </div>
   </div>
@@ -145,6 +149,21 @@
         <button class="arrow-link" data-goto="#cta">Quero mais eficiência <span class="icon" data-icon="arrow-right"></span></button>
       </div>
     </article>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section class="container" id="produtos">
+  <div class="section-label section-label--rule" style="margin-bottom:28px">
+    <span class="section-label__text">Produtos</span>
+    <span class="section-label__rule"></span>
+  </div>
+  <div class="products-grid">
+    <div class="product-item"><span class="icon icon--accent" data-icon="circle-check"></span>Criação de Sites e LPs</div>
+    <div class="product-item"><span class="icon icon--accent" data-icon="circle-check"></span>Posicionamento (SEO)</div>
+    <div class="product-item"><span class="icon icon--accent" data-icon="circle-check"></span>Tráfego Pago</div>
+    <div class="product-item"><span class="icon icon--accent" data-icon="circle-check"></span>Sistemas com IA</div>
+    <div class="product-item"><span class="icon icon--accent" data-icon="circle-check"></span>Automações</div>
   </div>
 </section>
 
@@ -233,7 +252,7 @@
 <!-- SOBRE / FUNDADOR -->
 <section class="container" id="sobre">
   <div class="card founder-card" style="padding:26px">
-    <img class="founder-card__portrait" src="assets/portrait-founder.png" alt="Guilherme Weber">
+    <img class="founder-card__portrait" src="assets/portrait-founder.jpeg" alt="Guilherme Weber">
     <div class="founder-card__bio">
       <h2>Estratégia, design<br>e tecnologia<br>com <span class="mint">propósito.</span></h2>
       <p>Sou Guilherme Weber, especialista em comunicação visual e automações com IA.</p>
@@ -273,7 +292,7 @@
 <footer class="footer">
   <div class="footer__grid">
     <div class="footer__brand">
-      <span class="logo logo--light"><span class="logo__mark">WNP</span><span class="logo__tagline">Comunicação Visual</span></span>
+      <span class="logo logo--light"><img class="logo__img logo__img--lg" src="assets/logo-wnp-mark-dark.png" alt="WNP"><span class="logo__tagline">Comunicação Visual</span></span>
       <p class="footer__legal">© 2026 WNP Comunicação Visual
 Todos os direitos reservados.</p>
       <div class="footer__social">

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicho Certo — central do projeto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-deep:#1F7A56; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  a{color:inherit}
+
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:206px 1fr;gap:40px}
+
+  /* ---- side nav ---- */
+  nav{position:sticky;top:0;align-self:start;height:100vh;padding:38px 0;display:flex;flex-direction:column;gap:2px}
+  .brandmark{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--certo);margin-bottom:26px}
+  nav a{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:14px;transition:color .15s,background .15s}
+  nav a .ix{font-family:var(--mono);font-size:11px;color:var(--faint);transition:color .15s}
+  nav a:hover{color:var(--text);background:var(--bg2)}
+  nav a.on{color:var(--text);background:var(--bg2)}
+  nav a.on .ix{color:var(--certo)}
+  .navfoot{margin-top:auto;font-size:12px;color:var(--faint);padding:12px;line-height:1.5}
+
+  main{padding:38px 0 96px;min-width:0}
+
+  /* ---- hero ---- */
+  .hero{position:relative;padding:30px 0 40px;border-bottom:1px solid var(--line);margin-bottom:48px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(42px,7vw,72px);line-height:.98;margin:14px 0 0;letter-spacing:-.02em}
+  .thesis{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:30em;margin:18px 0 0;font-weight:400}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .chip{font-family:var(--mono);font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--line2);color:var(--muted)}
+  .chip.go{color:var(--certo);border-color:rgba(52,201,139,.4);background:var(--certo-fill)}
+
+  .radar{position:absolute;top:30px;right:0;width:128px;height:128px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle,var(--bg2),var(--bg))}
+  .radar::before,.radar::after{content:"";position:absolute;border:1px solid var(--line);border-radius:50%}
+  .radar::before{width:84px;height:84px}.radar::after{width:42px;height:42px}
+  .radar .sweep{position:absolute;width:100%;height:100%;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(52,201,139,.32) 40deg,transparent 70deg);animation:spin 4s linear infinite}
+  .radar .dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--certo);box-shadow:0 0 10px var(--certo);top:34px;right:38px;animation:blip 4s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes blip{0%,55%{opacity:0}60%{opacity:1}100%{opacity:0}}
+
+  /* ---- sections ---- */
+  section{margin-bottom:64px;scroll-margin-top:38px}
+  .shead{display:flex;align-items:baseline;gap:14px;margin-bottom:24px}
+  .shead .num{font-family:var(--mono);font-size:12px;color:var(--certo)}
+  .shead h2{font-family:var(--display);font-weight:500;font-size:27px;margin:0;letter-spacing:-.01em}
+  p.lead{color:var(--muted);max-width:46em;margin:0 0 24px}
+
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .card h3{font-size:16px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+  .card p{font-size:14px;color:var(--muted);margin:0}
+  .card .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0 0 10px}
+
+  /* overview */
+  .ov{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .ov .card .v{font-size:15px;color:var(--text);margin-top:4px}
+
+  /* arch cards with accent */
+  .arch .card{border-left:2px solid var(--steel)}
+  .arch .card.radar-cat{border-left-color:var(--certo)}
+
+  /* tiers */
+  .tier{position:relative}
+  .tier .price{font-family:var(--display);font-size:24px;font-weight:500;margin:2px 0 14px;color:var(--text)}
+  .tier ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+  .tier li{font-size:14px;color:var(--muted);display:flex;gap:9px;align-items:flex-start}
+  .tier li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--steel);margin-top:8px;flex:none}
+  .tier.mid{border-color:rgba(52,201,139,.45)}
+  .tier.mid li::before{background:var(--certo)}
+
+  /* deliverables */
+  .rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;background:var(--bg2)}
+  .row+.row{border-top:1px solid var(--line)}
+  .row .name{font-size:15px}
+  .row .name small{display:block;color:var(--faint);font-size:12.5px;margin-top:2px}
+  .st{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;padding:5px 11px;border-radius:999px;white-space:nowrap}
+  .st.done{color:var(--certo);background:var(--certo-fill)}
+  .st.gap{color:var(--amber);background:var(--amber-fill)}
+
+  /* roadmap */
+  .road{counter-reset:step;display:flex;flex-direction:column;gap:0}
+  .step{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:0}
+  .step .n{counter-increment:step;font-family:var(--mono);font-size:13px;color:var(--certo);flex:none;width:28px;padding-top:2px}
+  .step .n::before{content:counter(step,decimal-leading-zero)}
+  .step .t{font-size:15px}
+  .step .t small{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}
+
+  /* compliance rail */
+  .rail{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--amber);border-radius:14px;padding:8px 22px}
+  .rail .item{padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px;display:flex;gap:11px;align-items:flex-start}
+  .rail .item:last-child{border-bottom:0}
+  .rail .item b{color:var(--text);font-weight:600}
+  .rail .item .mk{color:var(--amber);font-family:var(--mono);font-size:12px;margin-top:3px;flex:none}
+
+  /* open questions */
+  .open .card{border-left:2px solid var(--amber);background:var(--bg2)}
+  .open .card h3{font-size:15px}
+
+  footer{border-top:1px solid var(--line);padding-top:24px;color:var(--faint);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr;gap:0}
+    nav{position:static;height:auto;flex-direction:row;flex-wrap:wrap;padding:24px 0 10px;gap:4px}
+    .brandmark{width:100%;margin-bottom:8px}
+    nav a{padding:6px 10px;font-size:13px}
+    nav a .ix{display:none}.navfoot{display:none}
+    .radar{position:static;margin:0 0 18px}
+    .hero{padding-top:8px}
+    .ov,.g2,.g3{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){.radar .sweep,.radar .dot{animation:none}.radar .sweep{background:none}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav aria-label="Seções do projeto">
+    <div class="brandmark">Nicho Certo</div>
+    <a href="#visao" class="on"><span class="ix">01</span> Visão geral</a>
+    <a href="#arquitetura"><span class="ix">02</span> Arquitetura</a>
+    <a href="#tiers"><span class="ix">03</span> Tiers</a>
+    <a href="#entregaveis"><span class="ix">04</span> Entregáveis</a>
+    <a href="#roadmap"><span class="ix">05</span> Roadmap</a>
+    <a href="#compliance"><span class="ix">06</span> Compliance</a>
+    <a href="#aberto"><span class="ix">07</span> Em aberto</a>
+    <div class="navfoot">Produto B2B · niche ludopatia<br>Projeto separado: Escritório piloto</div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="radar" aria-hidden="true"><div class="sweep"></div><div class="dot"></div></div>
+      <div class="eyebrow">Central do projeto</div>
+      <h1>Nicho Certo</h1>
+      <p class="thesis">Sistema turnkey de captação e gestão de casos de ludopatia, vendido a advogados.</p>
+      <div class="chips">
+        <span class="chip go">Pronto para vender</span>
+        <span class="chip">Produto B2B</span>
+        <span class="chip">Eu = marketing + software, não advogado</span>
+      </div>
+    </header>
+
+    <section id="visao">
+      <div class="shead"><span class="num">01</span><h2>Visão geral</h2></div>
+      <p class="lead">O produto entrega a um advogado a infraestrutura pronta para atuar no nicho de ludopatia: captação, gestão e blindagem ética — sem ele precisar montar nada do zero.</p>
+      <div class="ov">
+        <div class="card"><p class="kicker">O que é</p><p class="v">Infraestrutura turnkey de aquisição + gestão de casos de ludopatia, em camadas.</p></div>
+        <div class="card"><p class="kicker">Quem compra</p><p class="v">Advogados e escritórios. O advogado é o anunciante responsável perante a OAB.</p></div>
+        <div class="card"><p class="kicker">Meu papel</p><p class="v">Fornecedor de software e serviço de marketing. Nunca redijo petição.</p></div>
+        <div class="card"><p class="kicker">Modelo de receita</p><p class="v">Assinatura fixa por tier — nunca por cliente captado.</p></div>
+      </div>
+    </section>
+
+    <section id="arquitetura">
+      <div class="shead"><span class="num">02</span><h2>Arquitetura do produto</h2></div>
+      <p class="lead">Cinco camadas. As descrições abaixo são o entendimento atual — ajuste o conteúdo fino de cada uma conforme for fechando os tiers.</p>
+      <div class="grid g2 arch">
+        <div class="card"><h3>Comercial</h3><p>Motor de captação para o advogado: landing page, criativos, anúncios e funil de entrada.</p></div>
+        <div class="card"><h3>Jurídica</h3><p>Base de teses e modelos para os casos de ludopatia (nulidade Lei 14.790 art. 26 VI + dever de cuidado via CDC).</p></div>
+        <div class="card radar-cat"><h3>Radar de jurisprudência viva</h3><p>Monitoramento de decisões novas dos tribunais para manter as teses sempre atualizadas. É o diferencial do produto.</p></div>
+        <div class="card"><h3>Operacional</h3><p>Gestão de casos e atendimento: fluxo de WhatsApp, bot e triagem dos leads que chegam.</p></div>
+        <div class="card"><h3>Compliance</h3><p>Blindagem ética inclusa: limites da OAB embutidos no sistema. Posicionado como "blindagem inclusa", não como risco.</p></div>
+      </div>
+    </section>
+
+    <section id="tiers">
+      <div class="shead"><span class="num">03</span><h2>Tiers de preço</h2></div>
+      <p class="lead">Os nomes estão definidos. O conteúdo de cada tier e os preços ainda são rascunho — essa é a decisão mais importante em aberto antes de vender.</p>
+      <div class="grid g3">
+        <div class="card tier">
+          <h3>Essencial</h3>
+          <div class="price">a definir</div>
+          <ul>
+            <li>Camada Comercial (captação)</li>
+            <li>Base Jurídica essencial</li>
+            <li>Compliance básico</li>
+          </ul>
+        </div>
+        <div class="card tier mid">
+          <h3>Growth</h3>
+          <div class="price">a definir</div>
+          <ul>
+            <li>Tudo do Essencial</li>
+            <li>+ camada Operacional (bot, gestão)</li>
+            <li>+ Radar de jurisprudência</li>
+          </ul>
+        </div>
+        <div class="card tier">
+          <h3>Pro</h3>
+          <div class="price">a definir</div>
+          <ul>
+            <li>Tudo do Growth</li>
+            <li>+ Compliance reforçado</li>
+            <li>+ suporte / acompanhamento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="entregaveis">
+      <div class="shead"><span class="num">04</span><h2>Entregáveis</h2></div>
+      <p class="lead">Inventário do que já existe no projeto.</p>
+      <div class="rows">
+        <div class="row"><div class="name">Página de vendas B2B<small>oferta do sistema para advogados</small></div><span class="st done">pronto</span></div>
+        <div class="row"><div class="name">Kit de prospecção<small>mensagens + script de call</small></div><span class="st done">pronto</span></div>
+        <div class="row"><div class="name">Arquitetura do produto<small>5 categorias</small></div><span class="st done">pronto</span></div>
+        <div class="row"><div class="name">Guia de estratégia de tráfego<small>plano de aquisição</small></div><span class="st done">pronto</span></div>
+        <div class="row"><div class="name">Galeria de nomes<small>nome escolhido: Nicho Certo</small></div><span class="st done">decidido</span></div>
+        <div class="row"><div class="name">Tiers de preço<small>nomes definidos · conteúdo e preço pendentes</small></div><span class="st gap">a definir</span></div>
+        <div class="row"><div class="name">Oferta comercial formal<small>proposta / one-pager de venda</small></div><span class="st gap">a fazer</span></div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="shead"><span class="num">05</span><h2>Roadmap</h2></div>
+      <p class="lead">Caminho até os primeiros clientes. Esse projeto anda sozinho — não depende do sócio advogado.</p>
+      <div class="road">
+        <div class="step"><span class="n"></span><div class="t">Definir o que entra em cada tier + os preços<small>a decisão que destrava a venda</small></div></div>
+        <div class="step"><span class="n"></span><div class="t">Formalizar a oferta comercial<small>proposta clara do que o advogado recebe e por quanto</small></div></div>
+        <div class="step"><span class="n"></span><div class="t">Montar o roteiro de prospecção + lista de advogados-alvo<small>quem abordar e por qual canal</small></div></div>
+        <div class="step"><span class="n"></span><div class="t">Rodar a prospecção e fechar os primeiros clientes<small>validar a venda na prática</small></div></div>
+      </div>
+    </section>
+
+    <section id="compliance">
+      <div class="shead"><span class="num">06</span><h2>Trilhos de compliance</h2></div>
+      <p class="lead">A regra fixa do projeto: nenhuma decisão de marketing ou captação avança sem passar por aqui (Provimento 205/2021, Estatuto art. 34).</p>
+      <div class="rail">
+        <div class="item"><span class="mk">→</span><div><b>Anunciante é sempre o advogado.</b> Ele é o responsável perante a OAB, não eu.</div></div>
+        <div class="item"><span class="mk">→</span><div><b>Publicidade informativa e sóbria.</b> Sem promessa de resultado, sem abordar vítima direto (isso é captação).</div></div>
+        <div class="item"><span class="mk">→</span><div><b>Cobrança sempre fixa.</b> Nunca por cliente captado nem % sobre honorário (art. 34 IV).</div></div>
+        <div class="item"><span class="mk">→</span><div><b>Eu nunca redijo petição.</b> Seria exercício ilegal da advocacia.</div></div>
+        <div class="item"><span class="mk">→</span><div><b>"Blindagem inclusa" é o enquadramento.</b> Compliance vendido como recurso, não como aviso de risco.</div></div>
+      </div>
+    </section>
+
+    <section id="aberto">
+      <div class="shead"><span class="num">07</span><h2>Em aberto</h2></div>
+      <p class="lead">As decisões pendentes, reunidas. Resolver essas três libera a prospecção.</p>
+      <div class="grid g3 open">
+        <div class="card"><h3>Conteúdo + preço dos tiers</h3><p>O que cada tier inclui e quanto custa.</p></div>
+        <div class="card"><h3>Formato da oferta</h3><p>Como a proposta chega ao advogado (one-pager, página, call).</p></div>
+        <div class="card"><h3>Alvo + canal de prospecção</h3><p>Lista de advogados e por onde abordar.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Nicho Certo · central do projeto</span>
+      <span>Produto B2B — niche ludopatia</span>
+    </footer>
+  </main>
+</div>
+
+<script>
+  const links=[...document.querySelectorAll('nav a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('on'));map.get(e.target.id)?.classList.add('on');}});
+  },{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelos de fluxo conversando — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+    --wa-bg:#0B141A; --wa-head:#1F2C34; --wa-in:#1F2C34; --wa-out:#005C4B;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:760px;margin:0 auto;padding:32px 22px 70px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo)}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,4.5vw,40px);letter-spacing:-.01em;margin:12px 0 0}
+  .intro{color:var(--muted);max-width:40em;margin:11px 0 0;font-size:15px}
+
+  .sel{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 6px}
+  .pill{font-family:var(--body);font-size:14px;padding:9px 17px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer;transition:.15s}
+  .pill:hover{color:var(--text)}
+  .pill.on{background:var(--certo-fill);border-color:rgba(52,201,139,.5);color:var(--certo);font-weight:500}
+
+  .desc{font-size:13.5px;color:var(--muted);margin:14px 2px 20px;min-height:40px;max-width:42em}
+  .desc b{color:var(--text);font-weight:600}
+  .desc .tn{font-family:var(--mono);font-size:11.5px;color:var(--faint);display:block;margin-bottom:5px;letter-spacing:.04em}
+
+  .center{display:flex;flex-direction:column;align-items:center}
+  .phone{background:#000;border-radius:34px;padding:10px;box-shadow:0 30px 70px rgba(0,0,0,.5);border:1px solid #2a2a2a;width:330px;max-width:100%}
+  .screen{background:var(--wa-bg);border-radius:26px;overflow:hidden;height:580px;display:flex;flex-direction:column}
+  .wahead{background:var(--wa-head);padding:13px 15px;display:flex;align-items:center;gap:11px;flex:none}
+  .ava{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--certo),#1F7A56);display:grid;place-items:center;font-family:var(--display);font-weight:600;color:#06241a;font-size:15px;flex:none}
+  .wahead .nm{font-size:14.5px;font-weight:500;color:#E9EDEF}
+  .wahead .st{font-size:11.5px;color:#8696a0}
+  .chat{flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:7px}
+  .chat::-webkit-scrollbar{width:0}
+  .row{display:flex;max-width:100%}
+  .row.in{justify-content:flex-start}.row.out{justify-content:flex-end}
+  .bub{max-width:80%;padding:7px 10px 6px;border-radius:9px;font-size:13.3px;line-height:1.42;color:#E9EDEF;box-shadow:0 1px 1px rgba(0,0,0,.2);animation:pop .25s ease}
+  .in .bub{background:var(--wa-in);border-top-left-radius:2px}
+  .out .bub{background:var(--wa-out);border-top-right-radius:2px}
+  .bub .tm{font-size:9.5px;color:rgba(233,237,239,.5);float:right;margin:5px 0 -2px 8px}
+  @keyframes pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .opts{display:flex;flex-direction:column;gap:4px;margin-top:3px;max-width:80%;align-self:flex-start}
+  .opt{background:var(--wa-in);border-top:1px solid rgba(255,255,255,.05);border-radius:7px;text-align:center;padding:8px;font-size:12.8px;color:#53bdeb;animation:pop .25s ease}
+  .opt.chosen{color:#06241a;background:var(--certo);font-weight:500}
+  .typing{display:inline-flex;gap:3px;padding:10px 12px;background:var(--wa-in);border-radius:9px;border-top-left-radius:2px}
+  .typing i{width:6px;height:6px;border-radius:50%;background:#8696a0;animation:blink 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+  .replay{margin-top:16px;font-family:var(--body);font-size:13px;color:var(--certo);background:var(--certo-fill);border:1px solid rgba(52,201,139,.4);border-radius:999px;padding:9px 18px;cursor:pointer;transition:.15s}
+  .replay:hover{background:rgba(52,201,139,.2)}
+
+  .ethic{font-size:12px;color:var(--faint);text-align:center;margin-top:26px;max-width:40em;margin-left:auto;margin-right:auto;line-height:1.5}
+  @media (prefers-reduced-motion:reduce){.bub,.opt{animation:none}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:8px}
+  button{font-family:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Camada operacional · seletor de tom</div>
+  <h1>Cada modelo conversando</h1>
+  <p class="intro">Escolha um tom e veja a conversa rodar no celular — a mesma triagem, vozes diferentes. É assim que o advogado decide qual combina com ele.</p>
+
+  <div class="sel" id="sel"></div>
+  <div class="desc" id="desc"></div>
+
+  <div class="center">
+    <div class="phone">
+      <div class="screen">
+        <div class="wahead">
+          <div class="ava">NC</div>
+          <div><div class="nm">Escritório · Atendimento</div><div class="st" id="wast">online</div></div>
+        </div>
+        <div class="chat" id="chat"></div>
+      </div>
+    </div>
+    <button class="replay" id="replay">▶ reproduzir conversa</button>
+  </div>
+
+  <p class="ethic">Em todos os modelos a base é a mesma: sem promessa de resultado, o advogado é o anunciante, tom dentro das regras da OAB e apoio de saúde sempre sugerido. Só o tom muda.</p>
+</div>
+
+<script>
+  const MODELS={
+    acolhedor:{
+      nome:'Acolhedor', tom:'empático · humano',
+      who:'Para o advogado que quer uma marca próxima e cuidadosa, que faz a pessoa se sentir ouvida.',
+      steps:[
+        {who:'bot',t:'Oi! Que bom que você chegou até aqui. Vi que você fez o nosso teste sobre apostas — e sei que dar esse passo não é fácil. Pode falar comigo no seu tempo. 💚'},
+        {who:'lead',t:'obrigado'},
+        {who:'bot',t:'Antes de qualquer coisa jurídica, queria te entender um pouco. Como você está se sentindo com tudo isso hoje?'},
+        {who:'opts',o:['Sobrecarregado','Tentando me reerguer','Não sei bem'],c:1},
+        {who:'bot',t:'Isso já diz muito sobre você. Reconhecer e querer mudar costuma ser a parte mais difícil — e você já está aí. Há quanto tempo as apostas começaram a pesar na sua vida?'},
+        {who:'lead',t:'uns 2 anos'},
+        {who:'bot',t:'Entendo. Foram anos puxados, imagino. Sem entrar em nada que você não queira: isso afetou coisas importantes pra você — trabalho, família, as contas?'},
+        {who:'opts',o:['Sim, bastante','Um pouco','Prefiro não dizer'],c:0},
+        {who:'bot',t:'Sinto muito que tenha chegado nesse ponto. Você não está sozinho — e tem dois caminhos que andam juntos: cuidar de você e ver o que dá pra recuperar do lado financeiro.'},
+        {who:'bot',t:'No jurídico: em situações como a sua, existe base legal para discutir a devolução dos valores. Quem avalia o seu caso com calma é o advogado responsável, sem nenhum compromisso da sua parte agora.'},
+        {who:'bot',t:'E com a mesma importância: vale muito procurar um apoio de saúde para o vício. Não precisa carregar isso sozinho.'},
+        {who:'bot',t:'Quer que eu organize uma conversa com o advogado pra ele te ouvir e ver os próximos passos?'},
+        {who:'opts',o:['Quero','Preciso pensar'],c:0},
+        {who:'bot',t:'Combinado. Me diz seu nome e um bom horário, e ele te procura com calma.'},
+        {who:'lead',t:'João, fim da tarde'},
+        {who:'bot',t:'Obrigado por confiar, João. O advogado vai falar com você no fim da tarde. E cuide de você nesse meio tempo — você deu um passo importante hoje. 💚'}
+      ]
+    },
+    objetivo:{
+      nome:'Objetivo', tom:'direto · respeita o tempo',
+      who:'Para o advogado que quer eficiência e agenda cheia: vai direto ao ponto, sem rodeios e sem pressão.',
+      steps:[
+        {who:'bot',t:'Olá! Aqui é o atendimento do escritório. Você chegou pelo nosso conteúdo sobre apostas. Posso te ajudar em poucos minutos?'},
+        {who:'lead',t:'pode'},
+        {who:'bot',t:'Direto ao ponto: em casos de apostas ligadas à ludopatia, existe base jurídica para discutir a devolução de valores. O advogado avalia se o seu caso se encaixa.'},
+        {who:'bot',t:'Pra agilizar, me diz: as apostas chegaram a causar um prejuízo financeiro relevante pra você?'},
+        {who:'opts',o:['Sim','Um pouco','Prefiro não dizer'],c:0},
+        {who:'bot',t:'Certo. Já é o suficiente para uma primeira conversa. Quer que eu agende com o advogado?'},
+        {who:'opts',o:['Quero','Agora não'],c:0},
+        {who:'bot',t:'Fechado. Me passa seu nome e o melhor horário.'},
+        {who:'lead',t:'João, amanhã 14h'},
+        {who:'bot',t:'Anotado, João — amanhã às 14h o advogado te liga. E vale também buscar apoio de saúde pro vício. Cuide de você.'}
+      ]
+    },
+    educativo:{
+      nome:'Educativo', tom:'informa · gera autoridade',
+      who:'Para o advogado que quer construir confiança pela informação e receber leads mais maduros.',
+      steps:[
+        {who:'bot',t:'Olá! Você chegou aqui porque as apostas têm pesado, certo? Deixa eu te explicar uma coisa importante que muita gente não sabe.'},
+        {who:'lead',t:'ok'},
+        {who:'bot',t:'A lei das apostas (Lei 14.790/2023) considera que quem tem ludopatia está impedido de apostar. Na prática, isso abre caminho para discutir na Justiça a devolução dos valores.'},
+        {who:'bot',t:'Além disso, a plataforma tem o dever de informar e proteger o apostador. Quando ela falha nisso, também pode ser responsabilizada.'},
+        {who:'bot',t:'Importante: cada caso é avaliado individualmente pelo advogado — não é automático. Faz sentido até aqui?'},
+        {who:'opts',o:['Faz sentido','Tenho dúvidas'],c:0},
+        {who:'bot',t:'Ótimo. Se quiser, o advogado pode olhar a sua situação e te dizer os caminhos possíveis. Quer agendar?'},
+        {who:'opts',o:['Quero','Vou pensar'],c:0},
+        {who:'bot',t:'Perfeito. Me passa seu nome e um horário bom.'},
+        {who:'lead',t:'João, sexta de manhã'},
+        {who:'bot',t:'Combinado, João. O advogado fala com você sexta de manhã. E lembre: vale também cuidar da saúde nesse processo — procurar apoio faz diferença.'}
+      ]
+    },
+    formal:{
+      nome:'Formal', tom:'institucional · sóbrio',
+      who:'Para o escritório mais tradicional, que preza por um tom profissional, discreto e institucional.',
+      steps:[
+        {who:'bot',t:'Olá. Aqui é o atendimento do escritório. Agradecemos o seu contato.'},
+        {who:'lead',t:'olá'},
+        {who:'bot',t:'Identificamos que a sua procura se relaciona a perdas em plataformas de apostas. Informamos que há fundamento jurídico para discutir a restituição de valores em casos dessa natureza.'},
+        {who:'bot',t:'A análise é conduzida individualmente pelo advogado responsável, conforme as particularidades do seu caso.'},
+        {who:'bot',t:'Podemos agendar uma conversa para avaliar a sua situação?'},
+        {who:'opts',o:['Sim, podemos','Em outro momento'],c:0},
+        {who:'bot',t:'Perfeito. Por gentileza, informe seu nome e um horário de preferência.'},
+        {who:'lead',t:'João, segunda às 10h'},
+        {who:'bot',t:'Registrado, Sr. João. O advogado entrará em contato na segunda às 10h. Recomendamos, ademais, buscar acompanhamento de saúde especializado. Permanecemos à disposição.'}
+      ]
+    }
+  };
+
+  const ORDER=['acolhedor','objetivo','educativo','formal'];
+  const chat=document.getElementById('chat');
+  const wast=document.getElementById('wast');
+  const sel=document.getElementById('sel');
+  const desc=document.getElementById('desc');
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let token=0, current='acolhedor';
+
+  const tm=()=>{const d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');};
+  const wait=ms=>new Promise(r=>setTimeout(r,reduce?0:ms));
+
+  ORDER.forEach(k=>{
+    const b=document.createElement('button');b.className='pill';b.textContent=MODELS[k].nome;b.dataset.k=k;
+    b.onclick=()=>{current=k;syncPills();play(k);};
+    sel.appendChild(b);
+  });
+  function syncPills(){document.querySelectorAll('.pill').forEach(p=>p.classList.toggle('on',p.dataset.k===current));}
+  function syncDesc(k){desc.innerHTML=`<span class="tn">${MODELS[k].tom}</span><b>${MODELS[k].nome}.</b> ${MODELS[k].who}`;}
+
+  function bubble(who,text){
+    const row=document.createElement('div');row.className='row '+(who==='bot'?'in':'out');
+    row.innerHTML=`<div class="bub">${text}<span class="tm">${tm()}</span></div>`;
+    chat.appendChild(row);chat.scrollTop=chat.scrollHeight;
+  }
+  function options(arr,chosen){
+    const wrap=document.createElement('div');wrap.className='opts';
+    arr.forEach((o,i)=>{const b=document.createElement('div');b.className='opt'+(i===chosen?' chosen':'');b.textContent=o;wrap.appendChild(b);});
+    chat.appendChild(wrap);chat.scrollTop=chat.scrollHeight;
+  }
+  async function typing(my){
+    const row=document.createElement('div');row.className='row in';
+    row.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';
+    chat.appendChild(row);chat.scrollTop=chat.scrollHeight;wast.textContent='digitando…';
+    await wait(720);if(my!==token){row.remove();return;}row.remove();wast.textContent='online';
+  }
+  async function play(k){
+    const my=++token;current=k;syncPills();syncDesc(k);chat.innerHTML='';
+    for(const s of MODELS[k].steps){
+      if(my!==token)return;
+      if(s.who==='bot'){await typing(my);if(my!==token)return;bubble('bot',s.t);await wait(580);}
+      else if(s.who==='lead'){await wait(360);if(my!==token)return;bubble('lead',s.t);await wait(400);}
+      else if(s.who==='opts'){await wait(250);if(my!==token)return;options(s.o,s.c);await wait(560);if(my!==token)return;bubble('lead',s.o[s.c]);await wait(340);}
+    }
+  }
+  document.getElementById('replay').onclick=()=>play(current);
+  play('acolhedor');
+</script>
+</body>
+</html>

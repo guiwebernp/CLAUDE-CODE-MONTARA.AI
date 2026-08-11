@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca de modelos de fluxo — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+    --wa-in:#1F2C34;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:940px;margin:0 auto;padding:34px 22px 80px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo)}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:13px 0 0}
+  .intro{color:var(--muted);max-width:40em;margin:14px 0 0;font-size:16px}
+
+  .ethic{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--certo);border-radius:13px;padding:15px 18px;margin:28px 0 26px}
+  .ethic .ic{width:32px;height:32px;border-radius:8px;background:var(--certo-fill);display:grid;place-items:center;color:var(--certo);font-size:17px;flex:none}
+  .ethic p{margin:0;font-size:13.5px;color:var(--muted)}
+  .ethic b{color:var(--text);font-weight:600}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;display:flex;flex-direction:column}
+  .card.ready{border-top:2px solid var(--certo)}
+  .ctop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:3px}
+  .cname{font-family:var(--display);font-weight:500;font-size:22px;letter-spacing:-.01em}
+  .tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--certo);background:var(--certo-fill);padding:4px 8px;border-radius:6px}
+  .tone{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-bottom:14px}
+  .who{font-size:14px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+  .bub{background:var(--wa-in);border-radius:11px;border-top-left-radius:3px;padding:11px 13px;font-size:13.3px;line-height:1.45;color:#E9EDEF;margin-top:auto}
+  .bub .lbl{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+
+  .cut{margin-top:26px;background:rgba(227,165,60,.06);border:1px solid rgba(227,165,60,.25);border-radius:14px;padding:20px 24px}
+  .cut h3{font-size:15px;margin:0 0 7px;color:var(--amber);display:flex;align-items:center;gap:8px}
+  .cut p{margin:0;font-size:13.5px;color:var(--muted);max-width:54em}
+
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:20px;color:var(--faint);font-size:12.5px}
+
+  @media (max-width:720px){.grid{grid-template-columns:1fr}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Camada operacional · produto modular</div>
+  <h1>Biblioteca de modelos de fluxo</h1>
+  <p class="intro">O advogado não recebe um bot genérico. Ele escolhe o tom que combina com a marca dele — e o fluxo é montado em cima do modelo escolhido.</p>
+
+  <div class="ethic">
+    <div class="ic">🔒</div>
+    <p><b>A ética é fixa em todos os modelos:</b> sem promessa de resultado, o advogado é o anunciante, tom sóbrio e apoio de saúde sempre sugerido. O que o advogado personaliza é o tom — nunca a linha que não se cruza.</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card ready">
+      <div class="ctop"><span class="cname">Acolhedor</span><span class="tag">pronto</span></div>
+      <div class="tone">empático · humano</div>
+      <p class="who">Para o advogado que quer uma marca próxima e cuidadosa, que faz a pessoa se sentir ouvida antes de qualquer coisa.</p>
+      <div class="bub"><span class="lbl">abertura</span>"Oi! Que bom que você chegou até aqui. Sei que dar esse passo não é fácil — pode falar comigo no seu tempo. 💚"</div>
+    </div>
+
+    <div class="card">
+      <div class="ctop"><span class="cname">Objetivo</span></div>
+      <div class="tone">direto · respeita o tempo</div>
+      <p class="who">Para o advogado que quer eficiência e agenda cheia: vai direto ao ponto, sem rodeios e sem pressão.</p>
+      <div class="bub"><span class="lbl">abertura</span>"Olá! Posso te ajudar a entender se o seu caso tem base para discutir a devolução de valores. Quer agendar uma conversa com o advogado?"</div>
+    </div>
+
+    <div class="card">
+      <div class="ctop"><span class="cname">Educativo</span></div>
+      <div class="tone">informa · gera autoridade</div>
+      <p class="who">Para o advogado que quer construir confiança pela informação e receber leads mais maduros e conscientes.</p>
+      <div class="bub"><span class="lbl">abertura</span>"Olá! Você sabia que apostas feitas por quem tem ludopatia podem ser questionadas na Justiça? Posso te explicar como funciona?"</div>
+    </div>
+
+    <div class="card">
+      <div class="ctop"><span class="cname">Formal</span></div>
+      <div class="tone">institucional · sóbrio</div>
+      <p class="who">Para o escritório mais tradicional, que preza por um tom profissional, discreto e institucional.</p>
+      <div class="bub"><span class="lbl">abertura</span>"Olá. Aqui é o atendimento do escritório. Podemos conversar sobre a sua situação e os caminhos jurídicos disponíveis?"</div>
+    </div>
+
+  </div>
+
+  <div class="cut">
+    <h3>⚠ Um modelo que não entra na biblioteca</h3>
+    <p>O fluxo "agressivo" fica de fora de propósito. O público é uma pessoa vulnerável, em sofrimento financeiro e emocional — abordagem agressiva aqui é captação vedada pela OAB e exploração da fragilidade. Vender isso seria empurrar um passivo para dentro do escritório do advogado, o oposto da blindagem que o produto promete.</p>
+  </div>
+
+  <footer>
+    Cada modelo é montado sobre a mesma base de compliance. O tom é do advogado; a segurança é do sistema.
+  </footer>
+</div>
+</body>
+</html>

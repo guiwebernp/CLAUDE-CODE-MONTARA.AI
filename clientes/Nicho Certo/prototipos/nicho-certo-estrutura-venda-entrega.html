@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrutura de venda e entrega — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 22px 80px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo)}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:13px 0 0}
+  .intro{color:var(--muted);max-width:40em;margin:14px 0 0;font-size:16px}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:24px 0 0;font-size:12px;color:var(--muted)}
+  .lg{display:inline-flex;align-items:center;gap:7px}
+  .sw{width:11px;height:11px;border-radius:3px}
+  .sw.now{background:var(--certo)}.sw.f2{background:var(--amber)}
+
+  .sec{margin-top:48px}
+  .shead{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .shead .num{font-family:var(--mono);font-size:12px;color:var(--certo)}
+  .shead h2{font-family:var(--display);font-weight:500;font-size:25px;margin:0;letter-spacing:-.01em}
+  .slead{color:var(--muted);max-width:46em;margin:0 0 24px;font-size:14.5px}
+
+  /* funnel */
+  .funnel{position:relative;padding-left:30px}
+  .funnel::before{content:"";position:absolute;left:9px;top:8px;bottom:30px;width:2px;background:linear-gradient(var(--certo),rgba(52,201,139,.15))}
+  .stg{position:relative;margin-bottom:14px}
+  .stg::before{content:"";position:absolute;left:-26px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--certo)}
+  .scard{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 19px}
+  .scard.core{border-color:rgba(52,201,139,.45)}
+  .stop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .sname{font-size:16px;font-weight:600}
+  .chip{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:4px 8px;border-radius:6px}
+  .chip.now{color:var(--certo);background:var(--certo-fill)}
+  .chip.core{color:#06241a;background:var(--certo)}
+  .chip.rec{color:var(--steel);background:var(--steel-fill)}
+  .srole{font-size:13.5px;color:var(--muted);margin:5px 0 0}
+  .sasset{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:8px}
+  .f2note{font-size:12px;color:var(--amber);margin-top:7px}
+
+  /* delivery */
+  .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+  .dcard{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:19px 20px;border-top:2px solid var(--steel)}
+  .dcard.live{border-top-color:var(--certo)}
+  .dcard.setup{border-top-color:var(--amber)}
+  .dkind{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .dtitle{font-family:var(--display);font-size:19px;font-weight:500;margin:5px 0 3px}
+  .dfreq{font-size:12px;color:var(--muted);margin-bottom:13px}
+  .dcard ul{list-style:none;margin:0 0 13px;padding:0;display:flex;flex-direction:column;gap:6px}
+  .dcard li{font-size:13px;color:var(--muted);display:flex;gap:8px}
+  .dcard li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--steel);margin-top:7px;flex:none}
+  .dcard.live li::before{background:var(--certo)}
+  .dcard.setup li::before{background:var(--amber)}
+  .dinfra{font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:11px}
+  .dinfra b{color:var(--text);font-weight:500}
+
+  .why{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--certo);border-radius:14px;padding:20px 24px;margin-top:18px}
+  .why h3{font-family:var(--display);font-weight:500;font-size:19px;margin:0 0 6px}
+  .why p{margin:0;font-size:14px;color:var(--muted);max-width:52em}
+  .why b{color:var(--text);font-weight:600}
+
+  /* phases */
+  .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .phase{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .phase.now{border-top:2px solid var(--certo)}
+  .phase.f2{border-top:2px solid var(--amber)}
+  .ptag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;display:inline-block}
+  .phase.now .ptag{color:var(--certo)}.phase.f2 .ptag{color:var(--amber)}
+  .phase ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .phase li{font-size:13.5px;color:var(--muted);display:flex;gap:9px;line-height:1.45}
+  .phase li .ic{flex:none;margin-top:1px;font-family:var(--mono);font-size:12px}
+  .phase.now li .ic{color:var(--certo)}.phase.f2 li .ic{color:var(--amber)}
+  .kit{margin-top:11px;font-size:12.5px;color:var(--faint);border-top:1px dashed var(--line2);padding-top:11px;line-height:1.5}
+
+  .flowline{font-family:var(--mono);font-size:12.5px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:15px 18px;margin-top:30px;line-height:1.9;text-align:center}
+  .flowline .a{color:var(--certo)}.flowline .s{color:var(--faint);margin:0 6px}
+
+  @media (max-width:760px){.dgrid,.pgrid{grid-template-columns:1fr}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Nicho Certo · estrutura</div>
+  <h1>Como vender e como entregar</h1>
+  <p class="intro">As duas coisas andam juntas: você vende do jeito que consegue entregar. Este é o mapa das duas, com o que é pra agora e o que fica pra depois.</p>
+  <div class="legend">
+    <span class="lg"><span class="sw now"></span> para agora</span>
+    <span class="lg"><span class="sw f2"></span> fase 2</span>
+  </div>
+
+  <div class="sec">
+    <div class="shead"><span class="num">01</span><h2>O funil de venda</h2></div>
+    <p class="slead">A call é a protagonista agora — é onde a venda acontece e onde você aprende as dores. A LP educa e agenda; o checkout só formaliza depois do sim.</p>
+    <div class="funnel">
+
+      <div class="stg"><div class="scard">
+        <div class="stop"><span class="sname">Prospecção</span><span class="chip now">agora</span></div>
+        <p class="srole">Você chama os advogados no WhatsApp e convida para uma apresentação.</p>
+        <p class="sasset">ativo: lista de advogados (SC) + mensagem de abordagem</p>
+      </div></div>
+
+      <div class="stg"><div class="scard">
+        <div class="stop"><span class="sname">Landing page</span><span class="chip now">agora</span></div>
+        <p class="srole">Educa sobre o nicho e agenda a call. Ainda não vende sozinha.</p>
+        <p class="sasset">ativo: LP B2B + página de planos</p>
+        <p class="f2note">fase 2: vender direto na LP com checkout</p>
+      </div></div>
+
+      <div class="stg"><div class="scard core">
+        <div class="stop"><span class="sname">Call de apresentação</span><span class="chip core">núcleo · agora</span></div>
+        <p class="srole">Onde a venda acontece. Educa, derruba a objeção da OAB ao vivo, ajusta o tier — e te ensina as dores deles. Cada call é pesquisa.</p>
+        <p class="sasset">ativo: os demos (radar, teses, bot) + script</p>
+      </div></div>
+
+      <div class="stg"><div class="scard">
+        <div class="stop"><span class="sname">Fechamento</span><span class="chip now">agora</span></div>
+        <p class="srole">Checkout ou contrato para formalizar depois do sim. Ferramenta de fechamento, não conversor frio.</p>
+        <p class="sasset">ativo: link de pagamento / contrato</p>
+      </div></div>
+
+      <div class="stg"><div class="scard">
+        <div class="stop"><span class="sname">Onboarding</span><span class="chip now">agora</span></div>
+        <p class="srole">Você configura: sobe a LP, liga o bot, conecta o WhatsApp e entrega o kit.</p>
+        <p class="sasset">ativo: seu setup manual por cliente</p>
+      </div></div>
+
+      <div class="stg"><div class="scard">
+        <div class="stop"><span class="sname">Recorrente</span><span class="chip rec">mensal</span></div>
+        <p class="srole">Radar atualizando toda semana, bot rodando, suporte. É o que justifica a mensalidade.</p>
+        <p class="sasset">ativo: sua operação contínua</p>
+      </div></div>
+
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="shead"><span class="num">02</span><h2>Como você entrega</h2></div>
+    <p class="slead">Os cinco módulos não se entregam do mesmo jeito. Separar isso é o que mantém o custo baixo agora.</p>
+    <div class="dgrid">
+      <div class="dcard">
+        <div class="dkind">entrega uma vez</div>
+        <div class="dtitle">Estático</div>
+        <div class="dfreq">feito uma vez, serve a todos</div>
+        <ul><li>Kit de teses</li><li>Banco de criativos</li><li>LP base</li><li>One-pager de compliance</li></ul>
+        <div class="dinfra">infra: <b>hub no Notion/Drive</b> · custo baixo</div>
+      </div>
+      <div class="dcard live">
+        <div class="dkind">recorrente</div>
+        <div class="dtitle">Vivo</div>
+        <div class="dfreq">entrega contínua, todo mês</div>
+        <ul><li>Radar (atualiza toda semana)</li><li>Bot de atendimento rodando</li><li>Suporte</li></ul>
+        <div class="dinfra">infra: <b>sua operação</b> · sustenta o "mensal"</div>
+      </div>
+      <div class="dcard setup">
+        <div class="dkind">no onboarding</div>
+        <div class="dtitle">Setup</div>
+        <div class="dfreq">uma vez por cliente</div>
+        <ul><li>Configurar o bot</li><li>Publicar a LP</li><li>Conectar o WhatsApp</li></ul>
+        <div class="dinfra">infra: <b>serviço seu</b> · no início de cada cliente</div>
+      </div>
+    </div>
+
+    <div class="why">
+      <h3>Por que é mensal</h3>
+      <p>Porque existe <b>entrega recorrente de verdade</b> — radar atualizando, bot rodando, suporte. Não é um pacote que você entrega e some. Essa é a resposta exata quando o advogado perguntar na call "por que pagar todo mês?".</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="shead"><span class="num">03</span><h2>Agora vs. fase 2</h2></div>
+    <p class="slead">Comece barato e manual. Automatize quando o volume pagar por isso.</p>
+    <div class="pgrid">
+      <div class="phase now">
+        <span class="ptag">para agora · MVP barato</span>
+        <ul>
+          <li><span class="ic">→</span>Prospecção no WhatsApp + call</li>
+          <li><span class="ic">→</span>Hub no Notion/Drive (sem plataforma cara)</li>
+          <li><span class="ic">→</span>Radar atualizado por você, na mão</li>
+          <li><span class="ic">→</span>Setup manual por cliente</li>
+        </ul>
+      </div>
+      <div class="phase f2">
+        <span class="ptag">fase 2 · com volume e prova</span>
+        <ul>
+          <li><span class="ic">→</span>Checkout vendendo direto na LP</li>
+          <li><span class="ic">→</span>Plataforma própria automatizada</li>
+          <li><span class="ic">→</span>Kit estático avulso, mais barato</li>
+        </ul>
+        <p class="kit">O kit avulso entra como <b style="color:var(--muted)">porta de entrada</b>: barato, é um retrato — e retrato envelhece. O radar está sempre atual, então o kit puxa o advogado pro recorrente em vez de substituí-lo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flowline">
+    Prospecção <span class="s">→</span> <span class="a">LP educa</span> <span class="s">→</span> <span class="a">call vende + aprende</span> <span class="s">→</span> fechamento <span class="s">→</span> onboarding <span class="s">→</span> <span class="a">recorrente</span>
+  </div>
+
+</div>
+</body>
+</html>

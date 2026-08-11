@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicho Certo — Catálogo de Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#0C0F12;color:#E0E6EC;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+
+/* SHELL */
+.shell{max-width:1100px;margin:0 auto;padding:56px 32px 80px}
+.shell-header{margin-bottom:56px}
+.logo{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4A9FC8;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;opacity:.7}
+.shell-header h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.shell-header h1 em{font-style:italic;color:#7EC8E3}
+.shell-header p{font-size:16px;color:#6A8A9A;max-width:42em;line-height:1.7}
+
+/* GRID DE CARDS */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+
+/* CARD */
+.card{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:transform .25s, box-shadow .25s;position:relative}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.card.built::after{content:'Disponível';position:absolute;top:14px;right:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:rgba(61,189,168,.15);border:1px solid rgba(61,189,168,.3);color:#3DBDA8}
+.card.draft::after{content:'Proposta';position:absolute;top:14px;right:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#6A8A9A}
+
+/* PREVIEW — mini hero */
+.preview{height:280px;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;position:relative;overflow:hidden}
+.preview::before{content:'';position:absolute;inset:0;z-index:0}
+
+/* 1 NOTURNO */
+.p-noturno{background:#080D0F}
+.p-noturno::before{background:radial-gradient(ellipse at 30% 20%,rgba(212,168,83,.14),transparent 60%)}
+.p-noturno .label{color:#D4A853}
+.p-noturno h2{font-family:'Playfair Display',serif;color:#F2EAD6;font-size:clamp(18px,2.4vw,26px);font-weight:700;line-height:1.2}
+.p-noturno h2 em{font-style:italic;color:#D4A853}
+.p-noturno .sub{color:rgba(180,160,120,.7)}
+.p-noturno .cta{background:#D4A853;color:#080D0F}
+.p-noturno .layout-hint{border-color:rgba(212,168,83,.2);color:rgba(212,168,83,.5)}
+.noturno-cols{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;z-index:0}
+.noturno-right{background:rgba(212,168,83,.04);border-left:1px solid rgba(212,168,83,.08);display:flex;align-items:center;justify-content:center;padding:20px}
+.extrato-mini{background:#0F1810;border:1px solid rgba(212,168,83,.15);border-radius:10px;padding:14px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(212,168,83,.5);line-height:1.9;width:100%}
+.extrato-mini .red{color:rgba(224,120,96,.7)}
+.extrato-mini .green{color:rgba(61,189,168,.6)}
+.extrato-mini .head{color:rgba(212,168,83,.8);margin-bottom:8px;border-bottom:1px solid rgba(212,168,83,.1);padding-bottom:6px}
+
+/* 2 AÇO */
+.p-aco{background:#080F14}
+.p-aco::before{background:radial-gradient(ellipse at 50% -20%,rgba(74,159,200,.13),transparent 65%)}
+.p-aco .label{color:#4A9FC8}
+.p-aco h2{font-family:'Playfair Display',serif;color:#E8EEF2;font-size:clamp(18px,2.4vw,26px);font-weight:700;line-height:1.2}
+.p-aco h2 em{font-style:italic;color:#7EC8E3}
+.p-aco .sub{color:#5A8A9A}
+.p-aco .cta{background:#4A9FC8;color:#040d14}
+.p-aco .layout-hint{border-color:rgba(74,159,200,.2);color:rgba(74,159,200,.5)}
+
+/* 3 CUIDADO */
+.p-cuidado{background:#080F0A}
+.p-cuidado::before{background:radial-gradient(ellipse at 60% 120%,rgba(90,190,130,.12),transparent 55%)}
+.p-cuidado .label{color:#7EC8A0}
+.p-cuidado h2{font-family:'Playfair Display',serif;color:#E2EDE6;font-size:clamp(18px,2.4vw,26px);font-weight:600;line-height:1.2}
+.p-cuidado h2 em{font-style:italic;color:#7EC8A0}
+.p-cuidado .sub{color:#4A7A5A}
+.p-cuidado .cta{background:#7EC8A0;color:#050F08}
+.p-cuidado .layout-hint{border-color:rgba(126,200,160,.2);color:rgba(126,200,160,.5)}
+.cuidado-cols{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;z-index:0}
+.cuidado-foto{background:linear-gradient(135deg,#0A1A0C,#111F13);border-right:1px solid rgba(126,200,160,.08);display:flex;align-items:flex-end;padding:18px}
+.cuidado-foto-ph{width:100%;height:160px;background:linear-gradient(180deg,transparent,rgba(90,190,130,.08));border-radius:10px 10px 0 0;border:1px solid rgba(126,200,160,.1);display:flex;align-items:center;justify-content:center}
+.cuidado-foto-ph svg{opacity:.2}
+
+/* 4 EDITORIAL */
+.p-editorial{background:#F0EBE1}
+.p-editorial::before{background:none}
+.p-editorial .label{color:#5A7A5E;font-family:'IBM Plex Mono',monospace}
+.p-editorial h2{font-family:'Source Serif 4',serif;color:#1A1A1A;font-size:clamp(18px,2.4vw,26px);font-weight:600;line-height:1.2}
+.p-editorial h2 em{font-style:italic;color:#2D5A3D}
+.p-editorial .sub{color:#6A6A5E}
+.p-editorial .cta{background:#2D5A3D;color:#F0EBE1}
+.p-editorial .layout-hint{border-color:rgba(45,90,61,.2);color:rgba(45,90,61,.5)}
+.ed-line{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2D5A3D,#5A7A5E)}
+.ed-rule{position:absolute;top:20px;left:28px;right:28px;height:1px;background:rgba(0,0,0,.08)}
+.ed-number{position:absolute;top:30px;left:28px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(45,90,61,.4);letter-spacing:.1em}
+
+/* 5 URGÊNCIA */
+.p-urgencia{background:#0C0808}
+.p-urgencia::before{background:radial-gradient(ellipse at 20% 80%,rgba(224,92,82,.12),transparent 55%)}
+.p-urgencia .label{color:#E05C52}
+.p-urgencia h2{font-family:'Playfair Display',serif;color:#F2EDED;font-size:clamp(18px,2.4vw,26px);font-weight:700;line-height:1.2}
+.p-urgencia h2 em{font-style:italic;color:#E07870}
+.p-urgencia .sub{color:#6A4A4A}
+.p-urgencia .cta{background:#E05C52;color:#0C0808}
+.p-urgencia .layout-hint{border-color:rgba(224,92,82,.2);color:rgba(224,92,82,.5)}
+.urg-timeline{position:absolute;right:28px;top:24px;bottom:28px;width:70px;display:flex;flex-direction:column;gap:0;justify-content:space-evenly}
+.urg-row{display:flex;align-items:center;gap:6px}
+.urg-dot{width:7px;height:7px;border-radius:50%;flex-none}
+.urg-dot.r{background:rgba(224,92,82,.6)}
+.urg-dot.y{background:rgba(200,160,80,.4)}
+.urg-line-v{width:1px;height:100%;background:rgba(224,92,82,.12);position:absolute;left:31px;top:20px;bottom:20px}
+.urg-val{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(224,120,100,.5)}
+
+/* PREVIEW TEXT LAYER */
+.preview-text{position:relative;z-index:1}
+.label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;display:block}
+.sub{font-size:12px;margin-top:8px;line-height:1.6;max-width:26em}
+.cta-mini{display:inline-block;margin-top:14px;font-size:11px;font-weight:600;padding:7px 16px;border-radius:99px}
+
+/* CARD FOOTER */
+.card-footer{padding:20px 24px;background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06)}
+.card-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+.card-desc{font-size:13px;color:#5A7A8A;line-height:1.55;margin-bottom:14px}
+.swatches{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.swatch{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.08)}
+.swatch-label{font-size:11px;font-family:'IBM Plex Mono',monospace;color:#3A5A6A;margin-left:4px}
+.layout-hint{font-family:'IBM Plex Mono',monospace;font-size:10px;border:1px solid;border-radius:6px;padding:3px 8px;display:inline-block;margin-top:10px}
+
+/* PARA CARD EDITORIAL — footer escuro */
+.card.editorial .card-footer{background:#F0EBE1;border-top:1px solid rgba(0,0,0,.06)}
+.card.editorial .card-name{color:#1A1A1A}
+.card.editorial .card-desc{color:#6A6A5E}
+.card.editorial .swatch-label{color:#6A8A6E}
+
+/* DIVIDER */
+.divider{margin:48px 0 32px;display:flex;align-items:center;gap:16px}
+.divider span{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#3A5A6A;white-space:nowrap}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
+
+/* NOTE */
+.note{background:rgba(74,159,200,.07);border:1px solid rgba(74,159,200,.14);border-radius:14px;padding:20px 24px;font-size:14px;color:#6A9AAD;line-height:1.7;max-width:680px}
+.note strong{color:#7EC8E3;font-weight:500}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="shell-header">
+    <div class="logo">Nicho Certo · Catálogo de Design</div>
+    <h1>5 direções visuais para<br><em>landing pages de advogados</em></h1>
+    <p>Cada estilo foi pensado para um perfil diferente de advogado e abordagem com a vítima de ludopatia. Compare paleta, tipografia e layout antes de decidir o que construir.</p>
+  </div>
+
+  <div class="divider"><span>Estilos disponíveis</span></div>
+
+  <div class="grid">
+
+    <!-- 1. NOTURNO -->
+    <div class="card built">
+      <div class="preview p-noturno">
+        <div class="noturno-cols" aria-hidden="true">
+          <div></div>
+          <div class="noturno-right">
+            <div class="extrato-mini">
+              <div class="head">extrato · nov 2024</div>
+              <div class="red">− R$ 4.200 · Bets365</div>
+              <div class="red">− R$ 1.800 · Betano</div>
+              <div class="red">− R$ 7.000 · Bets365</div>
+              <div class="green">+ R$ 320 · Pix rec.</div>
+              <div class="red">− R$ 12.400 · Esporte...</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-text">
+          <span class="label p-noturno">Advocacia · ludopatia</span>
+          <h2 class="p-noturno">Você esconde de todo mundo<br><em>quanto já perdeu apostando?</em></h2>
+          <p class="sub p-noturno">Isso tem nome — é ludopatia. A lei impõe deveres às casas de apostas.</p>
+          <span class="cta-mini p-noturno">Conversa sigilosa →</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-name">Noturno</div>
+        <div class="card-desc">Hero 2 colunas com extrato bancário visual. Tom de autoridade e peso emocional. O mais dramático dos layouts.</div>
+        <div class="swatches">
+          <span class="swatch" style="background:#080D0F;box-shadow:0 0 0 1px rgba(255,255,255,.15)"></span>
+          <span class="swatch" style="background:#D4A853"></span>
+          <span class="swatch" style="background:#3DBDA8"></span>
+          <span class="swatch" style="background:#E07860"></span>
+          <span class="swatch-label" style="color:#4A7060">Playfair Display + Inter</span>
+        </div>
+        <span class="layout-hint p-noturno" style="border-color:rgba(212,168,83,.25);color:rgba(212,168,83,.6)">Layout: 2 colunas · extrato dir.</span>
+      </div>
+    </div>
+
+    <!-- 2. AÇO -->
+    <div class="card built">
+      <div class="preview p-aco" style="justify-content:center;text-align:center">
+        <div class="preview-text">
+          <span class="label p-aco" style="display:block;text-align:center">Florianópolis/SC · ludopatia</span>
+          <h2 class="p-aco">Você não perdeu por falta<br>de força de vontade.<br><em>Perdeu porque tem uma doença.</em></h2>
+          <p class="sub p-aco" style="margin:0 auto">A lei reconhece isso. As plataformas têm obrigações legais.</p>
+          <span class="cta-mini p-aco">Fazer o teste de 2 min →</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-name">Aço</div>
+        <div class="card-desc">Hero centralizado full-screen com orbs de luz. Casos em lista horizontal. Foto do advogado à direita. Transmite confiança corporativa.</div>
+        <div class="swatches">
+          <span class="swatch" style="background:#080F14;box-shadow:0 0 0 1px rgba(255,255,255,.15)"></span>
+          <span class="swatch" style="background:#4A9FC8"></span>
+          <span class="swatch" style="background:#7EC8E3"></span>
+          <span class="swatch" style="background:#3DBDA8"></span>
+          <span class="swatch-label" style="color:#4A7080">Playfair Display + Inter</span>
+        </div>
+        <span class="layout-hint" style="border-color:rgba(74,159,200,.25);color:rgba(74,159,200,.6)">Layout: centralizado · foto dir.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"><span>Propostas — ainda não construídas</span></div>
+
+  <div class="grid">
+
+    <!-- 3. CUIDADO -->
+    <div class="card draft">
+      <div class="preview p-cuidado">
+        <div class="cuidado-cols" aria-hidden="true">
+          <div class="cuidado-foto">
+            <div class="cuidado-foto-ph">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7EC8A0" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+          </div>
+          <div></div>
+        </div>
+        <div class="preview-text">
+          <span class="label p-cuidado">Cuidado antes de qualquer processo</span>
+          <h2 class="p-cuidado">Você não está sozinho.<br><em>E não precisa ter vergonha.</em></h2>
+          <p class="sub p-cuidado">Ludopatia é doença. A primeira conversa é sobre cuidar de você.</p>
+          <span class="cta-mini p-cuidado">Falar agora, com sigilo →</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-name">Cuidado</div>
+        <div class="card-desc">Hero split-screen: foto do advogado à esquerda em tela cheia + texto à direita. Copy focada em acolhimento, não em processo. Ideal para advogados com perfil humanista.</div>
+        <div class="swatches">
+          <span class="swatch" style="background:#080F0A;box-shadow:0 0 0 1px rgba(255,255,255,.15)"></span>
+          <span class="swatch" style="background:#7EC8A0"></span>
+          <span class="swatch" style="background:#3DBDA8"></span>
+          <span class="swatch" style="background:#5AB07A"></span>
+          <span class="swatch-label" style="color:#3A6A4A">Playfair Display + Inter</span>
+        </div>
+        <span class="layout-hint" style="border-color:rgba(126,200,160,.25);color:rgba(126,200,160,.6)">Layout: split · foto esq. tela cheia</span>
+      </div>
+    </div>
+
+    <!-- 4. EDITORIAL -->
+    <div class="card draft editorial">
+      <div class="preview p-editorial">
+        <div class="ed-line" aria-hidden="true"></div>
+        <div class="ed-rule" aria-hidden="true"></div>
+        <div class="ed-number" aria-hidden="true">EDIÇÃO JURÍDICA · 2024</div>
+        <div class="preview-text" style="padding-top:20px">
+          <span class="label p-editorial">Lei 14.790/2023 · Advocacia especializada</span>
+          <h2 class="p-editorial">O transtorno do jogo<br><em>gera obrigações legais</em><br>para as plataformas.</h2>
+          <p class="sub p-editorial">Análise técnica e individual do seu caso. Sigilo absoluto.</p>
+          <span class="cta-mini p-editorial">Solicitar avaliação →</span>
+        </div>
+      </div>
+      <div class="card-footer editorial">
+        <div class="card-name">Editorial</div>
+        <div class="card-desc">Fundo creme. Tipografia Source Serif 4 com linha editorial no topo. Tom mais intelectual e formal. Para advogados com perfil acadêmico ou escritórios maiores.</div>
+        <div class="swatches">
+          <span class="swatch" style="background:#F0EBE1;box-shadow:0 0 0 1px rgba(0,0,0,.15)"></span>
+          <span class="swatch" style="background:#1A1A1A"></span>
+          <span class="swatch" style="background:#2D5A3D"></span>
+          <span class="swatch" style="background:#5A7A5E"></span>
+          <span class="swatch-label" style="color:#5A7A5E">Source Serif 4 + Inter</span>
+        </div>
+        <span class="layout-hint" style="border-color:rgba(45,90,61,.3);color:rgba(45,90,61,.7)">Layout: claro · tipografia editorial</span>
+      </div>
+    </div>
+
+    <!-- 5. URGÊNCIA -->
+    <div class="card draft" style="grid-column:1/-1">
+      <div class="preview p-urgencia" style="min-height:220px">
+        <div class="urg-timeline" aria-hidden="true">
+          <div class="urg-line-v"></div>
+          <div class="urg-row"><span class="urg-dot r"></span><span class="urg-val">− R$ 4.200</span></div>
+          <div class="urg-row"><span class="urg-dot r"></span><span class="urg-val">− R$ 8.700</span></div>
+          <div class="urg-row"><span class="urg-dot y"></span><span class="urg-val">limite atingido</span></div>
+          <div class="urg-row"><span class="urg-dot r"></span><span class="urg-val">− R$ 14.000</span></div>
+        </div>
+        <div class="preview-text" style="max-width:60%">
+          <span class="label p-urgencia">Pare de perder agora · {{CIDADE_ESTADO}}</span>
+          <h2 class="p-urgencia">A plataforma sabia<br>que você estava doente.<br><em>E continuou deixando entrar.</em></h2>
+          <p class="sub p-urgencia">Isso é responsabilidade legal. Cada nova perda aumenta o valor da causa.</p>
+          <span class="cta-mini p-urgencia">Travar novas perdas agora →</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-name">Urgência</div>
+        <div class="card-desc">Hero com linha do tempo de perdas à direita. Copy mais direta e agressiva, focada em ação imediata. CTA primário: parar de perder hoje. Ideal para casos em andamento (vítima ainda apostando).</div>
+        <div class="swatches">
+          <span class="swatch" style="background:#0C0808;box-shadow:0 0 0 1px rgba(255,255,255,.15)"></span>
+          <span class="swatch" style="background:#E05C52"></span>
+          <span class="swatch" style="background:#E09870"></span>
+          <span class="swatch" style="background:#C84040"></span>
+          <span class="swatch-label" style="color:#7A4A4A">Playfair Display + Inter</span>
+        </div>
+        <span class="layout-hint" style="border-color:rgba(224,92,82,.25);color:rgba(224,92,82,.6)">Layout: hero + timeline de perdas dir. · largura total</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note" style="margin-top:48px">
+    <strong>Como funciona:</strong> cada estilo vira um template em <code>templates/</code> e é acessado via <code>variacao: 1</code> até <code>5</code> no <code>skill-lp.js</code>. Para gerar uma LP nova, basta passar os dados do cliente com o número do estilo escolhido.
+  </div>
+
+</div>
+</body>
+</html>

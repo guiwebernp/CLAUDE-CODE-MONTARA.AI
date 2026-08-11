@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Captador — Galeria de Designs</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#080C10;color:#E0E6EC;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;padding:48px 32px 80px}
+
+.shell{max-width:1320px;margin:0 auto}
+
+.header{margin-bottom:48px}
+.logo{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4A9FC8;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;opacity:.7}
+.header h1{font-size:28px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
+.header h1 em{font-style:normal;color:#7EC8E3}
+.header p{font-size:14px;color:#5A7A8A;line-height:1.65}
+.header p strong{color:#9BAFBF;font-weight:500}
+
+.group{margin-bottom:56px}
+.group-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#3A5A6A;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.group-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06)}
+.group-dot{width:10px;height:10px;border-radius:50%;flex-none}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+.card{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;background:#0C1014}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.5);border-color:rgba(255,255,255,.14)}
+.card.active{border-color:rgba(74,159,200,.5);box-shadow:0 0 0 2px rgba(74,159,200,.2)}
+
+.preview-wrap{width:100%;height:320px;overflow:hidden;position:relative;background:#0C1014}
+.preview-wrap iframe{
+  width:1280px;
+  height:2048px;
+  transform:scale(0.234375); /* 300/1280 */
+  transform-origin:top left;
+  border:none;
+  pointer-events:none;
+}
+
+.card-info{padding:14px 16px;border-top:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
+.card-num{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#3A5A6A;letter-spacing:.1em;margin-bottom:4px}
+.card-name{font-size:13px;font-weight:500;letter-spacing:-.01em;color:#D0D8E0;margin-bottom:8px}
+.card-swatches{display:flex;gap:5px}
+.swatch{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1)}
+.card-btn{margin-top:10px;width:100%;padding:8px;background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#7A9AAD;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:.15s;text-align:center}
+.card-btn:hover{background:rgba(255,255,255,.05);color:#C0D0DC;border-color:rgba(255,255,255,.18)}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;z-index:100;background:rgba(4,8,12,.92);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:24px}
+.lb.show{display:flex}
+.lb-inner{width:100%;max-width:1100px;height:90vh;display:flex;flex-direction:column;gap:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 32px 80px rgba(0,0,0,.7)}
+.lb-bar{background:#111820;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.lb-title{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#9BAFBF;letter-spacing:.08em}
+.lb-actions{display:flex;gap:10px;align-items:center}
+.lb-close{background:none;border:1px solid rgba(255,255,255,.12);color:#7A9AAD;font-family:'Inter',sans-serif;font-size:12px;padding:6px 14px;border-radius:8px;cursor:pointer;transition:.15s}
+.lb-close:hover{background:rgba(255,255,255,.07);color:#C0D0DC}
+.lb-nav{background:none;border:1px solid rgba(255,255,255,.12);color:#7A9AAD;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 14px;border-radius:8px;cursor:pointer;transition:.15s}
+.lb-nav:hover{background:rgba(255,255,255,.07);color:#C0D0DC}
+.lb iframe{flex:1;border:none;width:100%;height:100%}
+
+/* FOOTER */
+.footer-note{margin-top:48px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2A4A5A;line-height:1.8;border-top:1px solid rgba(255,255,255,.05);padding-top:24px}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="header">
+    <div class="logo">Captador · Galeria de Designs</div>
+    <h1>32 designs · <em>20 copies</em> · 640 combinações</h1>
+    <p>Clique em qualquer card para ver em tela cheia. <strong>Todos os designs</strong> aceitam qualquer uma das 20 variações de copy — use <code>variacao: 1–12</code> e <code>copia: 1–20</code> ao gerar.</p>
+  </div>
+
+  <!-- NOTURNO -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#D4A853"></span>
+      Noturno — fundo escuro · 4 acentos
+    </div>
+    <div class="grid" id="grid-noturno"></div>
+  </div>
+
+  <!-- AÇO -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#4A9FC8"></span>
+      Aço — fundo navy · 4 acentos
+    </div>
+    <div class="grid" id="grid-aco"></div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#2D5A3D"></span>
+      Editorial — fundo creme · 4 acentos
+    </div>
+    <div class="grid" id="grid-editorial"></div>
+  </div>
+
+  <!-- NARRATIVA -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#D4A853"></span>
+      Narrativa — coluna estreita · headline gigante · 4 acentos
+    </div>
+    <div class="grid" id="grid-narrativa"></div>
+  </div>
+
+  <!-- IMPACTO -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#E07860"></span>
+      Impacto — split 50/50 · contador hero · quiz chat · 4 acentos
+    </div>
+    <div class="grid" id="grid-impacto"></div>
+  </div>
+
+  <!-- CLÍNICO -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#1A6B4A"></span>
+      Clínico — fundo branco · hero com checklist · CTA lateral com foto · 4 acentos
+    </div>
+    <div class="grid" id="grid-clinico"></div>
+  </div>
+
+  <!-- URGÊNCIA -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#C0392B"></span>
+      Urgência — banner de alerta · tipografia condensada · tom imediato · 4 acentos
+    </div>
+    <div class="grid" id="grid-urgencia"></div>
+  </div>
+
+  <!-- MINIMALISTA -->
+  <div class="group">
+    <div class="group-label">
+      <span class="group-dot" style="background:#1C1C1C"></span>
+      Minimalista — Lora serif · coluna estreita · sem ornamento · 4 acentos
+    </div>
+    <div class="grid" id="grid-minimal"></div>
+  </div>
+
+  <div class="footer-note">
+    Captador · skill-lp.js · gerarLP({variacao: 1–12, copia: 1–20, ...})<br>
+    Templates: landing-page.html · landing-page-azul.html · landing-page-editorial.html<br>
+    Paletas: palettes.js · Copies: copies.js
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <div class="lb-inner">
+    <div class="lb-bar">
+      <span class="lb-title" id="lbTitle">—</span>
+      <div class="lb-actions">
+        <button class="lb-nav" id="lbPrev">← anterior</button>
+        <button class="lb-nav" id="lbNext">próximo →</button>
+        <button class="lb-close" id="lbClose">fechar ✕</button>
+      </div>
+    </div>
+    <iframe id="lbFrame" src="about:blank"></iframe>
+  </div>
+</div>
+
+<script>
+var designs = [
+  // Noturno
+  {id:1, nome:'Noturno Dourado',  grupo:'noturno',   swatches:['#080D0F','#D4A853','#3DBDA8'], src:'clientes/_preview-designs/v1.html'},
+  {id:2, nome:'Noturno Coral',    grupo:'noturno',   swatches:['#080D0F','#D4643C','#3DBDA8'], src:'clientes/_preview-designs/v2.html'},
+  {id:3, nome:'Noturno Roxo',     grupo:'noturno',   swatches:['#080D0F','#9B7FD4','#3DBDA8'], src:'clientes/_preview-designs/v3.html'},
+  {id:4, nome:'Noturno Esmeralda',grupo:'noturno',   swatches:['#080D0F','#3DBDA8','#6ED4C4'], src:'clientes/_preview-designs/v4.html'},
+  // Aço
+  {id:5, nome:'Aço Azul',         grupo:'aco',       swatches:['#080F14','#4A9FC8','#7EC8E3'], src:'clientes/_preview-designs/v5.html'},
+  {id:6, nome:'Aço Teal',         grupo:'aco',       swatches:['#080F14','#3DBDA8','#6ED4C4'], src:'clientes/_preview-designs/v6.html'},
+  {id:7, nome:'Aço Índigo',       grupo:'aco',       swatches:['#080F14','#6B7FD4','#9BAAE8'], src:'clientes/_preview-designs/v7.html'},
+  {id:8, nome:'Aço Prata',        grupo:'aco',       swatches:['#080F14','#9BAFBF','#C0D0DC'], src:'clientes/_preview-designs/v8.html'},
+  // Editorial
+  {id:9,  nome:'Editorial Verde',  grupo:'editorial',  swatches:['#F2EDE3','#2D5A3D','#4A7A5A'], src:'clientes/_preview-designs/v9.html'},
+  {id:10, nome:'Editorial Índigo', grupo:'editorial',  swatches:['#F2EDE3','#2D3D6A','#4A5A9A'], src:'clientes/_preview-designs/v10.html'},
+  {id:11, nome:'Editorial Vinho',  grupo:'editorial',  swatches:['#F2EDE3','#6A2D3D','#9A4A5A'], src:'clientes/_preview-designs/v11.html'},
+  {id:12, nome:'Editorial Âmbar',  grupo:'editorial',  swatches:['#F2EDE3','#7A5020','#A07030'], src:'clientes/_preview-designs/v12.html'},
+  // Narrativa
+  {id:13, nome:'Narrativa Dourado',grupo:'narrativa',  swatches:['#06090A','#D4A853','#E8C87C'], src:'clientes/_preview-designs/v13.html'},
+  {id:14, nome:'Narrativa Coral',  grupo:'narrativa',  swatches:['#06090A','#D4643C','#E89070'], src:'clientes/_preview-designs/v14.html'},
+  {id:15, nome:'Narrativa Roxo',   grupo:'narrativa',  swatches:['#06090A','#9B7FD4','#C0A8E8'], src:'clientes/_preview-designs/v15.html'},
+  {id:16, nome:'Narrativa Teal',   grupo:'narrativa',  swatches:['#06090A','#3DBDA8','#6ED4C4'], src:'clientes/_preview-designs/v16.html'},
+  // Impacto
+  {id:17, nome:'Impacto Dourado',  grupo:'impacto',    swatches:['#050708','#D4A853','#E8C87C'], src:'clientes/_preview-designs/v17.html'},
+  {id:18, nome:'Impacto Coral',    grupo:'impacto',    swatches:['#050708','#D4643C','#E89070'], src:'clientes/_preview-designs/v18.html'},
+  {id:19, nome:'Impacto Roxo',     grupo:'impacto',    swatches:['#050708','#9B7FD4','#C0A8E8'], src:'clientes/_preview-designs/v19.html'},
+  {id:20, nome:'Impacto Teal',     grupo:'impacto',    swatches:['#050708','#3DBDA8','#6ED4C4'], src:'clientes/_preview-designs/v20.html'},
+  // Clínico
+  {id:21, nome:'Clínico Verde',    grupo:'clinico',   swatches:['#F7F8FA','#1A6B4A','#FAFAFA'], src:'clientes/_preview-designs/v21.html'},
+  {id:22, nome:'Clínico Azul',     grupo:'clinico',   swatches:['#F7F8FA','#1A4F8A','#FAFAFA'], src:'clientes/_preview-designs/v22.html'},
+  {id:23, nome:'Clínico Vinho',    grupo:'clinico',   swatches:['#F7F8FA','#7A2040','#FAFAFA'], src:'clientes/_preview-designs/v23.html'},
+  {id:24, nome:'Clínico Grafite',  grupo:'clinico',   swatches:['#F7F8FA','#2A3A48','#FAFAFA'], src:'clientes/_preview-designs/v24.html'},
+  // Urgência
+  {id:25, nome:'Urgência Vermelho',grupo:'urgencia',  swatches:['#0C0608','#C0392B','#E05040'], src:'clientes/_preview-designs/v25.html'},
+  {id:26, nome:'Urgência Âmbar',   grupo:'urgencia',  swatches:['#0C0608','#C07820','#D09030'], src:'clientes/_preview-designs/v26.html'},
+  {id:27, nome:'Urgência Roxo',    grupo:'urgencia',  swatches:['#0C0608','#7040C0','#9060E0'], src:'clientes/_preview-designs/v27.html'},
+  {id:28, nome:'Urgência Teal',    grupo:'urgencia',  swatches:['#0C0608','#1A8A78','#2AAA90'], src:'clientes/_preview-designs/v28.html'},
+  // Minimalista
+  {id:29, nome:'Minimal Verde',    grupo:'minimal',   swatches:['#FAFAFA','#2D6A4A','#1C1C1C'], src:'clientes/_preview-designs/v29.html'},
+  {id:30, nome:'Minimal Preto',    grupo:'minimal',   swatches:['#FAFAFA','#1C1C1C','#000000'], src:'clientes/_preview-designs/v30.html'},
+  {id:31, nome:'Minimal Azul',     grupo:'minimal',   swatches:['#FAFAFA','#1A4F8A','#1C1C1C'], src:'clientes/_preview-designs/v31.html'},
+  {id:32, nome:'Minimal Vinho',    grupo:'minimal',   swatches:['#FAFAFA','#7A2040','#1C1C1C'], src:'clientes/_preview-designs/v32.html'},
+];
+
+var lbCurrent = 0;
+var lb = document.getElementById('lb');
+var lbFrame = document.getElementById('lbFrame');
+var lbTitle = document.getElementById('lbTitle');
+
+function buildCard(d) {
+  var card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML =
+    '<div class="preview-wrap"><iframe src="'+d.src+'" loading="lazy" scrolling="no"></iframe></div>'+
+    '<div class="card-info">'+
+      '<div class="card-num">v'+d.id+' · variacao: '+d.id+'</div>'+
+      '<div class="card-name">'+d.nome+'</div>'+
+      '<div class="card-swatches">'+
+        d.swatches.map(function(s){return '<span class="swatch" style="background:'+s+'"></span>'}).join('')+
+      '</div>'+
+      '<button class="card-btn" data-id="'+d.id+'">Ver em tela cheia</button>'+
+    '</div>';
+  return card;
+}
+
+designs.forEach(function(d) {
+  var grid = document.getElementById('grid-'+d.grupo);
+  if (grid) grid.appendChild(buildCard(d));
+});
+
+function openLb(id) {
+  var d = designs.find(function(x){return x.id===id;});
+  if (!d) return;
+  lbCurrent = id;
+  lbFrame.src = d.src;
+  lbTitle.textContent = 'v'+d.id+' · '+d.nome;
+  lb.classList.add('show');
+  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('active');});
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(function(b){b.closest('.card').classList.add('active');});
+}
+
+function closeLb() {
+  lb.classList.remove('show');
+  lbFrame.src = 'about:blank';
+  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('active');});
+}
+
+function navLb(dir) {
+  var ids = designs.map(function(d){return d.id;});
+  var idx = ids.indexOf(lbCurrent);
+  var next = ids[(idx + dir + ids.length) % ids.length];
+  openLb(next);
+}
+
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-id]');
+  if (btn) { openLb(parseInt(btn.getAttribute('data-id'))); return; }
+  if (e.target === lb) closeLb();
+});
+document.getElementById('lbClose').addEventListener('click', closeLb);
+document.getElementById('lbPrev').addEventListener('click', function(){navLb(-1);});
+document.getElementById('lbNext').addEventListener('click', function(){navLb(1);});
+document.addEventListener('keydown', function(e) {
+  if (!lb.classList.contains('show')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') navLb(-1);
+  if (e.key === 'ArrowRight') navLb(1);
+});
+</script>
+</body>
+</html>

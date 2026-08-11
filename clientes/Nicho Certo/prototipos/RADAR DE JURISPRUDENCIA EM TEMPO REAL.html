@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar de jurisprudência viva — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+
+  /* top bar */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .title-wrap{display:flex;align-items:center;gap:16px}
+  .radar{width:46px;height:46px;border-radius:50%;border:1px solid var(--line2);position:relative;overflow:hidden;background:radial-gradient(circle,var(--bg3),var(--bg2));flex:none}
+  .radar .sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(52,201,139,.4) 36deg,transparent 62deg);animation:spin 3.5s linear infinite}
+  .radar .blip{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--certo);box-shadow:0 0 7px var(--certo);top:12px;right:13px;animation:blip 3.5s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes blip{0%,55%{opacity:0}60%{opacity:1}100%{opacity:0}}
+  h1{font-family:var(--display);font-weight:600;font-size:24px;letter-spacing:-.01em;margin:0;line-height:1.1}
+  .sub{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+  .live{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;color:var(--certo);border:1px solid rgba(52,201,139,.35);background:var(--certo-fill);padding:6px 11px;border-radius:999px}
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--certo);box-shadow:0 0 0 0 rgba(52,201,139,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,201,139,.5)}70%{box-shadow:0 0 0 7px rgba(52,201,139,0)}100%{box-shadow:0 0 0 0 rgba(52,201,139,0)}}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+  .stat{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .stat .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .stat .v{font-family:var(--display);font-size:27px;font-weight:600;margin-top:5px;letter-spacing:-.01em}
+  .stat .v small{font-family:var(--body);font-size:13px;color:var(--muted);font-weight:400;margin-left:4px}
+
+  /* filters */
+  .filters{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+  .frow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .frow .flabel{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);width:64px;flex:none}
+  .chip{font-size:12.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer;transition:.15s;font-family:var(--body)}
+  .chip:hover{color:var(--text);border-color:var(--line2)}
+  .chip.on{background:var(--certo-fill);border-color:rgba(52,201,139,.45);color:var(--certo)}
+
+  .countline{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin:0 0 12px}
+
+  /* feed */
+  .feed{display:flex;flex-direction:column;gap:10px}
+  .dec{background:var(--bg2);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:border-color .15s}
+  .dec:hover{border-color:var(--line2)}
+  .dec .head{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer}
+  .court{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;padding:5px 9px;border-radius:7px;background:var(--steel-fill);color:var(--steel);flex:none;min-width:62px;text-align:center}
+  .dmid{flex:1;min-width:0}
+  .dmid .tema{font-size:14.5px;font-weight:500}
+  .dmid .meta{font-size:12px;color:var(--faint);margin-top:2px}
+  .res{font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:999px;flex:none}
+  .res.fav{color:var(--certo);background:var(--certo-fill)}
+  .res.par{color:var(--amber);background:var(--amber-fill)}
+  .chev{color:var(--faint);font-size:18px;transition:transform .2s;flex:none}
+  .dec.open .chev{transform:rotate(90deg)}
+  .body{max-height:0;overflow:hidden;transition:max-height .25s ease}
+  .dec.open .body{max-height:240px}
+  .body .inner{padding:0 18px 17px;border-top:1px solid var(--line);margin-top:0}
+  .body .inner p{font-size:13.5px;color:var(--muted);margin:14px 0 0}
+  .tese{display:inline-block;font-family:var(--mono);font-size:11px;margin-top:13px;padding:5px 10px;border-radius:7px;background:var(--bg3);color:var(--text)}
+  .tese b{color:var(--certo);font-weight:500}
+
+  .note{font-family:var(--mono);font-size:11px;color:var(--faint);text-align:center;padding:30px 0 50px;letter-spacing:.04em}
+
+  @media (max-width:720px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .frow .flabel{width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){.radar .sweep,.radar .blip,.pulse{animation:none}.radar .sweep{background:none}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:2px;border-radius:6px}
+  button{font-family:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="title-wrap">
+      <div class="radar" aria-hidden="true"><div class="sweep"></div><div class="blip"></div></div>
+      <div>
+        <div class="brand">Nicho Certo</div>
+        <h1>Radar de jurisprudência viva</h1>
+        <p class="sub">Decisões do nicho de ludopatia, monitoradas e organizadas por tese.</p>
+      </div>
+    </div>
+    <span class="live"><span class="pulse"></span> monitorando</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Tribunais</div><div class="v" id="s-courts">4</div></div>
+    <div class="stat"><div class="k">Decisões na base</div><div class="v" id="s-total">8</div></div>
+    <div class="stat"><div class="k">Favoráveis</div><div class="v" id="s-fav">6 <small>de 8</small></div></div>
+    <div class="stat"><div class="k">Tese mais forte</div><div class="v" style="font-size:16px;line-height:1.3;padding-top:6px">Dever de cuidado<small style="display:block;margin:2px 0 0">CDC</small></div></div>
+  </div>
+
+  <div class="filters">
+    <div class="frow"><span class="flabel">Tribunal</span><div id="f-court"></div></div>
+    <div class="frow"><span class="flabel">Tese</span><div id="f-tese"></div></div>
+    <div class="frow"><span class="flabel">Resultado</span><div id="f-res"></div></div>
+  </div>
+
+  <p class="countline" id="count"></p>
+  <div class="feed" id="feed"></div>
+
+  <p class="note">Demonstração · base de decisões verificadas usada para apresentação</p>
+</div>
+
+<script>
+  const DATA=[
+    {court:"TJSP",tema:"Saque bloqueado pela plataforma (caso Betano)",res:"fav",tese:"nulidade",data:"2024",resumo:"Plataforma reteve saque do apostador. Tribunal reconheceu a nulidade da retenção e determinou a liberação dos valores.",aplicar:"Nulidade · Lei 14.790/2023 art. 26 VI"},
+    {court:"TJSC",tema:"Saques retidos sem justificativa",res:"fav",tese:"cuidado",data:"2024",resumo:"Retenção de saques sem fundamento. Reconhecida falha no dever de cuidado da plataforma e determinada a restituição integral.",aplicar:"Dever de cuidado · CDC"},
+    {court:"TJRS",tema:"Vício de informação na contratação",res:"fav",tese:"cuidado",data:"2024",resumo:"Informações inadequadas ao consumidor. Restituição reconhecida com base na falha de informação e proteção ao consumidor.",aplicar:"Dever de cuidado · CDC"},
+    {court:"TJDFT",tema:"Nulidade contratual e restituição",res:"fav",tese:"nulidade",data:"2023",resumo:"Contrato com a plataforma reconhecido como nulo. Determinada a restituição integral dos valores ao apostador.",aplicar:"Nulidade · Lei 14.790/2023 art. 26 VI"},
+    {court:"TJSP",tema:"Publicidade e indução ao consumo",res:"par",tese:"cuidado",data:"2024",resumo:"Reconhecida falha parcial da plataforma quanto à publicidade. Procedência parcial, com redução do valor pleiteado.",aplicar:"Dever de cuidado · CDC"},
+    {court:"TJSP",tema:"Plataforma sem registro regular",res:"fav",tese:"nulidade",data:"2024",resumo:"Operação sem o registro exigido. Tribunal reconheceu a nulidade dos atos e determinou a devolução dos valores.",aplicar:"Nulidade · Lei 14.790/2023 art. 26 VI"},
+    {court:"TJSC",tema:"Falha no dever de informar o risco",res:"fav",tese:"cuidado",data:"2024",resumo:"Ausência de alerta adequado ao consumidor. Reconhecida a responsabilidade da plataforma pelo dever de cuidado.",aplicar:"Dever de cuidado · CDC"},
+    {court:"TJRS",tema:"Concessão de bônus abusivo",res:"par",tese:"cuidado",data:"2023",resumo:"Bônus usados para estimular o consumo. Procedência parcial reconhecendo a conduta abusiva da plataforma.",aplicar:"Dever de cuidado · CDC"}
+  ];
+
+  const TESES={nulidade:"Nulidade · Lei 14.790",cuidado:"Dever de cuidado · CDC"};
+  const state={court:"todos",tese:"todas",res:"todos"};
+
+  function buildChips(containerId,key,options){
+    const c=document.getElementById(containerId);
+    options.forEach(o=>{
+      const b=document.createElement("button");
+      b.className="chip"+(state[key]===o.val?" on":"");
+      b.textContent=o.label;
+      b.onclick=()=>{state[key]=o.val;refresh();};
+      b.dataset.val=o.val;b.dataset.key=key;
+      c.appendChild(b);
+    });
+  }
+  buildChips("f-court","court",[{val:"todos",label:"Todos"},{val:"TJSP",label:"TJSP"},{val:"TJSC",label:"TJSC"},{val:"TJRS",label:"TJRS"},{val:"TJDFT",label:"TJDFT"}]);
+  buildChips("f-tese","tese",[{val:"todas",label:"Todas"},{val:"nulidade",label:"Nulidade · Lei 14.790"},{val:"cuidado",label:"Dever de cuidado · CDC"}]);
+  buildChips("f-res","res",[{val:"todos",label:"Todos"},{val:"fav",label:"Favorável"},{val:"par",label:"Parcial"}]);
+
+  function matches(d){
+    return (state.court==="todos"||d.court===state.court)
+      && (state.tese==="todas"||d.tese===state.tese)
+      && (state.res==="todos"||d.res===state.res);
+  }
+
+  function render(){
+    const feed=document.getElementById("feed");
+    const list=DATA.filter(matches);
+    document.getElementById("count").textContent=list.length+" "+(list.length===1?"decisão":"decisões")+" na visão atual";
+    feed.innerHTML="";
+    if(!list.length){feed.innerHTML='<p style="color:var(--faint);font-size:14px;padding:20px 0">Nenhuma decisão com esses filtros.</p>';return;}
+    list.forEach(d=>{
+      const el=document.createElement("div");el.className="dec";
+      el.innerHTML=`
+        <div class="head">
+          <span class="court">${d.court}</span>
+          <div class="dmid"><div class="tema">${d.tema}</div><div class="meta">${TESES[d.tese]} · ${d.data}</div></div>
+          <span class="res ${d.res}">${d.res==="fav"?"favorável":"parcial"}</span>
+          <span class="chev">›</span>
+        </div>
+        <div class="body"><div class="inner">
+          <p>${d.resumo}</p>
+          <span class="tese">Tese a aplicar: <b>${d.aplicar}</b></span>
+        </div></div>`;
+      el.querySelector(".head").onclick=()=>el.classList.toggle("open");
+      feed.appendChild(el);
+    });
+  }
+  function refresh(){
+    document.querySelectorAll(".chip").forEach(b=>{
+      b.classList.toggle("on",state[b.dataset.key]===b.dataset.val);
+    });
+    render();
+  }
+  render();
+</script>
+</body>
+</html>

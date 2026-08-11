@@ -69,9 +69,13 @@ quase invisível) e sombras suaves em vez de contornos duros. Tipografia grande 
 
 ## Elementos-chave
 
-- **Logo:** por enquanto é tipográfico — "WNP" em `Sora` bold, cor coral (`--coral-400`) sobre fundo
-  escuro, com tagline opcional "Comunicação Visual" em caixa alta, tracking largo, cor `--paper-500`.
-  Não há ainda um ícone/símbolo desenhado (ao contrário da Montara, que tinha o ícone de montanha/M).
+- **Logo:** existe uma marca desenhada — wordmark "WNP" com um corte diagonal vermelho/coral no "V",
+  tagline "COMUNICAÇÃO VISUAL" abaixo. Arquivo fonte em `clientes/WNP/site/assets/logo-wnp.jpeg` (nasceu
+  em fundo branco, traço preto).
+- **Versão pra fundo escuro:** `logo-wnp-mark-dark.png` (só a marca) e `logo-wnp-crop-dark.png` (marca +
+  tagline) — traço preto convertido pra branco (`--paper-0`), acento convertido pra coral, fundo
+  transparente. Usadas direto no header/footer do site, sem placa/badge por trás (testado e aprovado —
+  o selo branco quadrado foi rejeitado).
 - **Uso do wordmark:** header de sites, propostas, assinaturas, apresentações, footer.
 
 ---
@@ -88,9 +92,8 @@ quase invisível) e sombras suaves em vez de contornos duros. Tipografia grande 
 
 ## Logo
 
-- **Arquivo:** ainda não existe um ícone/símbolo gráfico para a WNP — o wordmark é só tipografia
-  (ver `.logo` / `.logo__mark` em `clientes/WNP/site/css/style.css`)
-- **Versão pra fundo claro:** pendente (a marca nasceu para fundo escuro)
+- **Arquivo:** `clientes/WNP/site/assets/logo-wnp.jpeg` (fonte, fundo branco) + versões prontas pra
+  fundo escuro `logo-wnp-mark-dark.png` (só marca) e `logo-wnp-crop-dark.png` (marca + tagline)
 - **Onde usar:** header/footer de sites, propostas, carrossel, slides de apresentação
 
 ---

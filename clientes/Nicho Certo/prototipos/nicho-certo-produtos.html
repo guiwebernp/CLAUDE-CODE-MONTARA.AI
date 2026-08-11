@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicho Certo — o sistema para advogados de ludopatia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo)}
+
+  /* hero */
+  .hero{padding:64px 0 52px;border-bottom:1px solid var(--line);position:relative}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(38px,6.5vw,66px);line-height:1.0;letter-spacing:-.02em;margin:16px 0 0;max-width:14ch}
+  .hero .sub{font-size:clamp(17px,2.3vw,21px);color:var(--muted);max-width:34em;margin:20px 0 0}
+  .hero .chip{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-family:var(--mono);font-size:12px;padding:7px 13px;border-radius:999px;color:var(--certo);border:1px solid rgba(52,201,139,.4);background:var(--certo-fill)}
+  .dotled{width:7px;height:7px;border-radius:50%;background:var(--certo);box-shadow:0 0 9px var(--certo)}
+
+  section{padding:58px 0;border-bottom:1px solid var(--line)}
+  .stitle{font-family:var(--display);font-weight:500;font-size:28px;letter-spacing:-.01em;margin:8px 0 8px}
+  .sintro{color:var(--muted);max-width:44em;margin:0 0 30px}
+
+  /* system / modules + peek */
+  .syslayout{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
+  .mods{display:flex;flex-direction:column;gap:10px}
+  .mod{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--steel);border-radius:12px;padding:15px 18px}
+  .mod.hl{border-left-color:var(--certo)}
+  .mod h3{font-size:15px;font-weight:600;margin:0 0 3px}
+  .mod p{font-size:13.5px;color:var(--muted);margin:0}
+
+  .peek{background:var(--bg2);border:1px solid var(--line2);border-radius:16px;padding:18px;position:sticky;top:20px}
+  .peek .bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .peek .bar .t{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .radar{width:54px;height:54px;border-radius:50%;border:1px solid var(--line2);position:relative;overflow:hidden;background:radial-gradient(circle,var(--bg3),var(--bg2))}
+  .radar .sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(52,201,139,.35) 38deg,transparent 64deg);animation:spin 4s linear infinite}
+  .radar .blip{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--certo);box-shadow:0 0 8px var(--certo);top:14px;right:16px;animation:blip 4s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes blip{0%,55%{opacity:0}60%{opacity:1}100%{opacity:0}}
+  .feed{display:flex;flex-direction:column;gap:8px}
+  .fitem{display:flex;align-items:center;gap:10px;font-size:13px;padding:9px 11px;background:var(--bg3);border-radius:9px}
+  .fitem .tg{font-family:var(--mono);font-size:10.5px;padding:3px 7px;border-radius:5px;color:var(--certo);background:var(--certo-fill);white-space:nowrap}
+  .fitem span{color:var(--muted)}
+
+  /* plans */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+  .plan{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:24px 22px;display:flex;flex-direction:column;height:100%}
+  .plan.rec{border-color:rgba(52,201,139,.5)}
+  .plan .badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--certo);margin-bottom:10px;height:14px}
+  .plan h3{font-family:var(--display);font-weight:500;font-size:23px;margin:0}
+  .plan .who{font-size:13px;color:var(--faint);margin:5px 0 16px;min-height:34px}
+  .price{display:flex;align-items:baseline;gap:5px;margin-bottom:4px}
+  .price .cur{font-size:14px;color:var(--muted)}
+  .price .val{font-family:var(--display);font-size:34px;font-weight:600;letter-spacing:-.01em}
+  .price .per{font-size:13px;color:var(--muted)}
+  .setup{font-size:12px;color:var(--faint);margin-bottom:18px}
+  .plan ul{list-style:none;padding:0;margin:0 0 4px;display:flex;flex-direction:column;gap:9px;flex:1}
+  .plan li{font-size:13.5px;color:var(--muted);display:flex;gap:9px;align-items:flex-start;line-height:1.45}
+  .plan li::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--certo-fill);border:1px solid rgba(52,201,139,.4);margin-top:3px;flex:none;position:relative}
+  .plan li::after{}
+  .check{position:relative}
+  .draftnote{font-family:var(--mono);font-size:11px;color:var(--amber);background:var(--amber-fill);display:inline-block;padding:5px 10px;border-radius:7px;margin-top:26px}
+  .traf{font-size:12.5px;color:var(--faint);margin-top:12px}
+
+  /* compliance */
+  .shield{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--amber);border-radius:16px;padding:26px 28px}
+  .shield h3{font-family:var(--display);font-weight:500;font-size:21px;margin:0 0 6px}
+  .shield p{color:var(--muted);margin:0 0 16px;max-width:48em;font-size:14.5px}
+  .shield .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px 26px}
+  .shield .li{font-size:14px;display:flex;gap:10px;align-items:flex-start}
+  .shield .li .m{color:var(--amber);font-family:var(--mono);font-size:12px;margin-top:3px;flex:none}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:s}
+  .stp{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .stp .n{counter-increment:s;font-family:var(--mono);font-size:12px;color:var(--certo)}
+  .stp .n::before{content:counter(s,decimal-leading-zero)}
+  .stp h4{font-size:15.5px;font-weight:600;margin:8px 0 5px}
+  .stp p{font-size:13.5px;color:var(--muted);margin:0}
+
+  .close{padding:60px 0;text-align:center}
+  .close h2{font-family:var(--display);font-weight:500;font-size:clamp(26px,4vw,38px);letter-spacing:-.01em;margin:0 0 12px}
+  .close p{color:var(--muted);max-width:32em;margin:0 auto}
+  footer{padding:22px 0 60px;color:var(--faint);font-size:12.5px;font-family:var(--mono);letter-spacing:.05em;text-align:center}
+
+  @media (max-width:780px){
+    .syslayout{grid-template-columns:1fr}
+    .peek{position:static}
+    .plans{grid-template-columns:1fr}
+    .shield .grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){.radar .sweep,.radar .blip{animation:none}.radar .sweep{background:none}}
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Nicho Certo · sistema para advogados</div>
+    <h1>O nicho de ludopatia, pronto para operar.</h1>
+    <p class="sub">Captação, gestão e blindagem ética num sistema só. O advogado entra no nicho sem montar funil, sem estudar a tese do zero e sem medo da OAB.</p>
+    <span class="chip"><span class="dotled"></span> blindagem da OAB inclusa</span>
+  </header>
+
+  <section>
+    <div class="eyebrow">O sistema</div>
+    <h2 class="stitle">Cinco camadas que trabalham juntas</h2>
+    <p class="sintro">O advogado recebe a operação inteira montada. Cada camada resolve uma dor diferente — da chegada do cliente até a segurança ética.</p>
+    <div class="syslayout">
+      <div class="mods">
+        <div class="mod"><h3>Comercial</h3><p>Landing page, criativos e funil de entrada para os clientes chegarem.</p></div>
+        <div class="mod"><h3>Jurídica</h3><p>Inteligência e teses do nicho — base estratégica, não petição pronta. A peça é do advogado.</p></div>
+        <div class="mod hl"><h3>Radar de jurisprudência viva</h3><p>Decisões novas dos tribunais monitoradas para manter a tese sempre atual.</p></div>
+        <div class="mod"><h3>Operacional</h3><p>Bot de WhatsApp e triagem dos leads, do primeiro contato à organização do caso.</p></div>
+        <div class="mod"><h3>Compliance</h3><p>Limites da OAB embutidos no sistema. A blindagem vem de fábrica.</p></div>
+      </div>
+
+      <div class="peek" aria-label="Prévia do radar de jurisprudência">
+        <div class="bar"><span class="t">Radar · jurisprudência viva</span>
+          <div class="radar"><div class="sweep"></div><div class="blip"></div></div>
+        </div>
+        <div class="feed">
+          <div class="fitem"><span class="tg">TJSC</span><span>Decisão favorável · saques retidos</span></div>
+          <div class="fitem"><span class="tg">TJSP</span><span>Nulidade reconhecida · Lei 14.790</span></div>
+          <div class="fitem"><span class="tg">TJRS</span><span>Dever de cuidado · CDC</span></div>
+          <div class="fitem"><span class="tg">TJDFT</span><span>Restituição integral</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Os planos</div>
+    <h2 class="stitle">Três formas de entrar</h2>
+    <p class="sintro">Assinatura fixa por mês. Sem comissão por caso, sem percentual sobre honorários — só o sistema.</p>
+    <div class="plans">
+
+      <div class="plan">
+        <div class="badge"></div>
+        <h3>Essencial</h3>
+        <p class="who">Para o advogado que quer testar o nicho com o básico funcionando.</p>
+        <div class="price"><span class="cur">R$</span><span class="val">897</span><span class="per">/mês</span></div>
+        <div class="setup">implementação à parte</div>
+        <ul>
+          <li><span class="check"></span>Camada Comercial (LP + criativos)</li>
+          <li><span class="check"></span>Base jurídica de ludopatia</li>
+          <li><span class="check"></span>Blindagem OAB essencial</li>
+        </ul>
+      </div>
+
+      <div class="plan rec">
+        <div class="badge">recomendado</div>
+        <h3>Growth</h3>
+        <p class="who">Para quem quer o funil rodando de verdade, com captação e gestão.</p>
+        <div class="price"><span class="cur">R$</span><span class="val">1.797</span><span class="per">/mês</span></div>
+        <div class="setup">implementação inclusa</div>
+        <ul>
+          <li><span class="check"></span>Tudo do Essencial</li>
+          <li><span class="check"></span>Operacional: bot WhatsApp + triagem</li>
+          <li><span class="check"></span>Radar de jurisprudência viva</li>
+          <li><span class="check"></span>Implementação feita por nós</li>
+        </ul>
+      </div>
+
+      <div class="plan">
+        <div class="badge"></div>
+        <h3>Pro</h3>
+        <p class="who">Para quem quer escalar o nicho com previsibilidade e suporte.</p>
+        <div class="price"><span class="cur">R$</span><span class="val">2.997</span><span class="per">/mês</span></div>
+        <div class="setup">implementação inclusa</div>
+        <ul>
+          <li><span class="check"></span>Tudo do Growth</li>
+          <li><span class="check"></span>Compliance reforçado + revisão</li>
+          <li><span class="check"></span>Acompanhamento e otimização contínua</li>
+          <li><span class="check"></span>Prioridade no suporte</li>
+        </ul>
+      </div>
+    </div>
+    <p class="traf">A verba de tráfego (anúncios) é paga à parte, direto na plataforma — não está incluída na mensalidade.</p>
+    <span class="draftnote">preços em rascunho — validar na conversa com os advogados</span>
+  </section>
+
+  <section>
+    <div class="eyebrow">Sua segurança</div>
+    <div class="shield">
+      <h3>Blindagem inclusa</h3>
+      <p>O sistema já nasce dentro das regras da OAB. Você não precisa decidir o que pode ou não pode — os limites estão embutidos.</p>
+      <div class="grid">
+        <div class="li"><span class="m">→</span><div>Publicidade informativa e sóbria (Provimento 205/2021).</div></div>
+        <div class="li"><span class="m">→</span><div>Sem promessa de resultado e sem abordar a vítima direto.</div></div>
+        <div class="li"><span class="m">→</span><div>Você é o anunciante e o dono dos casos — sempre.</div></div>
+        <div class="li"><span class="m">→</span><div>Cobramos assinatura fixa, nunca por cliente ou honorário.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Como funciona</div>
+    <h2 class="stitle">Do contrato ao primeiro caso</h2>
+    <div class="steps" style="margin-top:24px">
+      <div class="stp"><div class="n"></div><h4>Você contrata</h4><p>Escolhe o plano que cabe no momento do seu escritório.</p></div>
+      <div class="stp"><div class="n"></div><h4>Nós montamos</h4><p>Configuramos a captação, o bot e o radar com a sua identidade.</p></div>
+      <div class="stp"><div class="n"></div><h4>Os casos chegam</h4><p>Os leads entram triados; você atua com a tese pronta e blindada.</p></div>
+    </div>
+  </section>
+
+  <div class="close">
+    <h2>Vamos conversar sobre o seu escritório?</h2>
+    <p>Quero entender a sua realidade no nicho e mostrar onde o sistema encaixa.</p>
+  </div>
+
+  <footer>NICHO CERTO · SISTEMA PARA ADVOGADOS · NICHE LUDOPATIA</footer>
+</div>
+</body>
+</html>

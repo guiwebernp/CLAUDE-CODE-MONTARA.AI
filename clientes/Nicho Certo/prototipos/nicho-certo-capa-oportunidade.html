@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A oportunidade — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --red:#E8806B;
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:880px;margin:0 auto;padding:60px 24px 80px;position:relative}
+
+  /* rising glow */
+  .glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:360px;background:radial-gradient(ellipse at center,rgba(52,201,139,.14),transparent 65%);pointer-events:none;z-index:0}
+  .wrap > *{position:relative;z-index:1}
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--certo);text-align:center}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(36px,7vw,64px);letter-spacing:-.025em;line-height:1.02;margin:20px 0 0;text-align:center}
+  h1 .hl{color:var(--certo);font-weight:700}
+  .sub{font-size:clamp(16px,2.4vw,20px);color:var(--muted);max-width:30em;margin:22px auto 0;text-align:center}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:46px 0 0}
+  .stat{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:24px 20px;text-align:center}
+  .stat .big{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.5vw,40px);letter-spacing:-.02em;line-height:1}
+  .stat.g .big{color:var(--certo)}
+  .stat .cap{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.4}
+  .stat .src{font-family:var(--mono);font-size:9.5px;color:var(--faint);margin-top:8px;letter-spacing:.04em}
+
+  .turn{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .tc{border-radius:16px;padding:24px 26px}
+  .tc.prob{background:rgba(232,128,107,.07);border:1px solid rgba(232,128,107,.22)}
+  .tc.sol{background:var(--certo-fill);border:1px solid rgba(52,201,139,.3)}
+  .tc .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+  .tc.prob .lbl{color:var(--red)}.tc.sol .lbl{color:var(--certo)}
+  .tc p{margin:0;font-size:15px;color:var(--text);line-height:1.5}
+
+  .payoff{margin-top:38px;text-align:center}
+  .payoff h2{font-family:var(--display);font-weight:500;font-size:clamp(24px,4vw,34px);letter-spacing:-.01em;margin:0;line-height:1.2}
+  .payoff h2 b{color:var(--certo);font-weight:600}
+  .payoff .micro{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:16px;letter-spacing:.04em}
+
+  @media (max-width:640px){
+    .stats{grid-template-columns:1fr;gap:11px}
+    .turn{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="glow" aria-hidden="true"></div>
+
+  <div class="eyebrow">A oportunidade · nicho de ludopatia</div>
+  <h1>25 milhões apostando.<br>Bilhões perdidos.<br><span class="hl">As vítimas já estão ganhando.</span></h1>
+  <p class="sub">Um novo nicho jurídico nasceu — com demanda gigante, jurisprudência a favor e quase ninguém posicionado. A janela está aberta agora.</p>
+
+  <div class="stats">
+    <div class="stat g">
+      <div class="big">+25 mi</div>
+      <div class="cap">brasileiros apostaram em 2025 — quase 1 em cada 10</div>
+      <div class="src">SPA · Aposta Legal</div>
+    </div>
+    <div class="stat g">
+      <div class="big">R$ 36 bi</div>
+      <div class="cap">ficaram com as plataformas em um único ano</div>
+      <div class="src">Secretaria de Prêmios e Apostas</div>
+    </div>
+    <div class="stat g">
+      <div class="big">já vencendo</div>
+      <div class="cap">decisões favoráveis em TJSP, TJSC, TJRS e TJDFT</div>
+      <div class="src">Radar de jurisprudência</div>
+    </div>
+  </div>
+
+  <div class="turn">
+    <div class="tc prob">
+      <div class="lbl">o que trava você</div>
+      <p>Entrar exige conhecer a tese, montar a captação do zero e não tropeçar nas regras da OAB. Sozinho, leva meses — e tem risco no seu nome.</p>
+    </div>
+    <div class="tc sol">
+      <div class="lbl">o que muda com o Nicho Certo</div>
+      <p>A operação inteira chega pronta: a tese que já vence, a máquina de captação e a blindagem da OAB inclusa. Você entra essa semana.</p>
+    </div>
+  </div>
+
+  <div class="payoff">
+    <h2>Você não monta nada.<br><b>Liga a chave.</b></h2>
+    <div class="micro">o nicho certo · a operação pronta pra rodar</div>
+  </div>
+
+</div>
+</body>
+</html>

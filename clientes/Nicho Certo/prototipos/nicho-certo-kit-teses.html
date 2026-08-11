@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit de teses · ludopatia — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.62;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:200px 1fr;gap:44px}
+
+  nav{position:sticky;top:0;align-self:start;height:100vh;padding:38px 0;display:flex;flex-direction:column;gap:2px}
+  .brandmark{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--certo);margin-bottom:24px;line-height:1.5}
+  nav a{display:flex;gap:10px;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:13.5px;transition:.15s}
+  nav a .ix{font-family:var(--mono);font-size:11px;color:var(--faint);transition:.15s}
+  nav a:hover,nav a.on{color:var(--text);background:var(--bg2)}
+  nav a.on .ix{color:var(--certo)}
+  .navfoot{margin-top:auto;font-size:11.5px;color:var(--faint);padding:12px;line-height:1.5}
+
+  main{padding:38px 0 96px;min-width:0}
+  .hero{padding:26px 0 34px;border-bottom:1px solid var(--line);margin-bottom:46px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,5.5vw,52px);line-height:1.02;letter-spacing:-.02em;margin:14px 0 0}
+  .hero p{font-size:18px;color:var(--muted);max-width:34em;margin:16px 0 0}
+  .tag{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:11.5px;padding:6px 12px;border-radius:999px;color:var(--amber);border:1px solid rgba(227,165,60,.35);background:var(--amber-fill)}
+
+  section{margin-bottom:58px;scroll-margin-top:32px}
+  .shead{display:flex;align-items:baseline;gap:13px;margin-bottom:20px}
+  .shead .num{font-family:var(--mono);font-size:12px;color:var(--certo)}
+  .shead h2{font-family:var(--display);font-weight:500;font-size:26px;margin:0;letter-spacing:-.01em}
+  p.lead{color:var(--muted);max-width:46em;margin:0 0 22px}
+
+  .tese{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin-bottom:16px}
+  .tese.t1{border-top:2px solid var(--certo)}
+  .tese.t2{border-top:2px solid var(--steel)}
+  .tese .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .tese h3{font-family:var(--display);font-weight:500;font-size:22px;margin:6px 0 14px;letter-spacing:-.01em}
+  .tese .body{font-size:14.5px;color:var(--muted);margin:0 0 18px;max-width:50em}
+  .fund{display:inline-flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+  .fund span{font-family:var(--mono);font-size:11.5px;padding:5px 10px;border-radius:7px;background:var(--bg3);color:var(--text)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+  .box{background:var(--bg3);border-radius:11px;padding:15px 17px}
+  .box .bt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--certo);margin-bottom:8px}
+  .box ul{margin:0;padding-left:17px}
+  .box li{font-size:13.5px;color:var(--muted);margin-bottom:5px}
+  .box p{font-size:13.5px;color:var(--muted);margin:0}
+
+  .combine{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--certo);border-radius:14px;padding:22px 26px}
+  .combine p{margin:0;font-size:14.5px;color:var(--muted)}
+  .combine b{color:var(--text);font-weight:600}
+
+  .checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+  .ck{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+  .ck .b{width:16px;height:16px;border-radius:4px;border:1px solid rgba(52,201,139,.45);background:var(--certo-fill);flex:none;margin-top:2px;position:relative}
+  .ck .b::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--certo)}
+
+  .ca{border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-bottom:10px;background:var(--bg2)}
+  .ca .q{display:flex;gap:12px;padding:16px 19px;align-items:flex-start}
+  .ca .q .m{font-family:var(--mono);font-size:12px;color:var(--amber);margin-top:2px;flex:none}
+  .ca .q .t{font-size:14.5px;font-weight:500}
+  .ca .a{padding:0 19px 17px 43px;font-size:13.5px;color:var(--muted)}
+  .ca .a .m2{font-family:var(--mono);font-size:11px;color:var(--certo);margin-right:6px}
+
+  .juri{background:var(--bg2);border:1px solid var(--line2);border-radius:14px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .juri .courts{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+  .juri .courts span{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:7px;background:var(--steel-fill);color:var(--steel)}
+  .juri h4{font-family:var(--display);font-weight:500;font-size:18px;margin:0}
+  .juri p{font-size:13.5px;color:var(--muted);margin:4px 0 0}
+
+  footer{border-top:1px solid var(--line);padding-top:22px;margin-top:10px;color:var(--faint);font-size:12.5px;line-height:1.6}
+  footer b{color:var(--muted);font-weight:500}
+
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr;gap:0}
+    nav{position:static;height:auto;flex-direction:row;flex-wrap:wrap;padding:24px 0 8px;gap:4px}
+    .brandmark{width:100%;margin-bottom:6px}
+    nav a .ix{display:none}.navfoot{display:none}
+    .grid2,.checklist{grid-template-columns:1fr}
+  }
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav aria-label="Seções do kit">
+    <div class="brandmark">Nicho Certo<br>Kit de teses</div>
+    <a href="#teses" class="on"><span class="ix">01</span> As duas teses</a>
+    <a href="#combinar"><span class="ix">02</span> Como combinar</a>
+    <a href="#provas"><span class="ix">03</span> Provas a reunir</a>
+    <a href="#contra"><span class="ix">04</span> Contra-argumentos</a>
+    <a href="#juris"><span class="ix">05</span> Jurisprudência</a>
+    <div class="navfoot">Material estratégico.<br>A peça é redigida pelo advogado.</div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">Camada jurídica · ludopatia</div>
+      <h1>Kit de teses</h1>
+      <p>A base estratégica do caso: as teses, os fundamentos legais, o que provar e como responder à defesa. O advogado monta a peça em cima disso.</p>
+      <span class="tag">material estratégico · não é petição pronta</span>
+    </header>
+
+    <section id="teses">
+      <div class="shead"><span class="num">01</span><h2>As duas teses</h2></div>
+      <p class="lead">São complementares. A primeira ataca a validade da aposta; a segunda, a conduta da plataforma. Use uma, a outra, ou as duas em conjunto, conforme o caso.</p>
+
+      <div class="tese t1">
+        <div class="lbl">Tese 1 · via mais direta</div>
+        <h3>Nulidade de pleno direito</h3>
+        <p class="body">O apostador diagnosticado com ludopatia é legalmente impedido de apostar. As apostas feitas nesse estado são nulas de pleno direito — e o que é nulo deve ser desfeito, com a devolução dos valores ao apostador.</p>
+        <div class="fund">
+          <span>Lei 14.790/2023 · art. 26, VI</span>
+          <span>art. 26, §1º</span>
+          <span>Código Civil · art. 166, VI</span>
+        </div>
+        <div class="grid2">
+          <div class="box"><div class="bt">Quando aplicar</div><p>Há laudo ou elementos de diagnóstico de ludopatia, e apostas realizadas nesse período.</p></div>
+          <div class="box"><div class="bt">O que provar</div><ul><li>Laudo de profissional de saúde mental habilitado</li><li>Extrato das apostas e depósitos</li><li>Nexo entre o quadro e as apostas</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tese t2">
+        <div class="lbl">Tese 2 · via subsidiária ou cumulada</div>
+        <h3>Falha no dever de cuidado da plataforma</h3>
+        <p class="body">A lei e o Código de Defesa do Consumidor impõem à plataforma deveres de informação, de monitoramento do comportamento de risco e de oferecer ferramentas de autolimitação — além de vedarem bônus para incentivar apostas. Quando a plataforma falha nesses deveres, responde civilmente pelos danos.</p>
+        <div class="fund">
+          <span>CDC · dever de informação e segurança</span>
+          <span>Lei 14.790/2023 · deveres de monitoramento</span>
+          <span>art. 29 · vedação de bônus de incentivo</span>
+        </div>
+        <div class="grid2">
+          <div class="box"><div class="bt">Quando aplicar</div><p>Padrão de uso compulsivo, ausência de travas e alertas, bônus de estímulo, ou falta de informação sobre o risco.</p></div>
+          <div class="box"><div class="bt">O que provar</div><ul><li>Padrão de apostas e depósitos (volume, frequência, horários)</li><li>Ausência de medidas protetivas e alertas</li><li>Bônus e promoções recebidos</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="combinar">
+      <div class="shead"><span class="num">02</span><h2>Como combinar as teses</h2></div>
+      <div class="combine">
+        <p>A <b>nulidade</b> é a porta da frente quando há diagnóstico: é objetiva e independe de discutir a culpa do apostador. O <b>dever de cuidado</b> sustenta o caso mesmo sem diagnóstico formal, focando na conduta da plataforma — e pode ser cumulado como pedido alternativo. Na prática: nulidade como pedido principal, dever de cuidado como reforço e alternativa.</p>
+      </div>
+    </section>
+
+    <section id="provas">
+      <div class="shead"><span class="num">03</span><h2>Provas a reunir com o cliente</h2></div>
+      <p class="lead">O checklist que o advogado entrega ao cliente logo no início. Quanto mais completo, mais forte a tese.</p>
+      <div class="checklist">
+        <div class="ck"><span class="b"></span>Extratos de apostas e de depósitos na plataforma</div>
+        <div class="ck"><span class="b"></span>Comprovantes bancários dos valores movimentados</div>
+        <div class="ck"><span class="b"></span>Laudo ou relatório de saúde mental (ludopatia)</div>
+        <div class="ck"><span class="b"></span>Prints da conta e do histórico na plataforma</div>
+        <div class="ck"><span class="b"></span>Bônus, promoções e mensagens de incentivo recebidos</div>
+        <div class="ck"><span class="b"></span>Pedido de autoexclusão ignorado, se houver</div>
+      </div>
+    </section>
+
+    <section id="contra">
+      <div class="shead"><span class="num">04</span><h2>Contra-argumentos e respostas</h2></div>
+      <p class="lead">O que a defesa costuma levantar — e como o advogado responde.</p>
+
+      <div class="ca">
+        <div class="q"><span class="m">defesa</span><span class="t">"O apostador assumiu o risco; a responsabilidade é dele."</span></div>
+        <div class="a"><span class="m2">resposta</span>A nulidade é objetiva e decorre da lei — independe da culpa do consumidor. E o dever de proteção da plataforma existe justamente porque o apostador vulnerável não consegue se autorregular.</div>
+      </div>
+      <div class="ca">
+        <div class="q"><span class="m">defesa</span><span class="t">"A operadora é estrangeira / não tem relação com o Brasil."</span></div>
+        <div class="a"><span class="m2">resposta</span>A lei exige sede e autorização no Brasil (arts. 6º e 7º) e o cadastro junto ao Ministério da Fazenda evidencia a legitimidade passiva. O CDC se aplica.</div>
+      </div>
+      <div class="ca">
+        <div class="q"><span class="m">defesa</span><span class="t">"Não havia diagnóstico prévio de ludopatia."</span></div>
+        <div class="a"><span class="m2">resposta</span>A tese do dever de cuidado não exige diagnóstico formal anterior: basta o padrão de risco que a plataforma tinha o dever de identificar e ignorou.</div>
+      </div>
+    </section>
+
+    <section id="juris">
+      <div class="shead"><span class="num">05</span><h2>Jurisprudência de apoio</h2></div>
+      <div class="juri">
+        <div>
+          <h4>As teses já vêm vencendo nos tribunais</h4>
+          <p>Decisões favoráveis monitoradas no Radar, organizadas por tese.</p>
+          <div class="courts"><span>TJSP</span><span>TJSC</span><span>TJRS</span><span>TJDFT</span></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <b>Aviso.</b> Este kit é material de inteligência e estratégia jurídica para apoio ao advogado. Não constitui peça processual nem parecer, e sua aplicação depende da análise do caso concreto pelo profissional habilitado. A redação de qualquer petição é de responsabilidade exclusiva do advogado.
+    </footer>
+  </main>
+</div>
+
+<script>
+  const links=[...document.querySelectorAll('nav a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('on'));map.get(e.target.id)?.classList.add('on');}});
+  },{rootMargin:'-15% 0px -75% 0px'});
+  document.querySelectorAll('section').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

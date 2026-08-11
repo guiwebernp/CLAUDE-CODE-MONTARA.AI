@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como o bot roda — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --amber-fill:rgba(227,165,60,.13);
+    --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(52,201,139,.28)}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 22px 80px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo)}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,5vw,44px);letter-spacing:-.02em;margin:13px 0 0}
+  .intro{color:var(--muted);max-width:40em;margin:14px 0 0;font-size:16px}
+
+  .sec{margin-top:46px}
+  .shead{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+  .shead .num{font-family:var(--mono);font-size:12px;color:var(--certo)}
+  .shead h2{font-family:var(--display);font-weight:500;font-size:24px;margin:0;letter-spacing:-.01em}
+  .slead{color:var(--muted);max-width:46em;margin:0 0 22px;font-size:14.5px}
+
+  /* pipeline */
+  .pipe{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+  .node{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:15px 16px;flex:1;min-width:135px}
+  .node.you{border-color:rgba(52,201,139,.5);background:linear-gradient(var(--bg2),rgba(52,201,139,.05))}
+  .node .ic{font-size:20px;margin-bottom:7px}
+  .node .nm{font-size:14px;font-weight:600;line-height:1.25}
+  .node .ds{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.4}
+  .node .tg{font-family:var(--mono);font-size:10px;color:var(--certo);margin-top:8px;display:block}
+  .arrow{display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:20px;padding:0 6px;flex:none}
+  @media (max-width:680px){.arrow{transform:rotate(90deg);width:100%;padding:6px 0}.node{min-width:0}}
+
+  .freebox{margin-top:16px;background:rgba(52,201,139,.07);border:1px solid rgba(52,201,139,.3);border-radius:13px;padding:16px 20px;display:flex;gap:12px;align-items:flex-start}
+  .freebox .ic{font-size:20px;flex:none}
+  .freebox p{margin:0;font-size:14px;color:var(--muted)}
+  .freebox b{color:var(--certo);font-weight:600}
+
+  .multi{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--faint);text-align:center;border:1px dashed var(--line2);border-radius:10px;padding:12px}
+  .multi b{color:var(--text)}
+
+  /* decisions */
+  .dec{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px;border-left:2px solid var(--steel)}
+  .dec.warn{border-left-color:var(--amber)}
+  .dec h3{font-size:15.5px;margin:0 0 6px;display:flex;align-items:center;gap:9px}
+  .dec h3 .k{font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .dec p{margin:0;font-size:13.8px;color:var(--muted);max-width:54em}
+  .dec b{color:var(--text);font-weight:600}
+  .dec .warnlabel{color:var(--amber)}
+
+  /* mvp steps */
+  .steps{counter-reset:s;display:flex;flex-direction:column;gap:0}
+  .stp{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .stp:last-child{border-bottom:0}
+  .stp .n{counter-increment:s;font-family:var(--mono);font-size:13px;color:var(--certo);flex:none;width:26px;padding-top:2px}
+  .stp .n::before{content:counter(s,decimal-leading-zero)}
+  .stp .t{font-size:14.5px}
+  .stp .t small{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+
+  .why{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--certo);border-radius:14px;padding:20px 24px;margin-top:18px}
+  .why h3{font-family:var(--display);font-weight:500;font-size:18px;margin:0 0 6px}
+  .why p{margin:0;font-size:14px;color:var(--muted);max-width:54em}
+  .why b{color:var(--text);font-weight:600}
+
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Operação · camada viva</div>
+  <h1>Como o bot roda na prática</h1>
+  <p class="intro">Um motor de bot só, operado por você, atendendo o número de cada advogado. Aqui está o caminho da mensagem e as decisões que sustentam isso.</p>
+
+  <div class="sec">
+    <div class="shead"><span class="num">01</span><h2>O caminho da mensagem</h2></div>
+    <div class="pipe">
+      <div class="node"><div class="ic">🙋</div><div class="nm">Lead</div><div class="ds">Chega da LP ou do anúncio e manda mensagem.</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="ic">📱</div><div class="nm">Número do advogado</div><div class="ds">Conta oficial dele (WABA).</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="ic">🔌</div><div class="nm">Cloud API · BSP</div><div class="ds">A ponte oficial com o WhatsApp.</div></div>
+      <div class="arrow">→</div>
+      <div class="node you"><div class="ic">🤖</div><div class="nm">Seu motor de bot</div><div class="ds">Roda o modelo de tom escolhido e gera a ficha.</div><span class="tg">você opera</span></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="ic">⚖️</div><div class="nm">Advogado</div><div class="ds">Recebe o caso já triado.</div></div>
+    </div>
+
+    <div class="freebox">
+      <span class="ic">💸</span>
+      <p>Como o lead manda mensagem <b>primeiro</b>, abre uma janela de 24h em que toda a triagem é <b>gratuita</b> em taxas da Meta. Você só paga se for falar fora da janela (mensagem com template). Anúncio de clique-para-WhatsApp abre uma janela livre de 72h.</p>
+    </div>
+
+    <div class="multi"><b>1 motor &nbsp;·&nbsp; N advogados.</b> O mesmo sistema atende o número de cada cliente — é o que torna isso escalável.</div>
+  </div>
+
+  <div class="sec">
+    <div class="shead"><span class="num">02</span><h2>As decisões que importam</h2></div>
+
+    <div class="dec">
+      <h3><span class="k">01</span> Oficial, não gambiarra</h3>
+      <p>Use a <b>Cloud API oficial</b> (via um BSP), não bibliotecas não-oficiais. O número é a linha principal do escritório — um banimento seria catástrofe, e você estaria vendendo esse risco pra dentro do cliente. Vale ir pelo oficial mesmo que a sua stack antiga (WNP) fosse não-oficial.</p>
+    </div>
+
+    <div class="dec">
+      <h3><span class="k">02</span> O número é do advogado</h3>
+      <p>O advogado é dono do número e da conta; <b>você opera</b> com acesso de gestor. Isso mantém o ativo com ele, deixa a relação com o cliente sendo dele (o que a OAB pede) e evita qualquer situação de refém se ele sair.</p>
+    </div>
+
+    <div class="dec warn">
+      <h3><span class="k">03</span> <span class="warnlabel">Verificar antes de escalar</span></h3>
+      <p>A Meta tem uma política específica (atualizada em 2026) sobre plataformas que oferecem <b>respostas automatizadas como serviço para vários clientes</b>. Na estrutura recomendada — cada advogado dono da própria conta — você tende a ficar do lado certo, mas confirme isso na documentação antes de crescer o número de clientes.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="shead"><span class="num">03</span><h2>O caminho MVP — onboarding por cliente</h2></div>
+    <p class="slead">Manual no começo, automatizado na fase 2. Cada novo advogado segue esses passos no onboarding.</p>
+    <div class="steps">
+      <div class="stp"><span class="n"></span><div class="t">Escolher um BSP oficial<small>o intermediário que te dá acesso à Cloud API — há vários no Brasil</small></div></div>
+      <div class="stp"><span class="n"></span><div class="t">Conectar o número e a conta (WABA) do advogado<small>ele é o dono; você entra como gestor</small></div></div>
+      <div class="stp"><span class="n"></span><div class="t">Carregar o modelo de tom escolhido no seu motor<small>acolhedor, objetivo, educativo ou formal</small></div></div>
+      <div class="stp"><span class="n"></span><div class="t">Testar e colocar no ar<small>do primeiro contato à ficha que chega pro advogado</small></div></div>
+    </div>
+
+    <div class="why">
+      <h3>Por que isso sustenta o mensal</h3>
+      <p>Hospedagem do motor, BSP, manutenção e você operando e monitorando = <b>custo recorrente seu</b>, que justifica a mensalidade. E como o atendimento é gratuito (inbound), o seu custo variável é mínimo — então a margem fica alta. É a peça "viva" do produto.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

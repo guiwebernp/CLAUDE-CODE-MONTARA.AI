@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{NOME_ESCRITORIO}} — Avaliação de Ludopatia</title>
+<meta name="description" content="{{META_DESCRICAO}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F8FA; --bg2:#FFFFFF; --bg3:#EFF1F4;
+  --border:#E2E6EA; --border2:#CBD0D8;
+  --text:#1A2028; --muted:#6B7A8D; --faint:#A8B4C0;
+  --accent:#1A6B4A; --accent2:#2A8B5A; --accent3:#0F4A32;
+  --accent-dim:rgba(26,107,74,.07); --accent-line:rgba(26,107,74,.15);
+  --danger:#C0392B; --warn:#E67E22;
+  --b:'Inter',system-ui,sans-serif; --m:'IBM Plex Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--b);line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(26,107,74,.15)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+#progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--accent);z-index:200}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,248,250,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1100px;margin:0 auto;padding:0 32px;height:60px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.nav-logo span{color:var(--accent)}
+.nav-cta{font-size:13px;font-weight:600;padding:8px 20px;background:var(--accent);color:#fff;border-radius:6px;transition:.2s}
+.nav-cta:hover{background:var(--accent3)}
+
+/* HERO — 2 colunas clínicas */
+.hero{padding-top:60px;min-height:100svh;display:grid;grid-template-columns:1fr 460px;background:var(--bg2)}
+.hero-left{padding:72px 56px 64px 48px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:4px;padding:5px 12px;font-family:var(--m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+.hero-badge svg{width:12px;height:12px}
+.hero h1{font-size:clamp(28px,3.8vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.025em;margin-bottom:16px;color:var(--text)}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:32px;max-width:38em}
+/* Checklist clínico */
+.checklist{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:28px}
+.check-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--bg2);transition:background .15s;cursor:pointer}
+.check-item:last-child{border-bottom:none}
+.check-item:hover{background:var(--bg)}
+.check-box{width:20px;height:20px;border:2px solid var(--border2);border-radius:4px;flex:none;margin-top:1px;display:grid;place-items:center;transition:.15s}
+.check-item.checked .check-box{background:var(--accent);border-color:var(--accent)}
+.check-item.checked .check-box::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
+.check-item.checked .check-text{color:var(--muted)}
+.check-text{font-size:14px;line-height:1.5}
+.check-score{margin-top:0;padding:12px 18px;background:var(--accent-dim);border-top:1px solid var(--accent-line);font-family:var(--m);font-size:11px;color:var(--accent);display:none}
+.check-score.show{display:block}
+
+/* CTA LATERAL */
+.hero-right{padding:60px 40px;display:flex;flex-direction:column;justify-content:center;background:var(--bg)}
+.cta-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.cta-card h2{font-size:20px;font-weight:700;margin-bottom:6px;letter-spacing:-.015em}
+.cta-card .sub{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+.foto-circle{width:80px;height:80px;border-radius:50%;border:3px solid var(--border);object-fit:cover;margin:0 auto 16px;display:block}
+.foto-placeholder{width:80px;height:80px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.adv-nome{font-size:15px;font-weight:600;text-align:center;margin-bottom:2px}
+.adv-oab{font-family:var(--m);font-size:10px;color:var(--muted);text-align:center;margin-bottom:20px}
+.btn-wa{width:100%;padding:14px;background:#25D366;color:#fff;border-radius:8px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s;margin-bottom:10px}
+.btn-wa:hover{background:#1EB857}
+.cta-note{font-size:11.5px;color:var(--faint);text-align:center;line-height:1.6}
+.divider{border:none;border-top:1px solid var(--border);margin:20px 0}
+.trust-row{display:flex;justify-content:space-between;gap:8px}
+.trust-item{text-align:center;flex:1}
+.trust-n{font-size:18px;font-weight:700;color:var(--accent);letter-spacing:-.02em}
+.trust-l{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.3}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}.r.d2{transition-delay:.14s}.r.d3{transition-delay:.21s}
+
+/* SEÇÃO */
+.sec{padding:80px 32px;border-top:1px solid var(--border)}
+.sec-in{max-width:1100px;margin:0 auto}
+.eyebrow{font-family:var(--m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:block}
+.sec-h{font-size:clamp(24px,3.5vw,40px);font-weight:700;line-height:1.1;letter-spacing:-.025em;margin-bottom:12px}
+.sec-lead{font-size:16px;color:var(--muted);max-width:44em;line-height:1.75}
+
+/* DIAGNÓSTICO — grid clínico */
+.diag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:32px}
+.diag-item{background:var(--bg2);padding:22px 24px}
+.diag-num{font-family:var(--m);font-size:10px;color:var(--faint);margin-bottom:8px;display:block}
+.diag-item p{font-size:14px;line-height:1.65;color:var(--muted)}
+.diag-item strong{color:var(--text)}
+.oms-tag{display:inline-flex;align-items:center;gap:7px;margin-top:28px;background:rgba(26,107,74,.06);border:1px solid var(--accent-line);border-radius:4px;padding:8px 14px;font-size:13px;color:var(--accent)}
+
+/* DIREITOS */
+.lei-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.lei-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:24px}
+.lei-label{font-family:var(--m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block}
+.lei-card h3{font-size:16px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+.lei-card p{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* CASOS — tabela */
+.casos-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px}
+.casos-table thead th{text-align:left;padding:10px 16px;font-family:var(--m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border)}
+.casos-table tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+.casos-table tbody tr:hover{background:var(--bg)}
+.casos-table td{padding:14px 16px;vertical-align:top}
+.caso-val{font-size:18px;font-weight:700;color:var(--accent);letter-spacing:-.02em}
+.caso-trib{font-family:var(--m);font-size:11px;color:var(--muted)}
+
+/* JORNADA */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+.step{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:24px;position:relative}
+.step-n{font-family:var(--m);font-size:32px;font-weight:500;color:var(--border2);margin-bottom:14px;line-height:1}
+.step h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.step p{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* SOBRE */
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:32px}
+.sobre-foto-wrap{position:relative}
+.sobre-foto-wrap img{width:100%;border-radius:12px;border:1px solid var(--border);display:block}
+.sobre-foto-ph{width:100%;aspect-ratio:4/5;border-radius:12px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--faint)}
+.sobre-nome{font-size:clamp(22px,2.8vw,32px);font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.sobre-oab{font-family:var(--m);font-size:11px;color:var(--accent);margin-bottom:16px}
+.sobre-text p{font-size:15px;color:var(--muted);line-height:1.82;margin-bottom:12px}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-family:var(--m);font-size:10.5px;padding:4px 10px;border:1px solid var(--border2);border-radius:4px;color:var(--muted)}
+.honora{margin-top:20px;padding:14px 18px;background:var(--accent-dim);border-left:3px solid var(--accent);font-size:13.5px;color:var(--muted);line-height:1.7;border-radius:0 6px 6px 0}
+.honora strong{color:var(--text)}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:32px}
+.faq-item{border-bottom:1px solid var(--border);background:var(--bg2)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{padding:18px 20px;font-size:14px;font-weight:500;display:flex;justify-content:space-between;gap:14px;cursor:pointer;transition:background .15s}
+.faq-q:hover{background:var(--bg)}
+.faq-item.open .faq-q{color:var(--accent)}
+.faq-icon{flex:none;color:var(--accent);font-size:18px;transition:transform .25s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:.3s}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-inner{overflow:hidden;font-size:13.5px;color:var(--muted);line-height:1.75}
+.faq-item.open .faq-inner{padding:0 20px 18px}
+
+/* AJUDA */
+.ajuda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.ajuda-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:22px}
+.ajuda-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.ajuda-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.ajuda-card .contact{font-family:var(--m);font-size:10.5px;color:var(--accent);margin-top:10px;display:block}
+
+/* CTA FINAL */
+.cta-final{background:var(--text);color:#fff;padding:80px 32px;text-align:center}
+.cta-final-in{max-width:600px;margin:0 auto}
+.cta-final h2{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:16px}
+.cta-final p{font-size:16px;color:rgba(255,255,255,.65);max-width:36em;margin:0 auto 32px;line-height:1.75}
+.btn-cta-w{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:#25D366;color:#fff;border-radius:8px;font-size:16px;font-weight:700;transition:.2s}
+.btn-cta-w:hover{opacity:.9}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:90}
+.wa-float a{width:52px;height:52px;border-radius:14px;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:.25s}
+.wa-float a:hover{transform:scale(1.06)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:24px 32px;background:var(--bg2)}
+.footer-in{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer p{font-size:11.5px;color:var(--faint);line-height:1.65;max-width:60em}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}.hero-right{display:none}
+  .diag-grid,.lei-cards,.steps,.ajuda-grid{grid-template-columns:1fr}
+  .sobre-grid{grid-template-columns:1fr}
+  .sec{padding:56px 24px}
+}
+</style>
+<style>{{COLOR_OVERRIDE}}</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="wa-float">
+  <a href="https://wa.me/{{WHATSAPP}}?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20uma%20avaliação" target="_blank">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-logo">{{NOME_ESCRITORIO}} <span>·</span></div>
+    <a href="https://wa.me/{{WHATSAPP}}?text=Olá,%20gostaria%20de%20uma%20avaliação%20gratuita" target="_blank">
+      <button class="nav-cta">Avaliação gratuita</button>
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      Triagem clínica · CID-11 6C50
+    </div>
+    <h1>{{HEADLINE_H1}}</h1>
+    <p class="hero-sub">{{TAGLINE}}</p>
+    <div class="checklist" id="checklist">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Apostei mais do que planejei e não consegui parar</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Menti sobre quanto apostei ou perdi</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Tentei parar e não consegui</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Usei dinheiro essencial ou fiz dívidas para apostar</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-text">Apostei para tentar recuperar o que perdi</span></div>
+    </div>
+    <div class="check-score" id="checkScore"></div>
+  </div>
+  <div class="hero-right">
+    <div class="cta-card">
+      <img src="{{FOTO_ADVOGADO}}" alt="{{NOME_ADVOGADO}}" class="foto-circle" id="fotoImg"
+           onerror="this.style.display='none';document.getElementById('fotoFallback').style.display='flex'">
+      <div class="foto-placeholder" id="fotoFallback" style="display:none">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="color:#CBD0D8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <div class="adv-nome">{{NOME_ADVOGADO}}</div>
+      <div class="adv-oab">OAB/{{OAB}} · {{CIDADE_ESTADO}}</div>
+      <h2>{{CTA_TITULO}}</h2>
+      <p class="sub">{{CTA_SUBTEXTO}}</p>
+      <a href="https://wa.me/{{WHATSAPP}}?text=Olá%20{{NOME_ADVOGADO_URL}},%20vim%20pelo%20site%20e%20gostaria%20de%20conversar." target="_blank">
+        <button class="btn-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Conversar agora
+        </button>
+      </a>
+      <p class="cta-note">Sigiloso · Gratuito · Sem compromisso</p>
+      <hr class="divider">
+      <div class="trust-row">
+        <div class="trust-item"><div class="trust-n" data-count="337">R$ 337k</div><div class="trust-l">maior valor recuperado</div></div>
+        <div class="trust-item"><div class="trust-n">4</div><div class="trust-l">tribunais com decisão favorável</div></div>
+        <div class="trust-item"><div class="trust-n">2023</div><div class="trust-l">lei vigente</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">CID-11 6C50</span>
+    <h2 class="sec-h r d1">Ludopatia é uma doença.<br>Tem diagnóstico, tem tratamento, tem direito.</h2>
+    <p class="sec-lead r d2">O transtorno do jogo compulsivo foi reconhecido pela OMS em 2018. No Brasil, a Lei 14.790/2023 obriga as plataformas a proteger quem desenvolve esse quadro.</p>
+    <div class="diag-grid r d2">
+      <div class="diag-item"><span class="diag-num">CID-11 · 6C50</span><p><strong>Transtorno do jogo</strong> — perda de controle sobre o comportamento de apostar, com prioridade crescente sobre outras atividades.</p></div>
+      <div class="diag-item"><span class="diag-num">Sintoma central</span><p><strong>A pessoa não escolhe</strong> continuar apostando. O comportamento é compulsivo — neurologicamente semelhante a outras dependências.</p></div>
+      <div class="diag-item"><span class="diag-num">Responsabilidade</span><p>A lei exige que a plataforma <strong>monitore e intervenha</strong> antes que o prejuízo se torne grave. Quem não o fez, responde.</p></div>
+    </div>
+    <div class="oms-tag r d3">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>
+      OMS CID-11 · Lei 14.790/2023 · CDC art. 14
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Fundamento jurídico</span>
+    <h2 class="sec-h r d1">Três bases legais. Uma conclusão.</h2>
+    <div class="lei-cards r d2">
+      <div class="lei-card"><span class="lei-label">Lei 14.790/23 · art. 26</span><h3>Exclusão obrigatória</h3><p>É vedada a participação de pessoa diagnosticada com ludopatia. A aposta nessas condições é nula de pleno direito.</p></div>
+      <div class="lei-card"><span class="lei-label">Lei 14.790/23</span><h3>Dever de monitoramento</h3><p>A operadora deve identificar sinais de comportamento compulsivo e adotar medidas protetivas antes que o dano se torne grave.</p></div>
+      <div class="lei-card"><span class="lei-label">CDC · art. 14</span><h3>Responsabilidade objetiva</h3><p>A relação é de consumo. Falha na prestação do serviço gera responsabilidade independente de culpa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Jurisprudência</span>
+    <h2 class="sec-h r d1">Resultados verificáveis nos portais dos tribunais.</h2>
+    <table class="casos-table r d2">
+      <thead><tr><th>Tribunal</th><th>Fundamento</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td><span class="caso-trib">TJDFT</span></td><td>Restituição integral · plataforma sem mecanismo de contenção</td><td><span class="caso-val" data-count="337000" data-prefix="R$ ">R$ 337.000</span></td></tr>
+        <tr><td><span class="caso-trib">TJSP</span></td><td>Falha em conter padrão inequívoco de comportamento compulsivo</td><td><span class="caso-val" data-count="456000" data-prefix="R$ ">R$ 456.000</span></td></tr>
+        <tr><td><span class="caso-trib">TJRS</span></td><td>Falha no dever de cuidado com apostador em vulnerabilidade</td><td><span class="caso-val" data-count="206000" data-prefix="R$ ">R$ 206.000</span></td></tr>
+        <tr><td><span class="caso-trib">TJSC</span></td><td>Nulidade contratual combinada com responsabilidade civil</td><td><span class="caso-val" data-count="180000" data-prefix="R$ ">R$ 180.000</span></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--faint);margin-top:14px">Resultados anteriores não garantem o mesmo desfecho. Cada caso é analisado individualmente.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Como funciona</span>
+    <h2 class="sec-h r d1">Três etapas. Começa agora.</h2>
+    <div class="steps r d2">
+      <div class="step"><div class="step-n">01</div><h3>Conversa sigilosa</h3><p>Pelo WhatsApp, sem formalidade. Sem julgamento, sem compromisso. Ninguém é contatado sem sua autorização.</p></div>
+      <div class="step"><div class="step-n">02</div><h3>Cuidado em primeiro lugar</h3><p>Orientação para tratamento médico e autoexclusão das plataformas. Sua saúde antes de qualquer processo.</p></div>
+      <div class="step"><div class="step-n">03</div><h3>Avaliação jurídica individual</h3><p>{{NOME_ADVOGADO}} analisa a viabilidade do seu caso. Honorários somente no resultado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Quem vai cuidar do seu caso</span>
+    <div class="sobre-grid r d1">
+      <div class="sobre-foto-wrap">
+        <img src="{{FOTO_ADVOGADO}}" alt="{{NOME_ADVOGADO}}" id="sobreFoto"
+             onerror="this.style.display='none';document.getElementById('sobrePh').style.display='flex'">
+        <div class="sobre-foto-ph" id="sobrePh" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="color:#CBD0D8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+      </div>
+      <div class="sobre-text">
+        <h3 class="sobre-nome">{{NOME_ADVOGADO}}</h3>
+        <div class="sobre-oab">OAB/{{OAB}} · {{CIDADE_ESTADO}}</div>
+        <p>{{DESCRICAO_SERVICO}}</p>
+        <p>A avaliação inicial é gratuita, sigilosa e sem compromisso.</p>
+        <div class="tag-row"><span class="tag">Lei 14.790/2023</span><span class="tag">CDC</span><span class="tag">CID-11</span><span class="tag">{{CIDADE_ESTADO}}</span></div>
+        <div class="honora"><strong>Honorários:</strong> cobrados somente no resultado. Nenhum custo antecipado.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Dúvidas frequentes</span>
+    <h2 class="sec-h r d1">Perguntas mais comuns.</h2>
+    <div class="faq-list r d2">
+      <div class="faq-item"><div class="faq-q">Não tenho laudo. Estou fora? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Não. O laudo pode ser obtido agora com psiquiatra ou psicólogo. Buscar esse cuidado é o passo mais importante.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Minha família vai saber? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Não por nós. A conversa é protegida pelo sigilo profissional. Nenhum familiar é contatado sem sua autorização.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Ainda estou apostando. Posso falar? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Sim — e principalmente por isso. A primeira orientação é proteger você de novas perdas.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Qual o custo da avaliação? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Zero. A avaliação inicial é gratuita. Honorários são acordados antes e cobrados somente no resultado.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Apoio gratuito</span>
+    <h2 class="sec-h r d1">Cuidar de você não depende de processo.</h2>
+    <div class="ajuda-grid r d2">
+      <div class="ajuda-card"><h3>Jogadores Anônimos</h3><p>Grupos de apoio gratuitos, presenciais e online.</p><span class="contact">jogadoresanonimos.org.br</span></div>
+      <div class="ajuda-card"><h3>CAPS · SUS</h3><p>Atendimento gratuito de saúde mental na sua cidade.</p><span class="contact">Gratuito</span></div>
+      <div class="ajuda-card"><h3>CVV · 188</h3><p>Atendimento 24h com sigilo total se o sofrimento estiver pesado.</p><span class="contact">Ligue 188</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="cta-final-in">
+    <span class="eyebrow r" style="color:rgba(255,255,255,.4)">Próximo passo</span>
+    <h2 class="r d1">{{CTA_TITULO}}</h2>
+    <p class="r d2">{{CTA_SUBTEXTO}}</p>
+    <a href="https://wa.me/{{WHATSAPP}}?text=Olá%20{{NOME_ADVOGADO_URL}},%20gostaria%20de%20uma%20avaliação." target="_blank">
+      <button class="btn-cta-w r d3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar com {{NOME_ADVOGADO}}
+      </button>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-in">
+    <div><strong>{{NOME_ESCRITORIO}}</strong></div>
+    <p>{{NOME_ADVOGADO}} · OAB/{{OAB}} · {{CIDADE_ESTADO}}<br>Conteúdo informativo conforme Provimento 205/2021 da OAB. Ligue 188 se precisar de ajuda imediata.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(h>0?Math.min(window.scrollY/h,1)*100:0)+'%';},{passive:true});
+  var obs=new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting){i.target.classList.add('on');obs.unobserve(i.target);}});},{threshold:.06});
+  document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
+  document.querySelectorAll('.faq-item').forEach(function(item){item.addEventListener('click',function(){var o=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});if(!o)item.classList.add('open');});});
+  window.toggleCheck=function(el){
+    el.classList.toggle('checked');
+    var checked=document.querySelectorAll('.check-item.checked').length;
+    var score=document.getElementById('checkScore');
+    if(checked===0){score.classList.remove('show');return;}
+    score.classList.add('show');
+    if(checked<=1)score.textContent='Baixo risco — mas se tiver dúvidas, a avaliação é gratuita.';
+    else if(checked<=3)score.textContent='Atenção — padrões que merecem avaliação profissional.';
+    else score.textContent='Resultado compatível com ludopatia — considere buscar ajuda agora.';
+  };
+  var cobs=new IntersectionObserver(function(e){e.forEach(function(en){if(!en.isIntersecting)return;var el=en.target,t=parseInt(el.dataset.count),p=el.dataset.prefix||'';if(!t)return;var dur=1600,s=performance.now();(function tick(now){var prog=Math.min((now-s)/dur,1),ease=1-Math.pow(1-prog,3);el.textContent=p+Math.round(ease*t).toLocaleString('pt-BR');if(prog<1)requestAnimationFrame(tick);})(s);cobs.unobserve(el);});},{threshold:.4});
+  document.querySelectorAll('[data-count]').forEach(function(el){cobs.observe(el);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitch da call — Nicho Certo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B; --bg3:#1B2536;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --amber:#E3A53C; --steel:#69A6E0; --steel-fill:rgba(105,166,224,.12);
+    --red:#E8806B;
+    --display:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden}
+  ::selection{background:rgba(52,201,139,.28)}
+
+  .deck{position:relative;height:100vh;width:100vw}
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:72px 40px 96px;opacity:0;visibility:hidden;transition:opacity .4s ease;overflow-y:auto}
+  .slide.on{opacity:1;visibility:visible}
+  .inner{max-width:880px;width:100%;margin:auto}
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--certo);margin-bottom:18px}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,6vw,60px);letter-spacing:-.025em;line-height:1.04;margin:0 auto;max-width:18ch}
+  h1 .hl{color:var(--certo)}
+  h2{font-family:var(--display);font-weight:600;font-size:clamp(28px,5vw,46px);letter-spacing:-.02em;line-height:1.06;margin:0 auto;max-width:18ch}
+  h2 .hl{color:var(--certo)}
+  .sub{font-size:clamp(16px,2.4vw,21px);color:var(--muted);max-width:32em;margin:22px auto 0}
+  .sub b{color:var(--text);font-weight:500}
+
+  /* capa */
+  .cap-logo{font-family:var(--display);font-weight:700;font-size:clamp(48px,9vw,86px);letter-spacing:-.03em}
+  .cap-logo .d{color:var(--certo)}
+
+  /* stats */
+  .stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:38px}
+  .stat{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px 26px;min-width:170px}
+  .stat .b{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.5vw,40px);color:var(--certo);line-height:1;letter-spacing:-.02em}
+  .stat .c{font-size:12.5px;color:var(--muted);margin-top:9px}
+
+  /* points */
+  .pts{display:flex;flex-direction:column;gap:11px;max-width:30em;margin:34px auto 0;text-align:left}
+  .pt{display:flex;gap:13px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:15px 18px}
+  .pt .ic{font-family:var(--mono);font-size:13px;color:var(--certo);flex:none;margin-top:1px}
+  .pt.red .ic{color:var(--red)}
+  .pt span{font-size:14.5px;color:var(--text)}
+  .pt small{display:block;color:var(--muted);font-size:13px;margin-top:2px;font-weight:400}
+
+  /* pyramid mini */
+  .pyr{display:flex;flex-direction:column;align-items:center;margin:32px auto 0}
+  .layer{border-radius:12px;padding:13px 22px;text-align:center;margin-bottom:7px}
+  .l1{width:min(360px,90%);background:linear-gradient(180deg,rgba(52,201,139,.18),rgba(52,201,139,.07));border:1px solid rgba(52,201,139,.5)}
+  .l2{width:min(520px,96%);background:var(--bg2);border:1px solid var(--line2);border-top:2px solid var(--steel)}
+  .l3{width:min(680px,100%);background:var(--bg2);border:1px solid var(--line)}
+  .layer .lt{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+  .layer .ll{font-family:var(--display);font-weight:600;font-size:clamp(15px,2.2vw,19px)}
+
+  /* 2-card / 3-card grids */
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:30px;text-align:left}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px;text-align:left}
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .card.gc{border-top:2px solid var(--certo)}.card.sc{border-top:2px solid var(--steel)}
+  .card .ic{font-size:22px;margin-bottom:9px}
+  .card h4{font-size:15.5px;font-weight:600;margin:0 0 6px}
+  .card p{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
+  .card .f{font-family:var(--mono);font-size:10.5px;color:var(--text);background:var(--bg3);padding:4px 8px;border-radius:6px;display:inline-block;margin-top:9px}
+
+  /* plans */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px;text-align:left}
+  .plan{background:var(--bg2);border:1px solid var(--line);border-radius:15px;padding:20px}
+  .plan.rec{border-color:rgba(52,201,139,.5)}
+  .plan .bd{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--certo);height:12px;margin-bottom:7px}
+  .plan h4{font-family:var(--display);font-weight:500;font-size:19px;margin:0}
+  .plan .pr{font-family:var(--display);font-weight:600;font-size:23px;margin:7px 0 12px}
+  .plan .pr small{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:400}
+  .plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .plan li{font-size:12.5px;color:var(--muted);display:flex;gap:7px}.plan li::before{content:"✓";color:var(--certo)}
+
+  .note{font-size:13.5px;color:var(--muted);margin-top:24px}
+  .note b{color:var(--text)}
+
+  /* nav */
+  .nav{position:fixed;bottom:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:center;gap:18px;padding:16px;background:linear-gradient(transparent,rgba(14,20,31,.9) 40%)}
+  .nbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:var(--bg2);color:var(--text);cursor:pointer;font-size:16px;display:grid;place-items:center;transition:.15s}
+  .nbtn:hover{border-color:var(--certo);color:var(--certo)}
+  .nbtn:disabled{opacity:.3;cursor:default}
+  .dots{display:flex;gap:7px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--line2);cursor:pointer;transition:.15s}
+  .dot.on{background:var(--certo);transform:scale(1.25)}
+  .counter{position:fixed;top:18px;right:22px;font-family:var(--mono);font-size:12px;color:var(--faint);z-index:50}
+  .brand{position:fixed;top:18px;left:22px;font-family:var(--display);font-weight:600;font-size:15px;z-index:50}
+  .brand .d{color:var(--certo)}
+
+  @media (max-width:680px){
+    .slide{padding:64px 22px 92px}
+    .g2,.g3,.plans{grid-template-columns:1fr}
+    .stats{gap:11px}
+  }
+  :focus-visible{outline:2px solid var(--certo);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div class="brand">Nicho<span class="d"> Certo</span></div>
+<div class="counter"><span id="cur">1</span> / <span id="tot">11</span></div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 CAPA -->
+  <section class="slide on"><div class="inner">
+    <div class="eyebrow">Apresentação</div>
+    <div class="cap-logo">Nicho<span class="d"> Certo</span></div>
+    <p class="sub">A operação de ludopatia, pronta pra rodar — para advogados.</p>
+  </div></section>
+
+  <!-- 2 OPORTUNIDADE -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">A oportunidade</div>
+    <h2>Tem um nicho nascendo <span class="hl">agora</span>.</h2>
+    <div class="stats">
+      <div class="stat"><div class="b">+25 mi</div><div class="c">brasileiros apostando em 2025</div></div>
+      <div class="stat"><div class="b">R$ 36 bi</div><div class="c">ficaram com as plataformas</div></div>
+      <div class="stat"><div class="b">já vence</div><div class="c">TJSP · TJSC · TJRS · TJDFT</div></div>
+    </div>
+    <p class="sub">Demanda gigante, jurisprudência a favor e quase ninguém posicionado.</p>
+  </div></section>
+
+  <!-- 3 PROBLEMA -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">O problema</div>
+    <h2>Você vê a oportunidade.<br>Mas entrar sozinho é <span class="hl">difícil</span>.</h2>
+    <div class="pts">
+      <div class="pt red"><span class="ic">✕</span><span>Não conhece a tese<small>é assunto novo, muda toda hora</small></span></div>
+      <div class="pt red"><span class="ic">✕</span><span>Não sabe captar — e teme a OAB<small>marketing jurídico tem linha que não se cruza</small></span></div>
+      <div class="pt red"><span class="ic">✕</span><span>Não tem tempo de montar tudo<small>funil, bot, criativos, acompanhar decisões…</small></span></div>
+    </div>
+  </div></section>
+
+  <!-- 4 SOLUÇÃO -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">A virada</div>
+    <h2>Eu entrego a operação <span class="hl">inteira</span>, pronta.</h2>
+    <p class="sub">Captação, atendimento, teses e blindagem — montados com a cara do seu escritório. <b>Você não monta nada. Liga a chave.</b></p>
+  </div></section>
+
+  <!-- 5 PIRÂMIDE -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">O que me torna diferente</div>
+    <h2>Não é automação genérica.</h2>
+    <div class="pyr">
+      <div class="layer l1"><div class="lt">a fonte</div><div class="ll">Conhecimento de ludopatia</div></div>
+      <div class="layer l2"><div class="lt">transforma</div><div class="ll">Inteligência de IA</div></div>
+      <div class="layer l3"><div class="lt">entrega ao cliente</div><div class="ll">As soluções</div></div>
+    </div>
+    <p class="sub">Tudo nasce das teses de ludopatia. O nicho é o <b>ingrediente dentro do produto</b>.</p>
+  </div></section>
+
+  <!-- 6 TOPO -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">Topo · conhecimento</div>
+    <h2>As teses que <span class="hl">já vencem</span></h2>
+    <div class="g2">
+      <div class="card gc"><h4>Nulidade de pleno direito</h4><p>Quem tem ludopatia é impedido de apostar; as apostas são nulas e os valores voltam.</p><span class="f">Lei 14.790 · art. 26, VI</span></div>
+      <div class="card sc"><h4>Falha no dever de cuidado</h4><p>A plataforma deve proteger e informar. Falhou, responde civilmente.</p><span class="f">CDC</span></div>
+    </div>
+    <p class="note">Verificadas e sempre atualizadas — não é o que se acha solto na internet.</p>
+  </div></section>
+
+  <!-- 7 MEIO -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">Meio · inteligência</div>
+    <h2>Uma IA alimentada <span class="hl">dessa jurisprudência</span></h2>
+    <div class="g3">
+      <div class="card gc"><div class="ic">📡</div><h4>Radar</h4><p>Acompanha as decisões novas toda semana. Sua tese nunca envelhece.</p></div>
+      <div class="card gc"><div class="ic">📂</div><h4>Preparador de caso</h4><p>Cada lead vira um dossiê: tese, precedentes e provas. Você decide e redige.</p></div>
+      <div class="card gc"><div class="ic">🧭</div><h4>Suporte</h4><p>Te guia na plataforma e no setup. Você nunca trava.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 8 BASE -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">Base · soluções</div>
+    <h2>Cada ferramenta fala a <span class="hl">língua do ludopata</span></h2>
+    <div class="g2">
+      <div class="card sc"><div class="ic">💬</div><h4>Chatbot de triagem</h4><p>Acolhe quem está fragilizado e qualifica. Você escolhe o tom.</p></div>
+      <div class="card sc"><div class="ic">🎨</div><h4>Criativos</h4><p>Modelos prontos que captam a vítima de aposta — não "cliente" genérico.</p></div>
+      <div class="card sc"><div class="ic">🧲</div><h4>Landing page</h4><p>O funil de captação montado e no ar, com a sua marca.</p></div>
+      <div class="card sc"><div class="ic">🛡️</div><h4>Blindagem OAB</h4><p>Os limites da Ordem já resolvidos dentro do sistema.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 9 O QUE GANHA -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">O que você ganha</div>
+    <h2>Seu tempo de volta,<br>com o funil <span class="hl">rodando</span>.</h2>
+    <div class="pts">
+      <div class="pt"><span class="ic">→</span><span>Captação pronta<small>sem montar anúncio nem site</small></span></div>
+      <div class="pt"><span class="ic">→</span><span>Atendimento automático<small>o bot recebe, acolhe e qualifica</small></span></div>
+      <div class="pt"><span class="ic">→</span><span>Tese sempre atual<small>o radar acompanha por você</small></span></div>
+      <div class="pt"><span class="ic">→</span><span>Blindagem da OAB inclusa<small>segurança pra atuar sem medo</small></span></div>
+    </div>
+  </div></section>
+
+  <!-- 10 PLANOS -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">Planos</div>
+    <h2>Três formas de entrar</h2>
+    <div class="plans">
+      <div class="plan"><div class="bd"></div><h4>Essencial</h4><div class="pr">R$ 897<small>/mês</small></div><ul><li>Criativos + LP</li><li>Chatbot</li><li>Base + blindagem</li></ul></div>
+      <div class="plan rec"><div class="bd">recomendado</div><h4>Growth</h4><div class="pr">R$ 1.797<small>/mês</small></div><ul><li>Tudo do Essencial</li><li>Radar (IA)</li><li>Preparador de caso</li><li>Implementação inclusa</li></ul></div>
+      <div class="plan"><div class="bd"></div><h4>Pro</h4><div class="pr">R$ 2.997<small>/mês</small></div><ul><li>Tudo do Growth</li><li>Suporte prioritário</li><li>Acompanhamento</li></ul></div>
+    </div>
+    <p class="note">Assinatura fixa. <b>Sem comissão por caso</b>, sem percentual sobre honorários.</p>
+  </div></section>
+
+  <!-- 11 FECHAMENTO -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow">Vamos começar</div>
+    <h2>Vamos montar a sua <span class="hl">operação de ludopatia?</span></h2>
+    <p class="sub">A oportunidade é o porquê. A automação é o que você recebe — pronta, personalizada e blindada. <b>Você só liga a chave.</b></p>
+  </div></section>
+
+</div>
+
+<div class="nav">
+  <button class="nbtn" id="prev" aria-label="Anterior">‹</button>
+  <div class="dots" id="dots"></div>
+  <button class="nbtn" id="next" aria-label="Próximo">›</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dots=document.getElementById('dots');
+  const cur=document.getElementById('cur'),tot=document.getElementById('tot');
+  const prev=document.getElementById('prev'),next=document.getElementById('next');
+  let i=0;tot.textContent=slides.length;
+  slides.forEach((_,n)=>{const d=document.createElement('div');d.className='dot'+(n===0?' on':'');d.onclick=()=>go(n);dots.appendChild(d);});
+  const dotEls=[...dots.children];
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    dotEls.forEach((d,k)=>d.classList.toggle('on',k===i));
+    cur.textContent=i+1;prev.disabled=i===0;next.disabled=i===slides.length-1;
+    slides[i].scrollTop=0;
+  }
+  prev.onclick=()=>go(i-1);next.onclick=()=>go(i+1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(i+1);}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1);}
+    if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1);
+  });
+  go(0);
+</script>
+</body>
+</html>

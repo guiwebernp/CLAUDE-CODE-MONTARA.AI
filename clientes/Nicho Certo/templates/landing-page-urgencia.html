@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{NOME_ESCRITORIO}} — Aja Agora</title>
+<meta name="description" content="{{META_DESCRICAO}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0C0608; --bg2:#130A0C; --bg3:#1A0D10;
+  --border:rgba(255,255,255,.07); --border2:rgba(255,255,255,.14);
+  --text:#F0ECE8; --muted:#7A6068; --faint:#3A2830;
+  --red:#C0392B; --red2:#E05040; --red3:#A02820;
+  --red-dim:rgba(192,57,43,.10); --red-glow:rgba(192,57,43,.20);
+  --gold:#D4A853; --gold-dim:rgba(212,168,83,.08);
+  --b:'Inter',system-ui,sans-serif; --m:'IBM Plex Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--b);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ALERTA TOPO */
+.alert-bar{background:var(--red);padding:10px 24px;text-align:center;font-size:13px;font-weight:700;letter-spacing:.02em;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:center;gap:12px}
+.alert-bar svg{flex:none}
+.alert-bar a{text-decoration:underline;color:inherit;white-space:nowrap}
+
+/* NAV */
+.nav{background:rgba(12,6,8,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);position:sticky;top:40px;z-index:100}
+.nav-in{max-width:1100px;margin:0 auto;padding:0 32px;height:56px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-size:14px;font-weight:800;letter-spacing:-.01em}
+.nav-logo span{color:var(--red2)}
+.nav-cta{font-size:12px;font-weight:700;padding:8px 18px;background:var(--red);color:#fff;border-radius:4px;letter-spacing:.02em;text-transform:uppercase;transition:.2s}
+.nav-cta:hover{background:var(--red3)}
+
+/* HERO */
+.hero{min-height:calc(100svh - 96px);display:flex;flex-direction:column;justify-content:center;padding:60px 48px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 20% 50%,rgba(192,57,43,.08),transparent 70%);pointer-events:none}
+.hero-in{max-width:900px;position:relative;z-index:1}
+.hero-label{font-family:var(--m);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--red2);opacity:.8;margin-bottom:20px;display:block}
+.hero h1{font-size:clamp(40px,7vw,96px);font-weight:900;line-height:.92;letter-spacing:-.04em;margin-bottom:28px}
+.hero h1 em{display:block;font-style:italic;font-weight:300;color:var(--red2)}
+.hero-lead{font-size:18px;color:var(--muted);line-height:1.72;max-width:38em;margin-bottom:36px}
+.hero-lead strong{color:var(--text);font-weight:600}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-urgente{font-size:15px;font-weight:800;padding:16px 40px;background:var(--red);color:#fff;border-radius:4px;letter-spacing:.02em;text-transform:uppercase;transition:.2s;display:inline-flex;align-items:center;gap:10px}
+.btn-urgente:hover{background:var(--red3);transform:translateY(-1px)}
+.btn-ghost{font-size:13px;color:var(--muted);border-bottom:1px solid var(--border2);padding-bottom:2px;transition:.2s}
+.btn-ghost:hover{color:var(--text)}
+/* Estatísticas rápidas hero */
+.hero-stats{display:flex;gap:0;margin-top:48px;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.hero-stat{flex:1;padding:16px 20px;border-right:1px solid var(--border);text-align:center}
+.hero-stat:last-child{border-right:none}
+.stat-val{font-size:clamp(20px,2.4vw,28px);font-weight:900;color:var(--red2);letter-spacing:-.03em;line-height:1;display:block}
+.stat-label{font-family:var(--m);font-size:9.5px;color:var(--muted);margin-top:5px;display:block;letter-spacing:.08em;text-transform:uppercase}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:8px 0}
+.ticker-inner{display:flex;white-space:nowrap;animation:tick 36s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+.t-item{display:inline-flex;align-items:center;gap:9px;padding:0 24px;font-family:var(--m);font-size:10.5px;color:var(--muted);flex-shrink:0}
+.t-item .v{color:var(--red2)}.t-item .sep{font-size:7px}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}.r.d2{transition-delay:.14s}.r.d3{transition-delay:.21s}
+
+/* SEÇÃO */
+.sec{padding:80px 48px;border-bottom:1px solid var(--border)}
+.sec-in{max-width:1100px;margin:0 auto}
+.eyebrow{font-family:var(--m);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--red2);opacity:.8;margin-bottom:14px;display:block}
+.sec-h{font-size:clamp(28px,4.5vw,52px);font-weight:900;line-height:.97;letter-spacing:-.035em;margin-bottom:14px}
+.sec-h em{font-style:italic;color:var(--red2);font-weight:300}
+.sec-lead{font-size:16px;color:var(--muted);max-width:44em;line-height:1.78}
+
+/* POR QUE AGORA */
+.urgencia-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:32px}
+.urg-item{background:var(--bg);padding:28px 24px}
+.urg-icon{font-size:24px;margin-bottom:14px;display:block}
+.urg-item h3{font-size:clamp(16px,1.8vw,20px);font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+.urg-item p{font-size:14px;color:var(--muted);line-height:1.65}
+.urg-item strong{color:var(--text)}
+
+/* SINAIS */
+.sinais-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:32px}
+.sinal{background:var(--bg);padding:18px 20px;display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.55}
+.sinal-dot{width:8px;height:8px;border-radius:50%;background:var(--red2);flex:none;margin-top:5px}
+
+/* DIREITOS — destaque */
+.direitos-bloco{margin-top:32px;display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.dir-item{background:var(--bg);padding:22px 24px;display:grid;grid-template-columns:80px 1fr;gap:20px;align-items:flex-start}
+.dir-lei{font-family:var(--m);font-size:10px;color:var(--red2);opacity:.7;letter-spacing:.08em;text-transform:uppercase;padding-top:2px}
+.dir-item p{font-size:14px;color:var(--muted);line-height:1.65}
+.dir-item strong{color:var(--text)}
+
+/* CASOS */
+.casos-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:32px}
+.caso{background:var(--bg);padding:24px 20px}
+.caso-trib{font-family:var(--m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:block}
+.caso-val{font-family:var(--b);font-weight:900;font-size:clamp(22px,2.8vw,32px);color:var(--red2);letter-spacing:-.03em;line-height:1;display:block;margin-bottom:8px}
+.caso-desc{font-size:12.5px;color:var(--muted);line-height:1.55}
+
+/* JORNADA */
+.journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:32px}
+.j-step{background:var(--bg);padding:28px 24px}
+.j-num{font-size:48px;font-weight:900;color:var(--border2);line-height:1;margin-bottom:14px;letter-spacing:-.03em}
+.j-step h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.j-step p{font-size:13.5px;color:var(--muted);line-height:1.65}
+
+/* SOBRE */
+.sobre-split{display:grid;grid-template-columns:1fr 440px;gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sobre-body{padding:56px 48px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border)}
+.sobre-nome{font-size:clamp(22px,3vw,36px);font-weight:900;letter-spacing:-.025em;margin-bottom:4px}
+.sobre-nome em{font-style:italic;color:var(--red2);font-weight:300}
+.sobre-oab{font-family:var(--m);font-size:11px;color:var(--muted);margin-bottom:6px}
+.sobre-bar{width:32px;height:3px;background:var(--red);opacity:.6;margin:14px 0 18px}
+.sobre-body p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:12px}
+.sobre-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.sobre-tag{font-family:var(--m);font-size:10px;padding:3px 9px;border:1px solid var(--border2);color:var(--muted);border-radius:3px}
+.honora{margin-top:18px;padding:12px 18px;border-left:2px solid var(--red);background:var(--red-dim);font-size:13px;color:var(--muted);line-height:1.65}
+.honora strong{color:var(--text);font-weight:500}
+.sobre-foto-wrap{position:relative;overflow:hidden}
+.sobre-foto-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.sobre-foto-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg2);color:var(--faint)}
+
+/* FAQ */
+.faq-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:32px}
+.faq-item{background:var(--bg);padding:0;cursor:pointer}
+.faq-q{padding:20px 22px;font-size:14px;font-weight:500;display:flex;justify-content:space-between;gap:14px;transition:background .15s}
+.faq-q:hover,.faq-item.open .faq-q{background:var(--bg2)}
+.faq-item.open .faq-q{color:var(--red2)}
+.faq-icon{flex:none;color:var(--red2);font-size:18px;transition:transform .25s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:.3s}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-inner{overflow:hidden;font-size:13.5px;color:var(--muted);line-height:1.75}
+.faq-item.open .faq-inner{padding:0 22px 18px}
+
+/* CTA FINAL */
+.cta-final{padding:88px 48px;text-align:center;background:var(--bg2);border-top:1px solid var(--border);position:relative;overflow:hidden}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(192,57,43,.06),transparent 70%)}
+.cta-in{max-width:700px;margin:0 auto;position:relative;z-index:1}
+.cta-in h2{font-size:clamp(32px,5.5vw,72px);font-weight:900;line-height:.92;letter-spacing:-.04em;margin-bottom:20px}
+.cta-in h2 em{display:block;font-style:italic;color:var(--red2);font-weight:300}
+.cta-in p{font-size:16px;color:var(--muted);max-width:34em;margin:0 auto 32px;line-height:1.78}
+.btn-cta-r{display:inline-flex;align-items:center;gap:10px;padding:18px 48px;background:var(--red);color:#fff;border-radius:4px;font-size:16px;font-weight:800;letter-spacing:.01em;text-transform:uppercase;transition:.2s}
+.btn-cta-r:hover{background:var(--red3);transform:translateY(-1px)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:90}
+.wa-float a{width:52px;height:52px;border-radius:4px;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.3);transition:.25s}
+.wa-float a:hover{transform:scale(1.06)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:24px 48px}
+.footer-in{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-logo{font-size:14px;font-weight:800}
+.footer-logo span{color:var(--red2)}
+footer p{font-size:11px;color:var(--faint);line-height:1.7;max-width:58em}
+
+@media(max-width:900px){
+  .urgencia-grid,.casos-row,.journey-grid,.faq-cols{grid-template-columns:1fr}
+  .sinais-list{grid-template-columns:1fr}
+  .sobre-split{grid-template-columns:1fr}
+  .sec,.hero{padding:56px 24px}
+  footer{padding:24px}
+}
+</style>
+<style>{{COLOR_OVERRIDE}}</style>
+</head>
+<body>
+
+<div class="alert-bar">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  Prazo legal pode estar correndo.
+  <a href="https://wa.me/{{WHATSAPP}}?text=Quero%20entender%20meus%20direitos" target="_blank">Avalie seu caso gratuitamente →</a>
+</div>
+
+<div class="wa-float">
+  <a href="https://wa.me/{{WHATSAPP}}?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20meu%20caso" target="_blank">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-logo">{{NOME_ESCRITORIO}} <span>·</span></div>
+    <a href="https://wa.me/{{WHATSAPP}}?text=Quero%20avaliar%20meu%20caso%20agora" target="_blank">
+      <button class="nav-cta">Avaliação urgente</button>
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-in">
+    <span class="hero-label">{{CIDADE_ESTADO}} · Ludopatia · Lei 14.790/2023</span>
+    <h1>{{HEADLINE_H1}}</h1>
+    <p class="hero-lead">{{TAGLINE}}</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/{{WHATSAPP}}?text=Quero%20entender%20meus%20direitos%20agora" target="_blank">
+        <button class="btn-urgente">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+          Falar com {{NOME_ADVOGADO}}
+        </button>
+      </a>
+      <button class="btn-ghost" onclick="document.getElementById('sinais').scrollIntoView({behavior:'smooth'})">ver os sinais de alerta →</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="stat-val" data-count="1179000" data-prefix="R$ ">R$ 1.179.000</span><span class="stat-label">já recuperado</span></div>
+      <div class="hero-stat"><span class="stat-val">4</span><span class="stat-label">tribunais favoráveis</span></div>
+      <div class="hero-stat"><span class="stat-val">0</span><span class="stat-label">custo antecipado</span></div>
+      <div class="hero-stat"><span class="stat-val">48h</span><span class="stat-label">primeira resposta</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap" aria-hidden="true"><div class="ticker-inner" id="ticker"></div></div>
+
+<section class="sec" id="sinais">
+  <div class="sec-in">
+    <span class="eyebrow r">Por que agir agora</span>
+    <h2 class="sec-h r d1">Cada dia sem agir é<br><em>uma perda que acumula.</em></h2>
+    <div class="urgencia-grid r d2">
+      <div class="urg-item"><span class="urg-icon">⏱</span><h3>Prazo prescricional</h3><p>Ações de responsabilidade civil prescrevem em <strong>3 anos</strong>. Quanto mais tempo passa, mais difícil provar o padrão de comportamento.</p></div>
+      <div class="urg-item"><span class="urg-icon">📱</span><h3>Plataformas apagam dados</h3><p>Histórico de apostas, acesso e comportamento de uso são <strong>excluídos automaticamente</strong> após determinado período.</p></div>
+      <div class="urg-item"><span class="urg-icon">📈</span><h3>Jurisprudência crescendo</h3><p>Decisões favoráveis estão sendo publicadas agora. Quem entra primeiro tem <strong>mais precedentes a seu favor</strong>.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Reconheça os sinais</span>
+    <h2 class="sec-h r d1">Você se identifica<br><em>com algum destes?</em></h2>
+    <div class="sinais-list r d2">
+      <div class="sinal"><span class="sinal-dot"></span>Apostou quantias cada vez maiores para sentir a mesma emoção</div>
+      <div class="sinal"><span class="sinal-dot"></span>Mentiu para família sobre quanto apostou ou perdeu</div>
+      <div class="sinal"><span class="sinal-dot"></span>Tentou parar e não conseguiu</div>
+      <div class="sinal"><span class="sinal-dot"></span>Apostou para tentar recuperar o que perdeu</div>
+      <div class="sinal"><span class="sinal-dot"></span>Usou dinheiro essencial ou fez dívidas para apostar</div>
+      <div class="sinal"><span class="sinal-dot"></span>Ficou irritado ou ansioso quando tentou parar</div>
+    </div>
+    <div style="margin-top:24px;padding:20px 24px;background:var(--red-dim);border:1px solid rgba(192,57,43,.2);border-radius:4px;font-size:14px;color:var(--muted);line-height:1.7">
+      <strong style="color:var(--text)">Se você se identificou com 3 ou mais:</strong> seus padrões são compatíveis com ludopatia — uma doença com código na CID-11. Você não está sozinho e tem direitos.
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Seus direitos</span>
+    <h2 class="sec-h r d1">A lei está do<br><em>seu lado.</em></h2>
+    <div class="direitos-bloco r d2">
+      <div class="dir-item"><span class="dir-lei">Lei 14.790/23<br>art. 26</span><p><strong>A aposta é nula.</strong> É vedada a participação de pessoa diagnosticada com ludopatia. A plataforma que permitiu responde.</p></div>
+      <div class="dir-item"><span class="dir-lei">Lei 14.790/23</span><p><strong>Dever de monitorar.</strong> A operadora devia identificar os sinais e intervir antes que o dano chegasse a esse nível.</p></div>
+      <div class="dir-item"><span class="dir-lei">CDC art. 14</span><p><strong>Responsabilidade objetiva.</strong> A relação é de consumo. Falha no serviço gera indenização independente de culpa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Casos reais</span>
+    <h2 class="sec-h r d1">Quatro tribunais.<br><em>Quatro vitórias.</em></h2>
+    <div class="casos-row r d2">
+      <div class="caso"><span class="caso-trib">TJDFT</span><span class="caso-val" data-count="337000" data-prefix="R$ ">R$ 337.000</span><span class="caso-desc">Restituição integral. Plataforma sem mecanismo de contenção.</span></div>
+      <div class="caso"><span class="caso-trib">TJSP</span><span class="caso-val" data-count="456000" data-prefix="R$ ">R$ 456.000</span><span class="caso-desc">Comportamento compulsivo inequívoco ignorado pela plataforma.</span></div>
+      <div class="caso"><span class="caso-trib">TJRS</span><span class="caso-val" data-count="206000" data-prefix="R$ ">R$ 206.000</span><span class="caso-desc">Falha no dever de cuidado com apostador em vulnerabilidade.</span></div>
+      <div class="caso"><span class="caso-trib">TJSC</span><span class="caso-val" data-count="180000" data-prefix="R$ ">R$ 180.000</span><span class="caso-desc">Nulidade contratual e responsabilidade civil da operadora.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Como funciona</span>
+    <h2 class="sec-h r d1">Três passos.<br><em>Sem custo antecipado.</em></h2>
+    <div class="journey-grid r d2">
+      <div class="j-step"><div class="j-num">01</div><h3>Conversa sigilosa</h3><p>Pelo WhatsApp, sem formalidade. Sua situação fica entre você e {{NOME_ADVOGADO}}. Sem compromisso.</p></div>
+      <div class="j-step"><div class="j-num">02</div><h3>Avaliação individual</h3><p>Análise do seu caso, das plataformas envolvidas e da viabilidade jurídica — explicada com clareza.</p></div>
+      <div class="j-step"><div class="j-num">03</div><h3>Honorários no resultado</h3><p>Você não paga nada adiantado. Os honorários são acordados antes e cobrados somente se ganhar.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="sobre-split">
+  <div class="sobre-body r">
+    <h3 class="sobre-nome">{{NOME_ADVOGADO}}<br><em>especialista em ludopatia</em></h3>
+    <div class="sobre-oab">OAB/{{OAB}} · {{CIDADE_ESTADO}}</div>
+    <div class="sobre-bar"></div>
+    <p>{{DESCRICAO_SERVICO}}</p>
+    <p>A conversa inicial é gratuita, sigilosa e sem compromisso.</p>
+    <div class="sobre-tags">
+      <span class="sobre-tag">Lei 14.790/2023</span>
+      <span class="sobre-tag">CDC</span>
+      <span class="sobre-tag">CID-11</span>
+      <span class="sobre-tag">{{CIDADE_ESTADO}}</span>
+    </div>
+    <div class="honora"><strong>Honorários:</strong> somente no resultado. Nenhum custo antecipado.</div>
+  </div>
+  <div class="sobre-foto-wrap">
+    <img src="{{FOTO_ADVOGADO}}" alt="{{NOME_ADVOGADO}}" id="sobreFoto"
+         onerror="this.style.display='none';document.getElementById('sobrePh').style.display='flex'">
+    <div class="sobre-foto-ph" id="sobrePh" style="display:none">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="sec-in">
+    <span class="eyebrow r">Perguntas frequentes</span>
+    <h2 class="sec-h r d1">Tire suas dúvidas.</h2>
+    <div class="faq-cols r d2">
+      <div class="faq-item"><div class="faq-q">Não tenho laudo médico. Posso entrar? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Sim. O diagnóstico pode ser obtido agora com psiquiatra ou psicólogo. Isso é o passo mais importante — independente do processo.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Quanto posso recuperar? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Depende do caso, das plataformas e das provas. Após a avaliação inicial, {{NOME_ADVOGADO}} explica o que é realista para a sua situação.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Minha família vai saber? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Não por nós. Sigilo profissional garantido. Nenhum familiar é contatado sem sua autorização.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Ainda estou apostando. Posso falar? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-inner">Pode — e deve. A primeira orientação é proteger você de novas perdas com autoexclusão e encaminhamento para tratamento.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="cta-in">
+    <span class="eyebrow r" style="color:rgba(192,57,43,.6)">Agora</span>
+    <h2 class="r d1">{{CTA_TITULO}}<em>Sem julgamento.</em></h2>
+    <p class="r d2">{{CTA_SUBTEXTO}}</p>
+    <a href="https://wa.me/{{WHATSAPP}}?text=Olá%20{{NOME_ADVOGADO_URL}},%20vim%20pelo%20site%20e%20quero%20entender%20meus%20direitos." target="_blank">
+      <button class="btn-cta-r r d3">Falar com {{NOME_ADVOGADO}} agora</button>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-in">
+    <div class="footer-logo">{{NOME_ESCRITORIO}} <span>·</span></div>
+    <p>{{NOME_ADVOGADO}} · OAB/{{OAB}} · {{CIDADE_ESTADO}} · Conteúdo informativo conforme Provimento 205/2021 da OAB. Ligue 188 se precisar de ajuda.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var data=[{c:'TJDFT',t:'Restituição integral',v:'R$ 337.000'},{c:'TJSP',t:'Comportamento compulsivo',v:'R$ 456.000'},{c:'TJRS',t:'Falha no dever de cuidado',v:'R$ 206.000'},{c:'TJSC',t:'Nulidade contratual',v:'R$ 180.000'},{c:'TJRS',t:'Apostas durante internação',v:'R$ 94.000'},{c:'TJSP',t:'Conta reativada indevidamente',v:'R$ 61.000'},{c:'TJDFT',t:'Vício de consentimento',v:'R$ 155.000'},{c:'TJSC',t:'Vício de informação',v:'R$ 128.000'}];
+  var el=document.getElementById('ticker');
+  if(el)el.innerHTML=[...data,...data].map(function(i){return'<span class="t-item"><span>'+i.c+'</span><span class="sep">·</span>'+i.t+'<span class="sep">·</span><span class="v">'+i.v+'</span><span class="sep">·</span></span>';}).join('');
+  var obs=new IntersectionObserver(function(e){e.forEach(function(i){if(i.isIntersecting){i.target.classList.add('on');obs.unobserve(i.target);}});},{threshold:.06});
+  document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
+  var cobs=new IntersectionObserver(function(e){e.forEach(function(en){if(!en.isIntersecting)return;var el=en.target,t=parseInt(el.dataset.count),p=el.dataset.prefix||'';if(!t)return;var dur=1600,s=performance.now();(function tick(now){var prog=Math.min((now-s)/dur,1),ease=1-Math.pow(1-prog,3);el.textContent=p+Math.round(ease*t).toLocaleString('pt-BR');if(prog<1)requestAnimationFrame(tick);})(s);cobs.unobserve(el);});},{threshold:.4});
+  document.querySelectorAll('[data-count]').forEach(function(el){cobs.observe(el);});
+  document.querySelectorAll('.faq-item').forEach(function(item){item.addEventListener('click',function(){var o=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});if(!o)item.classList.add('open');});});
+})();
+</script>
+</body>
+</html>

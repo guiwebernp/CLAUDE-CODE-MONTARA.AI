@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{NOME_ESCRITORIO}} · Atendimento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E141F; --bg2:#151D2B;
+    --text:#E9ECF1; --muted:#94A1B3; --faint:#5E6B7D;
+    --certo:#34C98B; --certo-fill:rgba(52,201,139,.12);
+    --wa-bg:#0B141A; --wa-head:#1F2C34; --wa-in:#1F2C34; --wa-out:#005C4B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+  .header{text-align:center;margin-bottom:24px}
+  .header .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--certo);margin-bottom:8px}
+  .header h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(22px,4vw,32px);font-weight:600;letter-spacing:-.02em}
+  .header p{color:var(--muted);font-size:14px;margin-top:8px}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+  .pill{font-size:13px;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:transparent;color:var(--muted);cursor:pointer;transition:.15s;font-family:'Inter',sans-serif}
+  .pill:hover{color:var(--text)}.pill.on{background:var(--certo-fill);border-color:rgba(52,201,139,.5);color:var(--certo);font-weight:500}
+  .botdesc{font-size:13px;color:var(--muted);text-align:center;margin:0 0 18px;min-height:18px}
+  .phone{background:#000;border-radius:34px;padding:10px;box-shadow:0 30px 70px rgba(0,0,0,.5);border:1px solid #2a2a2a;width:330px;max-width:100%}
+  .screen{background:var(--wa-bg);border-radius:26px;overflow:hidden;height:540px;display:flex;flex-direction:column}
+  .wahead{background:var(--wa-head);padding:13px 15px;display:flex;align-items:center;gap:11px;flex:none}
+  .ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--certo),#1F7A56);display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;color:#06241a;font-size:14px;flex:none}
+  .wahead .nm{font-size:14px;font-weight:500;color:#E9EDEF}.wahead .st{font-size:11px;color:#8696a0}
+  .chat{flex:1;overflow-y:auto;padding:15px 12px;display:flex;flex-direction:column;gap:7px}.chat::-webkit-scrollbar{width:0}
+  .row{display:flex}.row.in{justify-content:flex-start}.row.out{justify-content:flex-end}
+  .bub{max-width:80%;padding:7px 10px 6px;border-radius:9px;font-size:13px;line-height:1.42;color:#E9EDEF;animation:pop .25s ease}
+  .in .bub{background:var(--wa-in);border-top-left-radius:2px}.out .bub{background:var(--wa-out);border-top-right-radius:2px}
+  .bub .tmx{font-size:9px;color:rgba(233,237,239,.5);float:right;margin:5px 0 -2px 8px}
+  @keyframes pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .opts{display:flex;flex-direction:column;gap:4px;margin-top:3px;max-width:80%;align-self:flex-start}
+  .opt{background:var(--wa-in);border-radius:7px;text-align:center;padding:8px;font-size:12.5px;color:#53bdeb;animation:pop .25s ease}
+  .opt.chosen{color:#06241a;background:var(--certo);font-weight:500}
+  .typing{display:inline-flex;gap:3px;padding:10px 12px;background:var(--wa-in);border-radius:9px;border-top-left-radius:2px}
+  .typing i{width:6px;height:6px;border-radius:50%;background:#8696a0;animation:blink 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  .replay{margin-top:14px;font-size:13px;color:var(--certo);background:var(--certo-fill);border:1px solid rgba(52,201,139,.4);border-radius:999px;padding:9px 18px;cursor:pointer;font-family:'Inter',sans-serif}
+  .feednote{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--certo);margin-top:14px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">Nicho Certo · Chatbot</div>
+  <h1>{{NOME_ESCRITORIO}}</h1>
+  <p>Escolha o tom do atendimento para demonstrar ao cliente</p>
+</div>
+
+<div class="pills" id="bpills"></div>
+<div class="botdesc" id="bdesc"></div>
+<div class="phone"><div class="screen">
+  <div class="wahead">
+    <div class="ava">{{SIGLA}}</div>
+    <div>
+      <div class="nm">{{NOME_ESCRITORIO}} · Atendimento</div>
+      <div class="st" id="bst">online</div>
+    </div>
+  </div>
+  <div class="chat" id="bchat"></div>
+</div></div>
+<button class="replay" id="breplay">▶ reproduzir</button>
+<div class="feednote">● configurado por Nicho Certo</div>
+
+<script>
+const ESCRITORIO = "{{NOME_ESCRITORIO}}";
+const ESTILO_PADRAO = "{{ESTILO_PADRAO}}";
+
+const MODELS = {
+  acolhedor:{nome:'Acolhedor',tom:'empático · humano',steps:[
+    {w:'bot',t:'Oi! Que bom que você chegou até aqui. Sei que dar esse passo não é fácil — pode falar comigo no seu tempo. 💚'},
+    {w:'lead',t:'obrigado'},
+    {w:'bot',t:'Antes de qualquer coisa jurídica, como você está se sentindo com tudo isso hoje?'},
+    {w:'opts',o:['Sobrecarregado','Tentando me reerguer'],c:1},
+    {w:'bot',t:'Isso já diz muito sobre você. Em situações assim existe base legal para discutir a devolução dos valores — quem avalia com calma é o advogado.'},
+    {w:'bot',t:'E vale também procurar apoio de saúde. Quer que eu organize uma conversa com o ' + ESCRITORIO + '?'},
+    {w:'opts',o:['Quero','Preciso pensar'],c:0},
+    {w:'lead',t:'João, fim da tarde'},
+    {w:'bot',t:'Obrigado por confiar, João. O advogado fala com você no fim da tarde. Cuide de você. 💚'}
+  ]},
+  objetivo:{nome:'Objetivo',tom:'direto · respeita o tempo',steps:[
+    {w:'bot',t:'Olá! Você chegou pelo nosso conteúdo sobre apostas. Posso te ajudar em poucos minutos?'},
+    {w:'lead',t:'pode'},
+    {w:'bot',t:'Direto ao ponto: em casos de ludopatia existe base jurídica para discutir a devolução de valores. O advogado avalia se o seu caso se encaixa.'},
+    {w:'bot',t:'As apostas chegaram a causar prejuízo financeiro relevante?'},
+    {w:'opts',o:['Sim','Prefiro não dizer'],c:0},
+    {w:'bot',t:'Já é suficiente para uma primeira conversa. Quer que eu agende com o ' + ESCRITORIO + '?'},
+    {w:'opts',o:['Quero','Agora não'],c:0},
+    {w:'lead',t:'João, amanhã 14h'},
+    {w:'bot',t:'Anotado, João — amanhã às 14h o advogado te liga. Vale também buscar apoio de saúde. Cuide de você.'}
+  ]},
+  educativo:{nome:'Educativo',tom:'informa · gera autoridade',steps:[
+    {w:'bot',t:'Olá! Deixa eu te explicar algo que muita gente não sabe.'},
+    {w:'lead',t:'ok'},
+    {w:'bot',t:'A Lei 14.790/2023 considera que quem tem ludopatia está impedido de apostar. Na prática, isso abre caminho para discutir na Justiça a devolução dos valores.'},
+    {w:'bot',t:'E a plataforma tem o dever de proteger o apostador. Quando falha, também responde. Cada caso é avaliado pelo advogado. Faz sentido?'},
+    {w:'opts',o:['Faz sentido','Tenho dúvidas'],c:0},
+    {w:'bot',t:'Ótimo. O ' + ESCRITORIO + ' pode olhar a sua situação e te dizer os caminhos. Quer agendar?'},
+    {w:'opts',o:['Quero','Vou pensar'],c:0},
+    {w:'lead',t:'João, sexta de manhã'},
+    {w:'bot',t:'Combinado, João. E lembre: vale também cuidar da saúde nesse processo.'}
+  ]},
+  formal:{nome:'Formal',tom:'institucional · sóbrio',steps:[
+    {w:'bot',t:'Olá. Aqui é o atendimento do escritório. Agradecemos o seu contato.'},
+    {w:'lead',t:'olá'},
+    {w:'bot',t:'Identificamos que sua procura se relaciona a perdas em plataformas de apostas. Há fundamento jurídico para discutir a restituição de valores em casos dessa natureza.'},
+    {w:'bot',t:'A análise é conduzida individualmente pelo advogado responsável. Podemos agendar uma conversa?'},
+    {w:'opts',o:['Sim, podemos','Em outro momento'],c:0},
+    {w:'lead',t:'João, segunda às 10h'},
+    {w:'bot',t:'Registrado, Sr. João. O advogado entrará em contato na segunda às 10h. Recomendamos, ademais, buscar acompanhamento de saúde. À disposição.'}
+  ]}
+};
+
+const ORDER = ['acolhedor','objetivo','educativo','formal'];
+const chat = document.getElementById('bchat');
+const bst = document.getElementById('bst');
+const pills = document.getElementById('bpills');
+const bdesc = document.getElementById('bdesc');
+const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+let token = 0, current = ESTILO_PADRAO || 'acolhedor';
+
+const tm = () => { const d = new Date(); return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0'); };
+const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+
+ORDER.forEach(k => {
+  const b = document.createElement('button');
+  b.className = 'pill';
+  b.textContent = MODELS[k].nome;
+  b.dataset.k = k;
+  b.onclick = () => play(k);
+  pills.appendChild(b);
+});
+
+function syncP() { document.querySelectorAll('.pill').forEach(p => p.classList.toggle('on', p.dataset.k === current)); }
+function bubble(w, t) {
+  const r = document.createElement('div');
+  r.className = 'row ' + (w === 'bot' ? 'in' : 'out');
+  r.innerHTML = `<div class="bub">${t}<span class="tmx">${tm()}</span></div>`;
+  chat.appendChild(r); chat.scrollTop = chat.scrollHeight;
+}
+function options(a, c) {
+  const wr = document.createElement('div'); wr.className = 'opts';
+  a.forEach((o, i) => { const b = document.createElement('div'); b.className = 'opt' + (i === c ? ' chosen' : ''); b.textContent = o; wr.appendChild(b); });
+  chat.appendChild(wr); chat.scrollTop = chat.scrollHeight;
+}
+async function typing() {
+  const r = document.createElement('div'); r.className = 'row in';
+  r.innerHTML = '<div class="typing"><i></i><i></i><i></i></div>';
+  chat.appendChild(r); chat.scrollTop = chat.scrollHeight;
+  bst.textContent = 'digitando…'; await wait(700); r.remove(); bst.textContent = 'online';
+}
+async function play(k) {
+  const my = ++token; current = k; syncP(); bdesc.textContent = MODELS[k].tom; chat.innerHTML = '';
+  for (const s of MODELS[k].steps) {
+    if (my !== token) return;
+    if (s.w === 'bot') { await typing(); if (my !== token) return; bubble('bot', s.t); await wait(540); }
+    else if (s.w === 'lead') { await wait(340); if (my !== token) return; bubble('lead', s.t); await wait(380); }
+    else { await wait(240); if (my !== token) return; options(s.o, s.c); await wait(540); if (my !== token) return; bubble('lead', s.o[s.c]); await wait(320); }
+  }
+}
+
+document.getElementById('breplay').onclick = () => play(current);
+play(current);
+</script>
+</body>
+</html>

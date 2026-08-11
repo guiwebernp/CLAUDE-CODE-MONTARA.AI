@@ -1,0 +1,16 @@
+{
+  "name": "nicho-certo",
+  "version": "1.0.0",
+  "description": "Sistema de agentes para advogados no nicho de ludopatia",
+  "main": "setup-cliente.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node shell.js",
+    "shell": "node shell.js",
+    "painel": "node painel.js",
+    "crm": "node crm.js",
+    "novo": "node novo-cliente.js",
+    "galeria": "start galeria-designs.html",
+    "criativos": "node criativos.js"
+  }
+}
